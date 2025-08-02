@@ -1,7 +1,13 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 :root {
-  --background: #ffffff;
+  --greenColor: #799d41;
+  --redColor: #d5282C;
+  --orangeColor: #ea843e;
+  --yellowColor: #ffde59;
+  --grayColor: #494e5f;
+  --background: #fffaf6;
   --foreground: #171717;
 }
 
