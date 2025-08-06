@@ -2,11 +2,15 @@
 @plugin "daisyui";
 
 :root {
+  --greenLightColor: #c6e791;
   --greenColor: #799d41;
   --greenSecondColor: #607d32;
+  --redLightColor: #ea9799;
   --redColor: #d5282C;
   --redSecondColor: #b22124;
+  --orangeLightColor: #f9c8a7;
   --orangeColor: #ea843e;
+  --yellowLightColor: #faeaac;
   --yellowColor: #ffde59;
   --grayColor: #494e5f;
   --background: #fffaf6;
