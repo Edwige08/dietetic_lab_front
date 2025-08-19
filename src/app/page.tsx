@@ -17,23 +17,29 @@ export default function Home() {
           />
         </Link>
 
+        <Link href={"/dej"}>
         <CardSection
           bgColor="bg-(--greenColor)"
           title="Besoins nutritionnels"
           description="Calculer les besoins quotidiens en énergie et nutriments"
         />
+        </Link>
 
+        <Link href={"/undernutrition"}>
         <CardSection
           bgColor="bg-(--redColor)"
           title="Dénutrition"
           description="Dépiser la dénutrition et déterminer sa sévérité"
         />
+        </Link>
 
+        <Link href={"/sri"}>
         <CardSection
           bgColor="bg-(--yellowColor)"
           title="Syndrome de Renutrition Inapropriée"
           description="Evaluer le risque de SRI d'un patient"
         />
+        </Link>
       </div>
     </>
   );
