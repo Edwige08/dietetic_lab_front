@@ -79,26 +79,32 @@ export default function UndernutritionSenior() {
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
                 onSubmit={handleSubmit}
             >
-                <div className="flex flex-row gap-4 border p-3">
+                <h2 className="text-xl font-bold">
+                    Evaluation de la dénutrition
+                </h2>
+                <div className="flex flex-col gap-4 border p-3">
                     <Input
-                        title="Taille (cm) :"
-                        name="height"
-                        value={parameters.height}
-                        onChange={handleChange}
-                    />
-                    <Input
-                        title="Poids actuel (kg) :"
+                        title="Poids actuel :"
                         name="weight"
                         value={parameters.weight}
                         onChange={handleChange}
+                        unity="kg"
+                    />
+                    <Input
+                        title="Taille :"
+                        name="height"
+                        value={parameters.height}
+                        onChange={handleChange}
+                        unity="cm"
                     />
                 </div>
-                <div className="flex flex-row gap-4 border p-3">
+                <div className="flex flex-col gap-4 border p-3">
                     <Input
-                        title="Poids antérieur (kg) : "
+                        title="Poids antérieur : "
                         name="previousWeight"
                         value={parameters.previousWeight}
                         onChange={handleChange}
+                        unity="kg"
                     />
                     <div className="flex flex-col gap-1 justify-center">
                         <label>Ce poids antérieur était :</label>
@@ -112,10 +118,11 @@ export default function UndernutritionSenior() {
                 </div>
                 <div className="flex flex-row gap-4 border p-3">
                     <Input
-                        title="Albuminémie (g/L) : "
+                        title="Albuminémie : "
                         name="albuminemia"
                         value={parameters.albuminemia}
                         onChange={handleChange}
+                        unity="g/L"
                     />
                 </div>
                 <InputCheckbox

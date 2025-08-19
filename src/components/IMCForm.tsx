@@ -72,16 +72,18 @@ export default function IMCForm() {
                     Calcul de l'IMC
                 </h2>
                 <Input
-                    title="Poids (en kg)"
+                    title="Poids : "
                     name="weight"
                     value={weightHeight.weight}
                     onChange={handleChange}
+                        unity="kg"
                 />
                 <Input
-                    title="Taille (en cm)"
+                    title="Taille : "
                     name="height"
                     onChange={handleChange}
                     value={weightHeight.height}
+                        unity="cm"
                 />
 
                 <ButtonGreen
@@ -106,7 +108,7 @@ export default function IMCForm() {
                         ✅ Résultat :
                     </h2>
                     <p>
-                        Pour un poids de <span className="font-bold">{IMCresults.weight} kg</span> et une taille de <span className="font-bold">{IMCresults.height} cm</span>, on obtient un IMC de <span className="font-bold">{IMCresults.imc.toFixed(2)} kg/m²</span>, ce qui correspond à <span className="font-bold">{getIMCCategory(IMCresults.imc)}</span>.
+                        Pour un poids de <span className="font-bold">{IMCresults.weight} kg</span> et une taille de <span className="font-bold">{(IMCresults.height / 100).toFixed(2)} m</span>, on obtient un IMC de <span className="font-bold">{IMCresults.imc.toFixed(2)} kg/m²</span>, ce qui correspond à <span className="font-bold">{getIMCCategory(IMCresults.imc)}</span>.
                     </p>
                 </div>
                 : ""
