@@ -1,6 +1,5 @@
 export default function IMCInformation() {
     return (
-        <div className="flex flex-col items-center">
             <div
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--grayLightColor) border border-gray-300 rounded-xl shadow-xl"
             >
@@ -73,6 +72,5 @@ export default function IMCInformation() {
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
