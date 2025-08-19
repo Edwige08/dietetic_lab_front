@@ -12,6 +12,7 @@
   --orangeColor: #ea843e;
   --yellowLightColor: #faeaac;
   --yellowColor: #ffde59;
+  --grayLightColor: #e9e9ea;
   --grayColor: #494e5f;
   --background: #fffaf6;
   --foreground: #171717;
@@ -24,12 +25,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
