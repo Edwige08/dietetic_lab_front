@@ -3,7 +3,7 @@ import { ChangeEventHandler } from "react";
 export default function Input(props: { title: string, name: string, placeholder?: string, value: string | number, onChange?: ChangeEventHandler<HTMLInputElement>, disabled?: boolean, unity?: string }) {
     return (
         <div className="flex flex-row gap-1 items-center">
-            <label htmlFor={props.name} className="">
+            <label htmlFor={props.name}>
                 {props.title}
             </label>
             <input
@@ -15,6 +15,7 @@ export default function Input(props: { title: string, name: string, placeholder?
                 onChange={props.onChange}
                 required
                 disabled={props.disabled}
+                onFocus={(e) => e.target.select()}
             />
             <p>{props.unity}</p>
         </div>
