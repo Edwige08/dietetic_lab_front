@@ -1,9 +1,39 @@
+'use client'
+
+import UndernutritionAdult from "@/components/UndernutritionAdult";
 import UndernutritionSenior from "@/components/UndernutritionSenior";
+import { MouseEvent, useState } from "react";
 
 export default function Home() {
+    const [selectedPeople, setSelectedPeople] = useState<string>("senior");
+
+    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+        const target = event.target as HTMLButtonElement;
+        const name = target.name;
+        setSelectedPeople(name);
+    }
+
     return (
         <div className="flex flex-col items-center">
-            <UndernutritionSenior />
+            <div className="flex flex-row justify-center gap-5 mb-5">
+                <button
+                name="senior"
+                    className={`py-1 border rounded-lg w-[140] ${selectedPeople === "senior" ? "font-bold bg-(--orangeColor)" : ""}`}
+                    onClick={handleClick}
+                >
+                    Pers. âgée
+                </button>
+                <button
+                name="adult"
+                    className={`py-1 border rounded-lg w-[140] ${selectedPeople === "adult" ? "font-bold bg-(--orangeColor)" : ""}`}
+                    onClick={handleClick}
+                >
+                    Adulte
+                </button>
+            </div>
+            {selectedPeople === "adult" ? <UndernutritionAdult /> : ""}
+            {selectedPeople === "senior" ? <UndernutritionSenior /> : ""}
+
         </div>
     )
 }
