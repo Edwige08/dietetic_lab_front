@@ -3,8 +3,7 @@
 import { useState } from "react";
 import ButtonGreen from "./ButtonGreen";
 import Input from "./Input";
-import ButtonRed from "./ButtonRed";
-import IMCInformation from "./IMCInformation";
+import { Calculator  } from 'lucide-react';
 
 interface WeightHeight {
     weight: number,
@@ -21,8 +20,6 @@ export default function IMCForm() {
 
     const [weightHeight, setWeightHeight] = useState<WeightHeight>({ weight: 0, height: 0 });
     const [calculDone, setCalculDone] = useState<boolean>(false);
-    const [isDisabled, setIsDisabled] = useState<boolean>(false);
-    // const [IMCvalue, setIMCvalue] = useState<number>(0);
     const [IMCresults, setIMCResults] = useState<IMCResults>({ weight: 0, height: 0, imc: 0 });
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -31,7 +28,6 @@ export default function IMCForm() {
         if (weightHeight.weight > 0 && weightHeight.height > 0) {
             const imc = weightHeight.weight / ((weightHeight.height / 100) * (weightHeight.height / 100));
             console.log("imc : ", imc);
-            // setIMCvalue(imc);
             setCalculDone(true);
             setIMCResults({ weight: weightHeight.weight, height: weightHeight.height, imc: imc })
         }
@@ -59,48 +55,51 @@ export default function IMCForm() {
     const resetForm = () => {
         setWeightHeight({ weight: 0, height: 0 });
         setCalculDone(false);
-        setIsDisabled(false)
     }
 
     return (
         <>
+            <div>
+
+                <h2 className="py-4 text-3xl font-bold text-(--greenSecondColor) ">
+                    Calcul de l'IMC
+                </h2>
+            </div>
             <form
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
                 onSubmit={handleSubmit}
             >
-                <h2 className="text-xl font-bold">
-                    Calcul de l'IMC
-                </h2>
                 <Input
                     title="Poids : "
                     name="weight"
                     value={weightHeight.weight}
                     onChange={handleChange}
-                        unity="kg"
+                    unity="kg"
                 />
                 <Input
                     title="Taille : "
                     name="height"
                     onChange={handleChange}
                     value={weightHeight.height}
-                        unity="cm"
+                    unity="cm"
                 />
 
                 <ButtonGreen
                     text="Calculer"
                     type="submit"
+                    lucide={Calculator}
                 />
-                {calculDone ?
+                {calculDone &&
                     <button
                         type="reset"
                         onClick={resetForm}
                         className="underline"
                     >
                         Reset
-                    </button> : ""
+                    </button>
                 }
             </form>
-            {calculDone ?
+            {calculDone &&
                 <div
                     className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
                 >
@@ -111,7 +110,6 @@ export default function IMCForm() {
                         Pour un poids de <span className="font-bold">{IMCresults.weight} kg</span> et une taille de <span className="font-bold">{(IMCresults.height / 100).toFixed(2)} m</span>, on obtient un IMC de <span className="font-bold">{IMCresults.imc.toFixed(2)} kg/m²</span>, ce qui correspond à <span className="font-bold">{getIMCCategory(IMCresults.imc)}</span>.
                     </p>
                 </div>
-                : ""
             }
         </>
     )
