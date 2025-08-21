@@ -4,6 +4,8 @@ import { useState } from "react";
 import Input from "./Input";
 import ButtonGreen from "./ButtonGreen";
 import InputCheckbox from "./InputCheckbox";
+import { Calculator } from "lucide-react";
+import Title from "./Title";
 
 export default function UndernutritionAdult() {
     const [parameters, setParameters] = useState<WeightHeight>({
@@ -132,43 +134,42 @@ export default function UndernutritionAdult() {
 
     return (
         <>
+            <div className="px-4 mx-3 w-[90%] md:w-[75%]">
+                <Title
+                    text="Evaluation de la dénutrition (≥&nbsp;18&nbsp;ans et &lt;&nbsp;70 ans)"
+                />
+            </div>
             <form
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
                 onSubmit={handleSubmit}
             >
-                <h2 className="text-xl font-bold text-(--greenColor)">
-                    Evaluation de la dénutrition (≥ 18 ans et &lt; 70 ans)
-                </h2>
-                <h3 className="text-lg font-bold text-(--orangeColor)">
+                <h2 className="text-lg font-bold text-(--orangeColor)">
                     - <span className="underline">Critères phénotypiques</span> :
-                </h3>
-                <ul className="flex flex-col gap-1 px-7 list-disc">
+                </h2>
+                <ul className="flex flex-col gap-3">
                     <li>
 
                         <Input
-                            title="Poids actuel :"
+                            title="Poids actuel (kg) :"
                             name="weight"
                             value={parameters.weight}
                             onChange={handleChange}
-                            unity="kg"
                         />
                     </li>
                     <li>
                         <Input
-                            title="Taille :"
+                            title="Taille (cm) :"
                             name="height"
                             value={parameters.height}
                             onChange={handleChange}
-                            unity="cm"
                         />
                     </li>
                     <li>
                         <Input
-                            title="Poids antérieur : "
+                            title="Poids antérieur (kg) : "
                             name="previousWeight"
                             value={parameters.previousWeight}
                             onChange={handleChange}
-                            unity="kg"
                         />
                     </li>
                     <li>
@@ -192,11 +193,10 @@ export default function UndernutritionAdult() {
                     </li>
                     <li>
                         <Input
-                            title="Albuminémie : "
+                            title="Albuminémie (g/L) : "
                             name="albuminemia"
                             value={parameters.albuminemia}
                             onChange={handleChange}
-                            unity="g/L"
                         />
                     </li>
                     <li>
@@ -208,10 +208,10 @@ export default function UndernutritionAdult() {
                         />
                     </li>
                 </ul>
-                <h3 className="text-lg font-bold text-(--orangeColor)">
+                <h2 className="text-lg font-bold text-(--orangeColor)">
                     - <span className="underline">Critères étiologiques</span> :
-                </h3>
-                <ul className="flex flex-col gap-1 px-7 list-disc">
+                </h2>
+                <ul className="flex flex-col gap-3">
                     <li>
                         <InputCheckbox
                             name="firstEtiological"
@@ -240,18 +240,19 @@ export default function UndernutritionAdult() {
                 <ButtonGreen
                     text="Calculer"
                     type="submit"
+                    lucide={Calculator}
                 />
-                {calculDone ?
+                {calculDone &&
                     <button
                         type="reset"
                         onClick={resetForm}
                         className="underline"
                     >
                         Reset
-                    </button> : ""
+                    </button>
                 }
             </form>
-            {calculDone ?
+            {calculDone &&
                 <div
                     className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
                 >
@@ -305,7 +306,6 @@ export default function UndernutritionAdult() {
                         </div>
                         : <p>En l'absence d'au moins un critère phénotypique et un critère étiologique, on ne peut pas poser le diagnostique de dénutrition. En ambulatoire, le patient est à réévaluer à chaque consultation. En cas d'hospitalisation, réévaluation une fois par semaine (en MCO) ou toutes les 2 semaines (en SSR).</p>}
                 </div>
-                : ""
             }
         </>
     )

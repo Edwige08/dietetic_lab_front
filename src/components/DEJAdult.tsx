@@ -3,6 +3,8 @@
 import { MouseEvent, useState } from "react";
 import Input from "./Input";
 import ButtonGreen from "./ButtonGreen";
+import Title from "./Title";
+import { Calculator, Mars, Venus } from "lucide-react";
 
 interface DejParameters {
     weight: number,
@@ -63,71 +65,72 @@ export default function DEJAdult() {
 
     return (
         <>
+            <div className="px-4 mx-3 w-[90%] md:w-[75%]">
+                <Title
+                    text="Calcul de la Dépense Energétique Journalière (DEJ)"
+                />
+            </div>
             <form
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
                 onSubmit={handleSubmit}
             >
-                <h2 className="text-xl font-bold text-(--greenColor)">
-                    Calcul de la Dépense Energétique Journalière (DEJ)
-                </h2>
-                <div className="flex flex-row gap-5">
+                <div className="flex flex-row justify-center gap-5">
                     <button
                         name="f"
-                        className={`py-1 border rounded-lg w-[140px] ${dejParameters.gender === "f" ? "font-bold bg-(--orangeColor)" : ""}`}
+                        className={`flex flex-row gap-2 items-center justify-center py-1 border rounded-lg h-13 w-[140px] ${dejParameters.gender === "f" ? "underline font-bold bg-(--orangeColor)" : ""}`}
                         onClick={handleClick}
                         type="button"
                     >
+                        <Venus />
                         Femme
                     </button>
                     <button
                         name="h"
-                        className={`py-1 border rounded-lg w-[140px] ${dejParameters.gender === "h" ? "font-bold bg-(--orangeColor)" : ""}`}
+                        className={`flex flex-row gap-2 items-center justify-center py-1 border rounded-lg h-13 w-[140px] ${dejParameters.gender === "h" ? "underline font-bold bg-(--orangeColor)" : ""}`}
                         onClick={handleClick}
                         type="button"
                     >
+                        <Mars />
                         Homme
                     </button>
                 </div>
                 <Input
-                    title="Poids : "
+                    title="Poids (kg) : "
                     name="weight"
                     value={dejParameters.weight}
                     onChange={handleChange}
-                    unity="kg"
                 />
                 <Input
-                    title="Taille : "
+                    title="Taille (cm) : "
                     name="height"
                     value={dejParameters.height}
                     onChange={handleChange}
-                    unity="cm"
                 />
                 <Input
-                    title="Age : "
+                    title="Age (ans) : "
                     name="age"
                     value={dejParameters.age}
                     onChange={handleChange}
-                    unity="ans"
                 />
                 <Input
                     title="NAP : "
                     name="nap"
                     value={dejParameters.nap}
                     onChange={handleChange}
-                    unity=""
                 />
                 <ButtonGreen
                     text="Calculer"
                     type="submit"
+                    lucide={Calculator}
                 />
-                {/* {calculDone ?
+                {/* {calculDone &&
                     <button
                         type="reset"
                         onClick={resetForm}
                         className="underline"
                     >
                         Reset
-                    </button> : ""
+                    </button>
                 } */}
             </form>
             {calculDone &&

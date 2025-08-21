@@ -2,7 +2,7 @@ import { ChangeEventHandler } from "react";
 
 export default function Input(props: { title: string, name: string, placeholder?: string, value: string | number, onChange?: ChangeEventHandler<HTMLInputElement>, disabled?: boolean, unity?: string }) {
     return (
-        <div className="flex flex-row gap-1 items-center">
+        <div className="flex flex-col gap-1">
             <label htmlFor={props.name}>
                 {props.title}
             </label>
@@ -10,7 +10,7 @@ export default function Input(props: { title: string, name: string, placeholder?
                 name={props.name}
                 type="number"
                 placeholder={props.placeholder}
-                className="p-2 border border-gray-300 rounded-lg w-20"
+                className="p-2 border border-gray-300 rounded-lg w-full"
                 value={props.value}
                 onChange={props.onChange}
                 required

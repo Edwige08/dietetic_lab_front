@@ -70,18 +70,18 @@ export default function IMCForm() {
                 onSubmit={handleSubmit}
             >
                 <Input
-                    title="Poids : "
+                    title="Poids (kg) : "
                     name="weight"
                     value={weightHeight.weight}
                     onChange={handleChange}
-                    unity="kg"
+                    // unity="kg"
                 />
                 <Input
-                    title="Taille : "
+                    title="Taille (cm) : "
                     name="height"
                     onChange={handleChange}
                     value={weightHeight.height}
-                    unity="cm"
+                    // unity="cm"
                 />
 
                 <ButtonGreen

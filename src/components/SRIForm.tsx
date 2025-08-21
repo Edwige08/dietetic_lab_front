@@ -4,6 +4,8 @@ import { useState } from "react";
 import Input from "./Input";
 import InputCheckbox from "./InputCheckbox";
 import ButtonGreen from "./ButtonGreen";
+import Title from "./Title";
+import { Calculator } from "lucide-react";
 
 interface SRIParameters {
     weight: number,
@@ -119,35 +121,33 @@ export default function SRIForm() {
 
     return (
         <>
+            <div className="px-4 mx-3 w-[90%] md:w-[75%]">
+                <Title
+                    text="Evaluation du risque de SRI"
+                />
+            </div>
             <form
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
                 onSubmit={handleSubmit}
             >
-                <h2 className="text-xl font-bold text-(--greenColor)">
-                    Evaluation du risque de SRI
-                </h2>
-
-                <div>
+                <div className="flex flex-col gap-3">
                     <Input
-                        title="Poids actuel :"
+                        title="Poids actuel (kg) :"
                         name="weight"
                         value={parameters.weight}
                         onChange={handleChange}
-                        unity="kg"
                     />
                     <Input
-                        title="Taille :"
+                        title="Taille (cm) :"
                         name="height"
                         value={parameters.height}
                         onChange={handleChange}
-                        unity="cm"
                     />
                     <Input
-                        title="Poids le plus haut sur les 3 à 6 derniers mois : "
+                        title="Poids le plus haut sur les 3 à 6 derniers mois (kg) : "
                         name="previousWeight"
                         value={parameters.previousWeight}
                         onChange={handleChange}
-                        unity="kg"
                     />
                     <InputCheckbox
                         name="lowIngestaFive"
@@ -165,25 +165,22 @@ export default function SRIForm() {
                         Taux sanguins avant renutrition :
                     </p>
                     <Input
-                        title="- Potassium (K) : "
+                        title="- Potassium (mmol/L) : "
                         name="potassium"
                         value={parameters.potassium}
                         onChange={handleChange}
-                        unity="mmol/L"
                     />
                     <Input
-                        title="- Phosphore (P) : "
+                        title="- Phosphore (mmol/L) : "
                         name="phosphorus"
                         value={parameters.phosphorus}
                         onChange={handleChange}
-                        unity="mmol/L"
                     />
                     <Input
-                        title="- Magnésium (Mg) : "
+                        title="- Magnésium (mmol/L) : "
                         name="magnesium"
                         value={parameters.magnesium}
                         onChange={handleChange}
-                        unity="mmol/L"
                     />
                     <InputCheckbox
                         name="atcd"
@@ -194,6 +191,7 @@ export default function SRIForm() {
                     <ButtonGreen
                         text="Calculer"
                         type="submit"
+                        lucide={Calculator}
                     />
                 </div>
             </form>
