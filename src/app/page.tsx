@@ -12,6 +12,7 @@ export default function Home() {
         <Link href={"/imc"}>
           <CardSection
             bgColor="bg-(--orangeColor)"
+            emoji="🥥"
             title="Indice de Masse Corporelle"
             description="Calculer et interpréter l'IMC pour un adulte"
           />
@@ -19,6 +20,7 @@ export default function Home() {
 
         <Link href={"/dej"}>
         <CardSection
+            emoji="🍓"
           bgColor="bg-(--greenColor)"
           title="Besoins nutritionnels"
           description="Calculer les besoins quotidiens en énergie et nutriments"
@@ -27,6 +29,7 @@ export default function Home() {
 
         <Link href={"/undernutrition"}>
         <CardSection
+            emoji="🍌"
           bgColor="bg-(--redColor)"
           title="Dénutrition"
           description="Dépiser la dénutrition et déterminer sa sévérité"
@@ -35,6 +38,7 @@ export default function Home() {
 
         <Link href={"/sri"}>
         <CardSection
+            emoji="🥝"
           bgColor="bg-(--yellowColor)"
           title="Syndrome de Renutrition Inapropriée"
           description="Evaluer le risque de SRI d'un patient"
