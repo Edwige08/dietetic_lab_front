@@ -3,7 +3,7 @@
 import { useState } from "react";
 import ButtonGreen from "./ButtonGreen";
 import Input from "./Input";
-import { Calculator  } from 'lucide-react';
+import { Calculator } from 'lucide-react';
 
 interface WeightHeight {
     weight: number,
@@ -30,6 +30,12 @@ export default function IMCForm() {
             console.log("imc : ", imc);
             setCalculDone(true);
             setIMCResults({ weight: weightHeight.weight, height: weightHeight.height, imc: imc })
+        } else if (weightHeight.weight > 0 && weightHeight.height === 0) {
+            alert("Vous avez oublié d'entrer une taille")
+        } else if (weightHeight.weight === 0 && weightHeight.height > 0) {
+            alert("Vous avez oublié d'entrer un poids")
+        } else {
+            alert("Vous devez rentrer un poids et une taille")
         }
     }
 
@@ -74,14 +80,12 @@ export default function IMCForm() {
                     name="weight"
                     value={weightHeight.weight}
                     onChange={handleChange}
-                    // unity="kg"
                 />
                 <Input
                     title="Taille (cm) : "
                     name="height"
                     onChange={handleChange}
                     value={weightHeight.height}
-                    // unity="cm"
                 />
 
                 <ButtonGreen
