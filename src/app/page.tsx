@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <>
+    <div>
       <div className="flex flex-col items-center ">
         <img src="/logo_image.png" alt="logo de Dietetic Lab" className="w-20" />
         <h1 className="text-2xl font-bold mb-5">Bienvenue sur Dietetic Lab !</h1>
@@ -47,6 +47,6 @@ export default function Home() {
           />
         </Link>
       </div>
-    </>
+    </div>
   );
 }
