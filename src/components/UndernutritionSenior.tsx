@@ -33,10 +33,6 @@ export default function UndernutritionSenior() {
         secondEtiological: false,
         thirdEtiological: false,
     });
-    const [isFirstEtiological, setIsFirstEtiological] = useState<boolean>(false)
-    const [isSecondEtiological, setIsSecondEtiological] = useState<boolean>(false)
-    const [isThirdEtiological, setIsThirdEtiological] = useState<boolean>(false)
-    const [isSarcopenia, setIsSarcopenia] = useState<boolean>(false)
 
     interface WeightHeight {
         weight: number,
@@ -74,10 +70,6 @@ export default function UndernutritionSenior() {
     const resetForm = () => {
         setParameters({ weight: 0, height: 0, previousWeight: 0, previousWeightDate: "none", albuminemia: 0, sarcopenia: false, firstEtiological: false, secondEtiological: false, thirdEtiological: false });
         setCalculDone(false);
-        setIsSarcopenia(false);
-        setIsFirstEtiological(false);
-        setIsSecondEtiological(false);
-        setIsThirdEtiological(false);
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,19 +82,32 @@ export default function UndernutritionSenior() {
     }
 
     const handleChangeSarcopenia = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsSarcopenia(!isSarcopenia)
+        setParameters(prev => ({
+            ...prev,
+            sarcopenia: !parameters.sarcopenia
+        }))
     }
 
     const handleChangeFirstEtiological = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsFirstEtiological(!isFirstEtiological)
+
+        setParameters(prev => ({
+            ...prev,
+            firstEtiological: !parameters.firstEtiological
+        }))
     }
 
     const handleChangeSecondEtiological = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsSecondEtiological(!isSecondEtiological)
+        setParameters(prev => ({
+            ...prev,
+            secondEtiological: !parameters.secondEtiological
+        }))
     }
 
     const handleChangeThirdEtiological = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsThirdEtiological(!isThirdEtiological)
+        setParameters(prev => ({
+            ...prev,
+            thirdEtiological: !parameters.thirdEtiological
+        }))
     }
 
     const handleChangePreviousWeightDate = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -120,7 +125,7 @@ export default function UndernutritionSenior() {
         if (parameters.weight > 0 && parameters.height > 0) {
             const imc = parameters.weight / ((parameters.height / 100) * (parameters.height / 100));
             setCalculDone(true);
-            setEvaluationResults({ weight: parameters.weight, height: parameters.height, imc: imc, previousWeight: parameters.previousWeight, previousWeightDate: parameters.previousWeightDate, weightLoss: 0, albuminemia: parameters.albuminemia, sarcopenia: isSarcopenia, firstEtiological: isFirstEtiological, secondEtiological: isSecondEtiological, thirdEtiological: isThirdEtiological })
+            setEvaluationResults({ weight: parameters.weight, height: parameters.height, imc: imc, previousWeight: parameters.previousWeight, previousWeightDate: parameters.previousWeightDate, weightLoss: 0, albuminemia: parameters.albuminemia, sarcopenia: parameters.sarcopenia, firstEtiological: parameters.firstEtiological, secondEtiological: parameters.secondEtiological, thirdEtiological: parameters.thirdEtiological })
         }
 
         if (parameters.weight > 0 && parameters.previousWeight > 0) {
@@ -203,7 +208,7 @@ export default function UndernutritionSenior() {
                     <li>
                         <InputCheckbox
                             name="sarcopenia"
-                            checked={isSarcopenia}
+                            checked={parameters.sarcopenia}
                             title="Sarcopénie confirmée par une réduction quantifiée de la force et de la masse musculaire"
                             onChange={handleChangeSarcopenia}
                         />
@@ -216,7 +221,7 @@ export default function UndernutritionSenior() {
                     <li>
                         <InputCheckbox
                             name="firstEtiological"
-                            checked={isFirstEtiological}
+                            checked={parameters.firstEtiological}
                             title="Réduction de la prise alimentaire ≥ 50 % pendant plus d’1 semaine, ou toute réduction des apports pendant plus de 2 semaines par rapport à la consommation alimentaire habituelle ou aux besoins protéino-énergétiques"
                             onChange={handleChangeFirstEtiological}
                         />
@@ -224,7 +229,7 @@ export default function UndernutritionSenior() {
                     <li>
                         <InputCheckbox
                             name="secondEtiological"
-                            checked={isSecondEtiological}
+                            checked={parameters.secondEtiological}
                             title="Absorption réduite (malabsorption/maldigestion)"
                             onChange={handleChangeSecondEtiological}
                         />
@@ -232,7 +237,7 @@ export default function UndernutritionSenior() {
                     <li>
                         <InputCheckbox
                             name="thirdEtiological"
-                            checked={isThirdEtiological}
+                            checked={parameters.thirdEtiological}
                             title="Situation d’agression (avec ou sans syndrome inflammatoire) : pathologie aiguë ou pathologie chronique évolutive ou pathologie maligne évolutive"
                             onChange={handleChangeThirdEtiological}
                         />
@@ -272,11 +277,12 @@ export default function UndernutritionSenior() {
                         <p className="underline">
                             Critère(s) phénotypique(s) :
                         </p>
-                        {(((evaluationResults.weightLoss >= 5) && (evaluationResults.previousWeightDate === "one-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "six-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "before-disease")) || (evaluationResults.imc < 22) || (evaluationResults.sarcopenia)) ?
+                        {(((evaluationResults.weightLoss >= 5) && (evaluationResults.previousWeightDate === "one-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "six-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "before-disease" || evaluationResults.previousWeightDate === "none")) || (evaluationResults.imc < 22) || (evaluationResults.sarcopenia)) ?
                             <ul className="pl-5 list-disc">
                                 {((evaluationResults.weightLoss >= 5) && (evaluationResults.previousWeightDate === "one-month")) ? <li>Perte de poids de {evaluationResults.weightLoss} % en 1 mois ou plus</li> : ""}
                                 {((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "six-month")) ? <li>Perte de poids de {evaluationResults.weightLoss} % en 6 mois ou plus</li> : ""}
                                 {((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "before-disease")) ? <li>Perte de poids de {evaluationResults.weightLoss} % depuis le début de la maladie</li> : ""}
+                                {((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "none")) ? <li>Perte de poids de {evaluationResults.weightLoss} %</li> : ""}
                                 {(evaluationResults.imc < 22) ? <li>IMC = {evaluationResults.imc.toFixed(2)} kg/m²</li> : ""}
                                 {evaluationResults.sarcopenia ? <li>Sarcopénie confirmée</li> : ""}
                             </ul>
@@ -294,16 +300,26 @@ export default function UndernutritionSenior() {
                             </ul>
                             : "Aucun"}
                     </div>
-                    {(((evaluationResults.weightLoss >= 5) && (evaluationResults.previousWeightDate === "one-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "six-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "before-disease")) || (evaluationResults.imc < 22) || (evaluationResults.sarcopenia)) && (evaluationResults.firstEtiological || evaluationResults.secondEtiological || evaluationResults.thirdEtiological) ?
-                        <div>
-                            <>
-                                <p>En présence d'au moins un critère phénotypique et un critère étiologique, le diagnostic de dénutrition est confirmé.</p>
+                    {(((evaluationResults.weightLoss >= 5) && (evaluationResults.previousWeightDate === "one-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "six-month")) || ((evaluationResults.weightLoss >= 10) && ((evaluationResults.previousWeightDate === "before-disease" || evaluationResults.previousWeightDate === "none"))) || (evaluationResults.imc < 22) || (evaluationResults.sarcopenia)) && (evaluationResults.firstEtiological || evaluationResults.secondEtiological || evaluationResults.thirdEtiological) ?
+                        <div className="flex flex-col gap-4">
+                            <p>En présence d'au moins un critère phénotypique et un critère étiologique, le diagnostic de dénutrition est confirmé.</p>
 
-                                {((evaluationResults.imc < 20) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "one-month")) || ((evaluationResults.weightLoss >= 15) && (evaluationResults.previousWeightDate === "six-month")) || ((evaluationResults.weightLoss >= 15) && (evaluationResults.previousWeightDate === "before-disease")) || (evaluationResults.albuminemia <= 30)) ?
-                                    <p>Il s'agit ici d'une dénutrition sévère.</p>
-                                    : <p>Il s'agit ici d'une dénutrition modérée.</p>}
-
-                            </>
+                            {((evaluationResults.imc < 20) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "one-month")) || ((evaluationResults.weightLoss >= 15) && (evaluationResults.previousWeightDate === "six-month")) || ((evaluationResults.weightLoss >= 15) && (evaluationResults.previousWeightDate === "before-disease" || evaluationResults.previousWeightDate === "none")) || (evaluationResults.albuminemia <= 30 && evaluationResults.albuminemia > 0)) ?
+                                <div className="flex flex-col gap-4">
+                                    <div>
+                                        <p className="underline">Critère(s) de dénutrition sévère : </p>
+                                        <ul className="pl-5 list-disc">
+                                            {evaluationResults.imc < 20 && <li>IMC &lt; 20 kg/m²</li>}
+                                            {((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "one-month")) && <li>Perte de poids ≥ 10 % en 1 mois</li>}
+                                            {((evaluationResults.weightLoss >= 15) && (evaluationResults.previousWeightDate === "six-month")) && <li>Perte de poids ≥ 15 % en 6 mois</li>}
+                                            {((evaluationResults.weightLoss >= 15) && (evaluationResults.previousWeightDate === "before-disease")) && <li>Perte de poids ≥ 15 % par rapport au poids habituel avant le début de la maladie</li>}
+                                            {((evaluationResults.weightLoss >= 15) && (evaluationResults.previousWeightDate === "none")) && <li>Perte de poids ≥ 15 %</li>}
+                                            {(evaluationResults.albuminemia <= 30 && evaluationResults.albuminemia > 0) && <li>Albuminémie ≤ 30 g/L</li>}
+                                        </ul>
+                                    </div>
+                                    <p>Il s'agit donc d'une <span className="text-lg font-bold underline">dénutrition sévère</span>.</p>
+                                </div>
+                                : <p>Il s'agit ici d'une dénutrition modérée.</p>}
                         </div>
                         : <p>En l'absence d'au moins un critère phénotypique et un critère étiologique, on ne peut pas poser le diagnostique de dénutrition. Cependant, en cas d'événement clinique intercurrent (infection, chirurgie...) ou de diminution de l'appétit ou des consommations alimentaires, il faudra rapprocher la surveillance du poids, de l'appétit et des consommations alimentaires à une fois par semaine</p>}
                     <p>
