@@ -1,6 +1,7 @@
 'use client'
 
 import UndernutritionAdult from "@/components/UndernutritionAdult";
+import UndernutritionInformation from "@/components/UndernutritionInformation";
 import UndernutritionSenior from "@/components/UndernutritionSenior";
 import { MouseEvent, useState } from "react";
 
@@ -15,17 +16,17 @@ export default function Home() {
 
     return (
         <div className="flex flex-col items-center">
-            <div className="flex flex-row justify-center gap-5 mb-5">
+            <div className="flex flex-row justify-center gap-5 mb-5 mt-10">
                 <button
-                name="senior"
-                    className={`py-1 border rounded-lg w-[140] ${selectedPeople === "senior" ? "font-bold bg-(--orangeColor)" : ""}`}
+                    name="senior"
+                    className={`py-1 border rounded-lg h-13 w-[140] ${selectedPeople === "senior" ? "font-bold bg-(--orangeColor)" : ""}`}
                     onClick={handleClick}
                 >
                     Pers. âgée
                 </button>
                 <button
-                name="adult"
-                    className={`py-1 border rounded-lg w-[140] ${selectedPeople === "adult" ? "font-bold bg-(--orangeColor)" : ""}`}
+                    name="adult"
+                    className={`py-1 border rounded-lg h-13 w-[140] ${selectedPeople === "adult" ? "font-bold bg-(--orangeColor)" : ""}`}
                     onClick={handleClick}
                 >
                     Adulte
@@ -33,7 +34,7 @@ export default function Home() {
             </div>
             {selectedPeople === "adult" ? <UndernutritionAdult /> : ""}
             {selectedPeople === "senior" ? <UndernutritionSenior /> : ""}
-
+            <UndernutritionInformation />
         </div>
     )
 }
