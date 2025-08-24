@@ -134,6 +134,7 @@ export default function SRIForm() {
                     <Input
                         title="Poids actuel (kg) :"
                         name="weight"
+                        step={0.1}
                         value={parameters.weight}
                         onChange={handleChange}
                     />
@@ -146,6 +147,7 @@ export default function SRIForm() {
                     <Input
                         title="Poids le plus haut sur les 3 à 6 derniers mois (kg) : "
                         name="previousWeight"
+                        step={0.1}
                         value={parameters.previousWeight}
                         onChange={handleChange}
                     />
@@ -167,18 +169,21 @@ export default function SRIForm() {
                     <Input
                         title="- Potassium (mmol/L) : "
                         name="potassium"
+                        step={0.1}
                         value={parameters.potassium}
                         onChange={handleChange}
                     />
                     <Input
                         title="- Phosphore (mmol/L) : "
                         name="phosphorus"
+                        step={0.1}
                         value={parameters.phosphorus}
                         onChange={handleChange}
                     />
                     <Input
                         title="- Magnésium (mmol/L) : "
                         name="magnesium"
+                        step={0.1}
                         value={parameters.magnesium}
                         onChange={handleChange}
                     />

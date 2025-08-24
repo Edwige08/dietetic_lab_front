@@ -54,7 +54,8 @@ export default function DEJAdult() {
             const imc = dejParameters.weight / ((dejParameters.height / 100) * (dejParameters.height / 100));
             setCalculDone(true);
             setDejResults({ weight: dejParameters.weight, height: dejParameters.height, imc: imc, age: dejParameters.age, gender: dejParameters.gender, nap: dejParameters.nap })
-
+        } else {
+            alert("Merci de bien remplir tous les champs.")
         }
     }
 
@@ -97,6 +98,7 @@ export default function DEJAdult() {
                 <Input
                     title="Poids (kg) : "
                     name="weight"
+                    step={0.1}
                     value={dejParameters.weight}
                     onChange={handleChange}
                 />
@@ -115,6 +117,7 @@ export default function DEJAdult() {
                 <Input
                     title="NAP : "
                     name="nap"
+                    step={0.05}
                     value={dejParameters.nap}
                     onChange={handleChange}
                 />
@@ -123,7 +126,7 @@ export default function DEJAdult() {
                     type="submit"
                     lucide={Calculator}
                 />
-                {/* {calculDone &&
+                {calculDone &&
                     <button
                         type="reset"
                         onClick={resetForm}
@@ -131,7 +134,7 @@ export default function DEJAdult() {
                     >
                         Reset
                     </button>
-                } */}
+                }
             </form>
             {calculDone &&
                 <div
