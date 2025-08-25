@@ -32,7 +32,7 @@ export default function Home() {
             emoji="🍌"
             bgColor="bg-(--greenColor)"
             title="Besoins nutritionnels"
-            description="Calculer les besoins quotidiens en énergie et nutriments"
+            description="Calculer la dépense énergétique journalière pour un adulte"
           />
         </Link>
 
@@ -41,7 +41,7 @@ export default function Home() {
             emoji="🥥"
             bgColor="bg-(--redColor)"
             title="Dénutrition"
-            description="Dépiser la dénutrition et déterminer sa sévérité"
+            description="Dépiser la dénutrition chez la personne de plus de 18 ans et déterminer sa sévérité"
           />
         </Link>
 
@@ -49,8 +49,17 @@ export default function Home() {
           <CardSection
             emoji="🍓"
             bgColor="bg-(--yellowColor)"
-            title="Syndrome de Renutrition Inapropriée"
-            description="Evaluer le risque de SRI d'un patient"
+            title="SRI"
+            description="Evaluer le risque de syndrome de renutrition inappropriée d'un patient"
+          />
+        </Link>
+
+        <Link href={"/ingesta"}>
+          <CardSection
+            emoji="🍍"
+            bgColor="bg-(--blueColor)"
+            title="Ingesta"
+            description="Calculer les ingesta d'un patient grâce à la table de composition nutritionnelle du Ciqual"
           />
         </Link>
       </div>

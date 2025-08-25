@@ -2,10 +2,10 @@ export default function CardSection(props: { bgColor: string, emoji: string, tit
     return (
         <>
             <div className="card card-side bg-white shadow-md mx-3 my-2">
-                <figure className={`p-3 rounded-lg text-3xl w-20 ${props.bgColor}`}>
+                <figure className={`rounded-lg text-3xl w-30 ${props.bgColor}`}>
                     {props.emoji}
                 </figure>
-                <div className="card-body p-4 gap-1">
+                <div className="card-body w-full p-4 gap-1">
                     <h2 className="card-title">{props.title}</h2>
                     <p className="">{props.description}</p>
                     <div className="card-actions justify-end">

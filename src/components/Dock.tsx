@@ -37,7 +37,7 @@ export default function Dock() {
                                 <li className="flex justify-center border bg-(--greenLightColor) rounded-xl h-12 shadow-md"><Link href="/dej" className="text-lg">🍌 Calcul DEJ</Link></li>
                                 <li className="flex justify-center border bg-(--redLightColor) rounded-xl h-12 shadow-md"><Link href="/undernutrition" className="text-lg">🥥 Eval dénutrition</Link></li>
                                 <li className="flex justify-center border bg-(--yellowLightColor) rounded-xl h-12 shadow-md"><Link href="/sri" className="text-lg">🍓 Evaluation SRI</Link></li>
-                                <li className="flex justify-center border bg-(--grayMediumColor) rounded-xl h-12 shadow-md"><Link href="/ingesta" className="text-lg">🍇 Calcul Ingesta</Link></li>
+                                <li className="flex justify-center border bg-(--blueLightColor) rounded-xl h-12 shadow-md"><Link href="/ingesta" className="text-lg">🍍 Calcul Ingesta</Link></li>
                             </ul>
                         </div>
                         <ul className="text-end">
