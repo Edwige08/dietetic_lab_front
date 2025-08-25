@@ -1,13 +1,20 @@
 import CardSection from "@/components/CardSection";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div>
       <div className="flex flex-col items-center ">
-        <img src="/logo_image_fond.png" alt="logo de Dietetic Lab" className="w-20" />
+        <Image
+          src="/logo_image_fond.png"
+          width={500}
+          height={500}
+          alt="Logo de Dietetic Lab"
+          className="w-20"
+        />
         <h1 className="text-2xl font-bold mb-5">Bienvenue sur Dietetic Lab !</h1>
-        <p className="text-lg mb-5">Que voulez-vous faire aujourd'hui ?</p>
+        <p className="text-lg mb-5">Que voulez-vous faire aujourd&apos;hui ?</p>
       </div>
 
       <div className="flex flex-col gap-1">

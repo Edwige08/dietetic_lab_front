@@ -68,7 +68,7 @@ export default function IMCForm() {
             <div>
 
                 <h2 className="py-4 text-3xl font-bold text-(--greenSecondColor) ">
-                    Calcul de l'IMC
+                    Calcul de l&apos;IMC
                 </h2>
             </div>
             <form

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Input from "./Input";
 import ButtonGreen from "./ButtonGreen";
 import InputCheckbox from "./InputCheckbox";
-import { Calculator, Divide } from "lucide-react";
+import { Calculator } from "lucide-react";
 import Title from "./Title";
 
 export default function UndernutritionAdult() {
@@ -91,14 +91,14 @@ export default function UndernutritionAdult() {
         }))
     }
 
-    const handleChangeSarcopenia = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeSarcopenia = () => {
         setParameters(prev => ({
             ...prev,
             sarcopenia: !parameters.sarcopenia
         }))
     }
 
-    const handleChangeFirstEtiological = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeFirstEtiological = () => {
 
         setParameters(prev => ({
             ...prev,
@@ -106,14 +106,14 @@ export default function UndernutritionAdult() {
         }))
     }
 
-    const handleChangeSecondEtiological = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeSecondEtiological = () => {
         setParameters(prev => ({
             ...prev,
             secondEtiological: !parameters.secondEtiological
         }))
     }
 
-    const handleChangeThirdEtiological = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeThirdEtiological = () => {
         setParameters(prev => ({
             ...prev,
             thirdEtiological: !parameters.thirdEtiological
@@ -308,13 +308,13 @@ export default function UndernutritionAdult() {
                             <ul className="pl-5 list-disc">
                                 {(evaluationResults.firstEtiological) && <li>Réduction de la prise alimentaire</li>}
                                 {(evaluationResults.secondEtiological) && <li>Absorption réduite</li>}
-                                {(evaluationResults.thirdEtiological) && <li>Situation d'agression</li>}
+                                {(evaluationResults.thirdEtiological) && <li>Situation d&apos;agression</li>}
                             </ul>
                             : "Aucun"}
                     </div>
                     {(((evaluationResults.weightLoss >= 5) && (evaluationResults.previousWeightDate === "one-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "six-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "before-disease" || evaluationResults.previousWeightDate === "none")) || (evaluationResults.imc < 18.5) || (evaluationResults.sarcopenia)) && (evaluationResults.firstEtiological || evaluationResults.secondEtiological || evaluationResults.thirdEtiological) ?
                         <div className="flex flex-col gap-4">
-                            <p>En présence d'au moins un critère phénotypique et un critère étiologique, <span className="font-bold">le diagnostic de dénutrition est confirmé</span>.</p>
+                            <p>En présence d&apos;au moins un critère phénotypique et un critère étiologique, <span className="font-bold">le diagnostic de dénutrition est confirmé</span>.</p>
 
                             {((evaluationResults.imc <= 17) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "one-month")) || ((evaluationResults.weightLoss >= 15) && (evaluationResults.previousWeightDate === "six-month")) || ((evaluationResults.weightLoss >= 15) && (evaluationResults.previousWeightDate === "before-disease" || evaluationResults.previousWeightDate === "none")) || (evaluationResults.albuminemia <= 30 && evaluationResults.albuminemia > 0)) ?
 
@@ -330,12 +330,12 @@ export default function UndernutritionAdult() {
                                             {(evaluationResults.albuminemia <= 30 && evaluationResults.albuminemia > 0) && <li>Albuminémie ≤ 30 g/L</li>}
                                         </ul>
                                     </div>
-                                    <p>Il s'agit donc d'une <span className="text-lg font-bold underline">dénutrition sévère</span>.</p>
+                                    <p>Il s&apos;agit donc d&apos;une <span className="text-lg font-bold underline">dénutrition sévère</span>.</p>
                                 </div>
-                                : <p>Il s'agit ici d'une <span className="text-lg font-bold underline">dénutrition modérée</span>.</p>}
+                                : <p>Il s&apos;agit ici d&apos;une <span className="text-lg font-bold underline">dénutrition modérée</span>.</p>}
 
                         </div>
-                        : <p>En l'absence d'au moins un critère phénotypique et un critère étiologique, on ne peut pas poser le diagnostique de dénutrition. En ambulatoire, le patient est à réévaluer à chaque consultation. En cas d'hospitalisation, réévaluation une fois par semaine (en MCO) ou toutes les 2 semaines (en SSR).</p>}
+                        : <p>En l&apos;absence d&apos;au moins un critère phénotypique et un critère étiologique, on ne peut pas poser le diagnostique de dénutrition. En ambulatoire, le patient est à réévaluer à chaque consultation. En cas d&apos;hospitalisation, réévaluation une fois par semaine (en MCO) ou toutes les 2 semaines (en SSR).</p>}
                 </div>
             }
         </>

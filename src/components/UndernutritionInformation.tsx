@@ -9,11 +9,11 @@ export default function UndernutritionInformation() {
                     👩‍🏫 Comment diagnostiquer la dénutrition ?
                 </h2>
                 <p>
-                    Selon la Haute Autorité de Santé (novembre 2021), le diagnostic de la dénutrition est posé en cas de présence d'au moins 1 critère phénotypique et 1 critère étiologique. Les critères diffèrent en fonction de la tranche d'âge dans laquelle se situe le patient (enfant, adulte ou personne de 70 ans et plus).
+                    Selon la Haute Autorité de Santé (novembre 2021), le diagnostic de la dénutrition est posé en cas de présence d&apos;au moins 1 critère phénotypique et 1 critère étiologique. Les critères diffèrent en fonction de la tranche d&apos;âge dans laquelle se situe le patient (enfant, adulte ou personne de 70 ans et plus).
                 </p>
                 <p>
                     <span className="">Source : </span>
-                    <a href="https://www.has-sante.fr/upload/docs/application/pdf/2021-11/reco368_fiche_outil_denutrition_pa_cd_20211110_v1.pdf" className="link italic text-(--grayColor)">HAS - Diagnostic de la dénutrition chez l’enfant, l’adulte, et la personne de 70 ans et plus</a>
+                    <a href="https://www.has-sante.fr/upload/docs/application/pdf/2021-11/reco368_fiche_outil_denutrition_pa_cd_20211110_v1.pdf" className="link italic text-(--grayColor)">HAS - Diagnostic de la dénutrition chez l&apos;enfant, l&apos;adulte, et la personne de 70 ans et plus</a>
                 </p>
             </div>
 

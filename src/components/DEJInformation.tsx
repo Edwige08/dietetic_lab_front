@@ -7,9 +7,9 @@ export default function DEJInformation() {
                 <h2 className="text-xl font-bold">
                     👩‍🏫 Comment calcule-t-on la DEJ ?
                 </h2>
-                <p>Tout d'abord, il faut calculer le <span className="underline font-bold">Métabolisme de Base</span> (MB).</p>
+                <p>Tout d&apos;abord, il faut calculer le <span className="underline font-bold">Métabolisme de Base</span> (MB).</p>
                 <p>
-                    La première méthode est l'utilisation de la <span className="font-bold">formule de Harris et Benedict</span>, qui est la suivante :
+                    La première méthode est l&apos;utilisation de la <span className="font-bold">formule de Harris et Benedict</span>, qui est la suivante :
                 </p>
                 <p className="underline">
                     Pour la femme :
@@ -20,7 +20,7 @@ export default function DEJInformation() {
                     </p>
                 </div>
                 <p className="underline">
-                    Pour l'homme :
+                    Pour l&apos;homme :
                 </p>
                 <div className="flex justify-center">
                     <p className="py-2 px-6 w-fit text-center font-bold text-lg border bg-white">
@@ -28,7 +28,7 @@ export default function DEJInformation() {
                     </p>
                 </div>
                 <p>
-                    La seconde méthode est l'utilisation de la <span className="font-bold">formule de Black et al.</span>, qui est la suivante :
+                    La seconde méthode est l&apos;utilisation de la <span className="font-bold">formule de Black et al.</span>, qui est la suivante :
                 </p>
                 <p className="underline">
                     Pour la femme :
@@ -39,7 +39,7 @@ export default function DEJInformation() {
                     </p>
                 </div>
                 <p className="underline">
-                    Pour l'homme :
+                    Pour l&apos;homme :
                 </p>
                 <div className="flex justify-center">
                     <p className="py-2 px-6 w-fit text-center font-bold text-lg border bg-white">
@@ -49,7 +49,7 @@ export default function DEJInformation() {
                 <p className="italic">
                     * Pour chacune des formules : Poids en kg, Taille en m, Age en années et le MB en kcal
                 </p>
-                <p>Ensuite, pour obtenir la Dépense Energétique Journalière, on multiplie le Métabolisme de Base avec le Niveau d'Activité Physique :</p>
+                <p>Ensuite, pour obtenir la Dépense Energétique Journalière, on multiplie le Métabolisme de Base avec le Niveau d&apos;Activité Physique :</p>
                 <div className="flex justify-center">
                     <p className="py-2 px-6 w-fit text-center font-bold text-lg border bg-white">
                         DEJ = MB x NAP

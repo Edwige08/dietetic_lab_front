@@ -5,26 +5,26 @@ export default function IMCInformation() {
         >
             <div className="flex flex-col gap-4 mb-5">
                 <h2 className="text-xl font-bold">
-                    👩‍🏫 Comment calcule-t-on l'IMC ?
+                    👩‍🏫 Comment calcule-t-on l&apos;IMC ?
                 </h2>
-                <p>L'Indice de Masse Corporelle, ou IMC, se calcule grâce au poids (en kg) et à la taille (en m), avec la formule suivante :</p>
+                <p>L&apos;Indice de Masse Corporelle, ou IMC, se calcule grâce au poids (en kg) et à la taille (en m), avec la formule suivante :</p>
                 <div className="flex justify-center">
                     <p className="py-2 px-6 w-fit text-center font-bold text-lg border bg-white">
                         IMC = Poids (kg) / (Taille (m))²
                     </p>
                 </div>
                 <p>
-                    Attention, cette formule n'est valable que pour les adultes entre 18 et 65 ans. Elle n'est pas valable pour les enfants, les personnes âgées, mais aussi les femmes enceintes.
+                    Attention, cette formule n&apos;est valable que pour les adultes entre 18 et 65 ans. Elle n&apos;est pas valable pour les enfants, les personnes âgées, mais aussi les femmes enceintes.
                 </p>
             </div>
 
             <div className="flex flex-col gap-4 mb-5">
                 <h2 className="text-xl font-bold">
-                    📊 Interprétation de l'IMC :
+                    📊 Interprétation de l&apos;IMC :
                 </h2>
                 <div className="grid grid-cols-2 text-center border">
                     <div className="flex flex-col justify-center items-center border p-1 min-h-12 bg-white font-bold">
-                        Valeur de l'IMC
+                        Valeur de l&apos;IMC
                     </div>
                     <div className="flex flex-col justify-center items-center border p-1 min-h-12 bg-white font-bold">
                         Interprétation
@@ -80,12 +80,12 @@ export default function IMCInformation() {
                     <ul className="pl-5 list-disc">
                         <li>
                             <a href="https://www.has-sante.fr/jcms/c_964938/fr/surpoids-et-obesite-de-l-adulte-prise-en-charge-medicale-de-premier-recours" className="link italic text-(--grayColor)">
-                                HAS - Surpoids et obésité de l'adulte : prise en charge médicale de premier recours
+                                HAS - Surpoids et obésité de l&apos;adulte : prise en charge médicale de premier recours
                             </a>
                         </li>
                         <li>
                             <a href="https://www.has-sante.fr/upload/docs/application/pdf/2011-10/annexe_1_table_dindice_de_masse_corporelle.pdf" className="link italic text-(--grayColor)">
-                                HAS - Table d'indice de masse corporelle (IMC)
+                                HAS - Table d&apos;indice de masse corporelle (IMC)
                             </a>
                         </li>
                     </ul>

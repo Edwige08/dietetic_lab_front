@@ -69,21 +69,21 @@ export default function SRIForm() {
         }))
     }
 
-    const handleChangeIngestaFive = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeIngestaFive = () => {
         setParameters(prev => ({
             ...prev,
             lowIngestaFive: !parameters.lowIngestaFive
         }))
     }
 
-    const handleChangeIngestaTen = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeIngestaTen = () => {
         setParameters(prev => ({
             ...prev,
             lowIngestaTen: !parameters.lowIngestaTen
         }))
     }
 
-    const handleChangeAtcd = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeAtcd = () => {
         setParameters(prev => ({
             ...prev,
             atcd: !parameters.atcd
@@ -190,7 +190,7 @@ export default function SRIForm() {
                     <InputCheckbox
                         name="atcd"
                         checked={parameters.atcd}
-                        title="Antécédents d'éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique"
+                        title="Antécédents d&apos;éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique"
                         onChange={handleChangeAtcd}
                     />
                     <ButtonGreen
@@ -241,12 +241,12 @@ export default function SRIForm() {
                                 {results.imc > 16 && results.imc < 18.5 && <li>IMC inférieur à 18,5 kg/m²</li>}
                                 {results.weightLoss > 10 && results.weightLoss <= 15 && <li>Perte de poids de plus de 10 % en 3 à 6 mois</li>}
                                 {results.lowIngestaFive && <li>Ingesta faibles ou nuls depuis plus de 5 jours</li>}
-                                {results.atcd && <li>Antécédents d'éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique</li>}
+                                {results.atcd && <li>Antécédents d&apos;éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique</li>}
                             </ul>
                             : ""}
                     </div>
                     <div>
-                        La présence d'1 critère majeur ou d'au moins 2 critères mineurs suffit à diagnostiquer le risque de SRI.
+                        La présence d&apos;1 critère majeur ou d&apos;au moins 2 critères mineurs suffit à diagnostiquer le risque de SRI.
                     </div>
                 </div>
             }

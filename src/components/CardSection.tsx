@@ -9,7 +9,7 @@ export default function CardSection(props: { bgColor: string, emoji: string, tit
                     <h2 className="card-title">{props.title}</h2>
                     <p className="">{props.description}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-link">Utiliser l'outil</button>
+                        <button className="btn btn-link">Utiliser l&apos;outil</button>
                     </div>
                 </div>
             </div>

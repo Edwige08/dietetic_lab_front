@@ -25,7 +25,7 @@ export default function SRIInformation() {
                         <li>16 &lt; IMC &lt; 18,5&nbsp;kg/m²</li>
                         <li>Perte de poids &gt; 10&nbsp;% en 3 à 6&nbsp;mois</li>
                         <li>Ingesta faibles ou nuls depuis plus de 5&nbsp;jours</li>
-                        <li>Antécédents d'éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique</li>
+                        <li>Antécédents d&apos;éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique</li>
                     </ul>
                 </div>
             </div>

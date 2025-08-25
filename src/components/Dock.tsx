@@ -12,11 +12,6 @@ export default function Dock() {
     }
     return (
         <div className="dock dock-xl bg-white">
-            <button className={pathname === "/" ? "dock-active" : ""} onClick={() => handleNavigation('/')}>
-                <House />
-                <span className="dock-label">Home</span>
-            </button>
-
             <button className={pathname === "/imc" ? "dock-active" : ""} onClick={() => handleNavigation('/imc')}>
                 <Calculator />
                 <span className="dock-label">IMC</span>
@@ -25,6 +20,11 @@ export default function Dock() {
             <button onClick={() => handleNavigation('/')}>
                 <Popcorn />
                 <span className="dock-label">Ingesta</span>
+            </button>
+            
+            <button className={pathname === "/" ? "dock-active" : ""} onClick={() => handleNavigation('/')}>
+                <House />
+                <span className="dock-label">Home</span>
             </button>
 
             <button className={pathname === "/dej" ? "dock-active" : ""} onClick={() => handleNavigation('/dej')}>

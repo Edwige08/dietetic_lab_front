@@ -13,7 +13,7 @@ export default function Home() {
                     text="🔬 La mission de Dietetic Lab"
                 />
                 <p>
-                    Dietetic Lab est une application web innovante conçue spécifiquement pour accompagner les diététicien.ne.s et nutritionnistes dans leur pratique quotidienne. L'objectif est de simplifier et d'optimiser les calculs nutritionnels complexes grâce à des outils numériques précis et intuitifs.
+                    Dietetic Lab est une application web innovante conçue spécifiquement pour accompagner les diététicien.ne.s et nutritionnistes dans leur pratique quotidienne. L&apos;objectif est de simplifier et d&apos;optimiser les calculs nutritionnels complexes grâce à des outils numériques précis et intuitifs.
                 </p>
                 <br />
 
@@ -21,7 +21,7 @@ export default function Home() {
                     text="🎯 Pourquoi Dietetic Lab ?"
                 />
                 <p>
-                    Dans un contexte où la nutrition joue un rôle central dans la prévention et le traitement de nombreuses pathologies, les professionnels de la diététique ont besoin d'outils fiables et efficaces pour :
+                    Dans un contexte où la nutrition joue un rôle central dans la prévention et le traitement de nombreuses pathologies, les professionnels de la diététique ont besoin d&apos;outils fiables et efficaces pour :
                 </p>
                 <ul className="list-disc ml-7">
                     <li><span className="font-bold">Gagner du temps</span> sur les calculs répétitifs</li>
@@ -35,8 +35,8 @@ export default function Home() {
                 />
                 <h3 className="my-2 font-bold">Indice de Masse Corporelle (IMC)</h3>
                 <ul className="list-disc ml-7">
-                    <li>Calcul rapide pour l'adulte</li>
-                    <li>Correspond aux critères de l'OMS</li>
+                    <li>Calcul rapide pour l&apos;adulte</li>
+                    <li>Correspond aux critères de l&apos;OMS</li>
                 </ul>
 
                 <h3 className="my-2 font-bold">Besoins Nutritionnels Quotidiens</h3>
@@ -49,7 +49,7 @@ export default function Home() {
                 <ul className="list-disc ml-7">
                     <li>Critères de dépistage de la HAS</li>
                     <li>Protocoles de prévention intégrés</li>
-                    <li>Evaluation de la dénutrition de l'adulte et de la personne âgée</li>
+                    <li>Evaluation de la dénutrition de l&apos;adulte et de la personne âgée</li>
                 </ul>
 
                 <h3 className="my-2 font-bold">Évaluation du risque de SRI</h3>
@@ -69,10 +69,10 @@ export default function Home() {
                     text="📊 Base de données nutritionnelle"
                 />
                 <p>
-                    Dietetic Lab s'appuie sur l'API d'Open Food Facts, la plus grande base de données alimentaires collaborative au monde, garantissant :
+                    Dietetic Lab s&apos;appuie sur l&apos;API d&apos;Open Food Facts, la plus grande base de données alimentaires collaborative au monde, garantissant :
                 </p>
                 <ul>
-                    <li>+2 millions d'aliments référencés</li>
+                    <li>+2 millions d&apos;aliments référencés</li>
                     <li>Données nutritionnelles détaillées et vérifiées</li>
                     <li>Mise à jour continue par la communauté</li>
                     <li>Transparence des informations</li>
@@ -80,16 +80,16 @@ export default function Home() {
                 <br />
 
                 <TitleTwo
-                    text="👥 À qui s'adresse Dietetic Lab ?"
+                    text="👥 À qui s&apos;adresse Dietetic Lab ?"
                 />
                 <p>
-                    Dietetic Lab s'adresse aux diététicien.ne.s et à l'ensemble des professionnels de la nutrition afin de faciliter les calculs du quotidien.
+                    Dietetic Lab s&apos;adresse aux diététicien.ne.s et à l&apos;ensemble des professionnels de la nutrition afin de faciliter les calculs du quotidien.
                 </p>
                 <br />
                 <hr />
 
                 <p className="pt-5 italic">
-                    Dietetic Lab - L'innovation au service de la nutrition professionnelle.
+                    Dietetic Lab - L&apos;innovation au service de la nutrition professionnelle.
                     <br />
                     Développé avec passion par une diététicienne en reconversion pour devenir développeuse web.
                 </p>
