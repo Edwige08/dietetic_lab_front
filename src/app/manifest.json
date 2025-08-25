@@ -2,6 +2,10 @@
   "name": "Dietetic Lab",
   "short_name": "Dietetic Lab",
   "start-url": "/",
+  "orientation": "portrait-primary",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,8 +19,5 @@
       "type": "image/png",
       "purpose": "any"
     }
-  ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  ]
 }

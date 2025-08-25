@@ -78,6 +78,7 @@ export default function IMCForm() {
                 <Input
                     title="Poids (kg) : "
                     name="weight"
+                    step={0.1}
                     value={weightHeight.weight}
                     onChange={handleChange}
                 />

@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from "react";
 
-export default function Input(props: { title: string, name: string, placeholder?: string, value: string | number, onChange?: ChangeEventHandler<HTMLInputElement>, disabled?: boolean, unity?: string }) {
+export default function Input(props: { title: string, name: string, step?:number, value: string | number, onChange?: ChangeEventHandler<HTMLInputElement>, disabled?: boolean, unity?: string }) {
     return (
         <div className="flex flex-col gap-1">
             <label htmlFor={props.name}>
@@ -9,7 +9,8 @@ export default function Input(props: { title: string, name: string, placeholder?
             <input
                 name={props.name}
                 type="number"
-                placeholder={props.placeholder}
+                step={props.step}
+                min={0}
                 className="p-2 border border-gray-300 rounded-lg w-full"
                 value={props.value}
                 onChange={props.onChange}

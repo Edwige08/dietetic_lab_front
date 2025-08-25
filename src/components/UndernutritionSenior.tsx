@@ -158,6 +158,7 @@ export default function UndernutritionSenior() {
                         <Input
                             title="Poids actuel (kg) :"
                             name="weight"
+                            step={0.1}
                             value={parameters.weight}
                             onChange={handleChange}
                         />
@@ -174,6 +175,7 @@ export default function UndernutritionSenior() {
                         <Input
                             title="Poids antérieur (kg) : "
                             name="previousWeight"
+                            step={0.1}
                             value={parameters.previousWeight}
                             onChange={handleChange}
                         />
@@ -201,6 +203,7 @@ export default function UndernutritionSenior() {
                         <Input
                             title="Albuminémie (g/L) : "
                             name="albuminemia"
+                            step={0.1}
                             value={parameters.albuminemia}
                             onChange={handleChange}
                         />
