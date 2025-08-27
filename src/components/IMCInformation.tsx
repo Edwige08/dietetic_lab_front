@@ -75,7 +75,7 @@ export default function IMCInformation() {
             </div>
 
             <div className="flex flex-col gap-4 mb-5">
-                <p>
+                <div>
                     <span className="">Sources : </span>
                     <ul className="pl-5 list-disc">
                         <li>
@@ -89,7 +89,7 @@ export default function IMCInformation() {
                             </a>
                         </li>
                     </ul>
-                </p>
+                </div>
             </div>
         </div>
     )
