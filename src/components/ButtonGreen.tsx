@@ -11,7 +11,7 @@ export default function ButtonGreen({
     return (
         <button
             type={type}
-            className="btn text-lg rounded-xl h-13 bg-(--greenColor) shadow-lg hover:bg-(--greenSecondColor) cursor-pointer"
+            className="btn text-lg rounded-xl h-13 bg-(--greenColor) shadow-lg text-white hover:bg-(--greenSecondColor) cursor-pointer "
         >
             <p>{Icon && <Icon />}</p>
             <p>{text}</p>
