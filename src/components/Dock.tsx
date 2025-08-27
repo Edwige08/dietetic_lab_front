@@ -11,6 +11,7 @@ export default function Dock() {
     const handleNavigation = (path: string) => {
         router.push(path);
     }
+    
     return (
         <div className="dock dock-xl bg-white">
 
@@ -29,7 +30,7 @@ export default function Dock() {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <div className="menu bg-base-200 text-base-content h-full w-60 p-4 justify-between bg-white text-black">
+                    <div className="menu h-full w-60 p-4 justify-between bg-white text-black">
                         <div>
                             <p className="text-xl underline mb-3">Les outils disponibles :</p>
                             <ul className="flex flex-col gap-2">
@@ -48,20 +49,11 @@ export default function Dock() {
                     </div>
                 </div>
             </div>
-            {/* <button onClick={() => handleNavigation('/')}>
-                <Popcorn />
-                <span className="dock-label">Outils diet</span>
-            </button> */}
 
             <button className={pathname === "/" ? "dock-active" : ""} onClick={() => handleNavigation('/')}>
                 <House />
                 <span className="dock-label">Home</span>
             </button>
-
-            {/* <button className={pathname === "/dej" ? "dock-active" : ""} onClick={() => handleNavigation('/dej')}>
-                <Calculator />
-                <span className="dock-label">DEJ</span>
-            </button> */}
 
         </div>
     )
