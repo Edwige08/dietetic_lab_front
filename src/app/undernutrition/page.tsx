@@ -19,14 +19,14 @@ export default function Home() {
             <div className="flex flex-row justify-center gap-5 mb-5 mt-10">
                 <button
                     name="senior"
-                    className={`py-1 border rounded-lg h-13 w-[140] ${selectedPeople === "senior" ? "font-bold bg-(--orangeColor)" : ""}`}
+                    className={`py-1 border rounded-lg h-13 w-[140] text-lg ${selectedPeople === "senior" ? "font-bold bg-(--orangeColor)" : ""}`}
                     onClick={handleClick}
                 >
                     Pers. âgée
                 </button>
                 <button
                     name="adult"
-                    className={`py-1 border rounded-lg h-13 w-[140] ${selectedPeople === "adult" ? "font-bold bg-(--orangeColor)" : ""}`}
+                    className={`py-1 border rounded-lg h-13 w-[140] text-lg ${selectedPeople === "adult" ? "font-bold bg-(--orangeColor)" : ""}`}
                     onClick={handleClick}
                 >
                     Adulte
