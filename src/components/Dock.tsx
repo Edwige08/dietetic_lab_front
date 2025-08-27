@@ -14,7 +14,7 @@ export default function Dock() {
     return (
         <div className="dock dock-xl bg-white">
 
-            <button onClick={() => handleNavigation('/')}>
+            <button className={pathname === "/signin" ? "dock-active" : ""} onClick={() => handleNavigation('/signin')}>
                 <UserRound />
                 <span className="dock-label">Mon compte</span>
             </button>
