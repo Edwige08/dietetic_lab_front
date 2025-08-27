@@ -16,7 +16,7 @@ export default function IngestaResults(props: { energy: number, proteins: number
                     </p>
                     <div className="flex flex-col justify-center items-center border rounded-full h-17 w-17 shadow-lg border-(--grayColor) bg-(--grayMediumColor)">
                         <p className="text-center font-bold">
-                            {props.energy}
+                            {(props.energy).toFixed(0)}
                             <br />
                             kcal
                         </p>
@@ -29,7 +29,7 @@ export default function IngestaResults(props: { energy: number, proteins: number
                     </p>
                     <div className="flex flex-col justify-center items-center border rounded-full h-17 w-17 shadow-lg border-(--redSecondColor) bg-(--redLightColor)">
                         <p className="text-center font-bold">
-                            {props.proteins} g
+                            {(props.proteins).toFixed(1)}&nbsp;g <br /> <span className="text-sm font-thin">({Math.round(props.proteins * 4 / props.energy * 100)}%)</span>
                         </p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ export default function IngestaResults(props: { energy: number, proteins: number
                     </p>
                     <div className="flex flex-col justify-center items-center border rounded-full h-17 w-17 shadow-lg border-(--yellowSecondColor) bg-(--yellowLightColor)">
                         <p className="text-center font-bold">
-                            {props.fats} g
+                            {(props.fats).toFixed(1)}&nbsp;g <br /> <span className="text-sm font-thin">({Math.round(props.fats * 4 / props.energy * 100)}%)</span>
                         </p>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ export default function IngestaResults(props: { energy: number, proteins: number
                     </p>
                     <div className="flex flex-col justify-center items-center border rounded-full h-17 w-17 shadow-lg border-(--greenSecondColor) bg-(--greenLightColor)">
                         <p className="text-center font-bold">
-                            {props.carbohydrates} g
+                            {(props.carbohydrates).toFixed(1)}&nbsp;g <br /> <span className="text-sm font-thin">({Math.round(props.carbohydrates * 4 / props.energy * 100)}%)</span>
                         </p>
                     </div>
                 </div>
@@ -64,61 +64,61 @@ export default function IngestaResults(props: { energy: number, proteins: number
                     Energie
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) bg-(--grayLightColor) p-1 min-h-10 font-bold">
-                    {props.energy} kcal
+                    {(props.energy).toFixed(0)} kcal
                 </div>
                 <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) bg-(--redLightColor) p-1 min-h-10 font-bold">
                     Protéines
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) bg-(--redLightColor) p-1 min-h-10 font-bold">
-                    30 g
+                    {(props.proteins).toFixed(1)} g
                 </div>
                 <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) bg-(--yellowLightColor) p-1 min-h-10 font-bold">
                     Lipides
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) bg-(--yellowLightColor) p-1 min-h-10 font-bold">
-                    30 g
+                    {(props.fats).toFixed(1)} g
                 </div>
                 <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
                     - dont AGS
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10">
-                    10 g
+                    {(props.ags)} g
                 </div>
                 <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
                     - dont AGMI
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10">
-                    10 g
+                    {(props.agmi).toFixed(1)} g
                 </div>
                 <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
                     - dont AGPI
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10">
-                    10 g
+                    {(props.agpi).toFixed(1)} g
                 </div>
                 <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
                     - dont cholestérol
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10">
-                    10 g
+                    {(props.cholesterol).toFixed(1)} g
                 </div>
                 <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) bg-(--greenLightColor) p-1 min-h-10 font-bold">
                     Glucides
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) bg-(--greenLightColor) p-1 min-h-10 font-bold">
-                    30 g
+                    {(props.carbohydrates).toFixed(1)} g
                 </div>
                 <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
                     - dont sucres
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10">
-                    10 g
+                    {(props.sugar).toFixed(1)} g
                 </div>
                 <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) bg-(--blueLightColor) p-1 min-h-10 font-bold">
                     Fibres
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) bg-(--blueLightColor) p-1 min-h-10 font-bold">
-                    30 g
+                    {(props.fibers).toFixed(1)} g
                 </div>
             </div>
         </div>
