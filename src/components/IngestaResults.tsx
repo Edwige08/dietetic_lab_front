@@ -41,7 +41,7 @@ export default function IngestaResults(props: { energy: number, proteins: number
                     </p>
                     <div className="flex flex-col justify-center items-center border rounded-full h-17 w-17 shadow-lg border-(--yellowSecondColor) bg-(--yellowLightColor)">
                         <p className="text-center font-bold">
-                            {(props.fats).toFixed(1)}&nbsp;g <br /> <span className="text-sm font-thin">({Math.round(props.fats * 4 / props.energy * 100)}%)</span>
+                            {(props.fats).toFixed(1)}&nbsp;g <br /> <span className="text-sm font-thin">({Math.round(props.fats * 9 / props.energy * 100)}%)</span>
                         </p>
                     </div>
                 </div>
