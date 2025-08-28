@@ -7,32 +7,8 @@ import ButtonGreen from "./ButtonGreen";
 import Title from "./Title";
 import { Calculator } from "lucide-react";
 import TitleTwo from "./TitleTwo";
-
-interface SRIParameters {
-    weight: number,
-    height: number,
-    previousWeight: number,
-    lowIngestaFive: boolean,
-    lowIngestaTen: boolean,
-    potassium: number,
-    phosphorus: number,
-    magnesium: number,
-    atcd: boolean,
-}
-
-interface SRIResults {
-    weight: number,
-    height: number,
-    imc: number,
-    previousWeight: number,
-    weightLoss: number,
-    lowIngestaFive: boolean,
-    lowIngestaTen: boolean,
-    potassium: number,
-    phosphorus: number,
-    magnesium: number,
-    atcd: boolean,
-}
+import { CalculateIMC } from "@/utils/CalculateIMC";
+import { SRIParameters, SRIResults } from "@/types/SRI";
 
 export default function SRIForm() {
     const [calculDone, setCalculDone] = useState<boolean>(false);
@@ -94,7 +70,7 @@ export default function SRIForm() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (parameters.weight > 0 && parameters.height > 0) {
-            const imc = parameters.weight / ((parameters.height / 100) * (parameters.height / 100));
+            const imc = CalculateIMC(parameters.weight, parameters.height);
             setCalculDone(true);
             setResults(prev => ({
                 ...prev,

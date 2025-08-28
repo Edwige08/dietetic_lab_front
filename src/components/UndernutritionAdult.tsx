@@ -7,9 +7,11 @@ import InputCheckbox from "./InputCheckbox";
 import { Calculator } from "lucide-react";
 import Title from "./Title";
 import TitleTwo from "./TitleTwo";
+import { CalculateIMC } from "@/utils/CalculateIMC";
+import { UndernutParameters, UndernutResults } from "@/types/Undernutrition";
 
 export default function UndernutritionAdult() {
-    const [parameters, setParameters] = useState<WeightHeight>({
+    const [parameters, setParameters] = useState<UndernutParameters>({
         weight: 0,
         height: 0,
         previousWeight: 0,
@@ -20,7 +22,7 @@ export default function UndernutritionAdult() {
         secondEtiological: false,
         thirdEtiological: false,
     });
-    const [evaluationResults, setEvaluationResults] = useState<EvaluationResults>({
+    const [evaluationResults, setEvaluationResults] = useState<UndernutResults>({
         weight: 0,
         height: 0,
         imc: 0,
@@ -34,32 +36,6 @@ export default function UndernutritionAdult() {
         thirdEtiological: false,
     });
     const [calculDone, setCalculDone] = useState<boolean>(false);
-
-    interface WeightHeight {
-        weight: number,
-        height: number,
-        previousWeight: number,
-        previousWeightDate: "none" | "one-month" | "six-month" | "before-disease",
-        albuminemia: number,
-        sarcopenia: boolean,
-        firstEtiological: boolean,
-        secondEtiological: boolean,
-        thirdEtiological: boolean,
-    }
-
-    interface EvaluationResults {
-        weight: number,
-        height: number,
-        imc: number,
-        previousWeight: number,
-        previousWeightDate: "none" | "one-month" | "six-month" | "before-disease",
-        weightLoss: number,
-        albuminemia: number,
-        sarcopenia: boolean,
-        firstEtiological: boolean,
-        secondEtiological: boolean,
-        thirdEtiological: boolean,
-    }
 
     const getIMCCategory = (imc: number) => {
         if (imc < 18.5) return "maigreur"
@@ -134,7 +110,7 @@ export default function UndernutritionAdult() {
         event.preventDefault();
 
         if (parameters.weight > 0 && parameters.height > 0) {
-            const imc = parameters.weight / ((parameters.height / 100) * (parameters.height / 100));
+            const imc = CalculateIMC(parameters.weight, parameters.height)
             setCalculDone(true);
             setEvaluationResults({ weight: parameters.weight, height: parameters.height, imc: imc, previousWeight: parameters.previousWeight, previousWeightDate: parameters.previousWeightDate, weightLoss: 0, albuminemia: parameters.albuminemia, sarcopenia: parameters.sarcopenia, firstEtiological: parameters.firstEtiological, secondEtiological: parameters.secondEtiological, thirdEtiological: parameters.thirdEtiological })
         }

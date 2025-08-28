@@ -1,12 +1,14 @@
+import TitleTwo from "./TitleTwo";
+
 export default function DEJInformation() {
     return (
         <div
             className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--grayLightColor) border border-gray-300 rounded-xl shadow-xl"
         >
             <div className="flex flex-col gap-4 mb-5">
-                <h2 className="text-xl font-bold">
-                    👩‍🏫 Comment calcule-t-on la DEJ ?
-                </h2>
+                <TitleTwo
+                    text="👩‍🏫 Comment calcule-t-on la DEJ&nbsp;?"
+                />
                 <p>Tout d&apos;abord, il faut calculer le <span className="underline font-bold">Métabolisme de Base</span> (MB).</p>
                 <p>
                     La première méthode est l&apos;utilisation de la <span className="font-bold">formule de Harris et Benedict</span>, qui est la suivante :

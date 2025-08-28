@@ -6,31 +6,16 @@ import ButtonGreen from "./ButtonGreen";
 import Title from "./Title";
 import { Calculator, Mars, Venus } from "lucide-react";
 import TitleTwo from "./TitleTwo";
-
-interface DejParameters {
-    weight: number,
-    height: number,
-    age: number,
-    gender: string,
-    nap: number,
-}
-
-interface DejResults {
-    weight: number,
-    height: number,
-    imc: number,
-    age: number,
-    gender: string,
-    nap: number,
-}
+import { CalculateIMC } from "@/utils/CalculateIMC";
+import { CalculateDEJBlackMan, CalculateDEJBlackWoman, CalculateDEJHandBMan, CalculateDEJHandBWoman } from "@/utils/CalculateDEJ";
+import { DEJParameters, DEJResults } from "@/types/DEJ";
 
 export default function DEJAdult() {
-    const [dejParameters, setDejParameters] = useState<DejParameters>({ weight: 0, height: 0, age: 0, gender: "f", nap: 0 })
-    const [dejResults, setDejResults] = useState<DejResults>({ weight: 0, height: 0, imc: 0, age: 0, gender: "f", nap: 0 })
+    const [dejParameters, setDejParameters] = useState<DEJParameters>({ weight: 0, height: 0, age: 0, gender: "f", nap: 0 })
+    const [dejResults, setDejResults] = useState<DEJResults>({ weight: 0, height: 0, imc: 0, age: 0, gender: "f", nap: 0 })
     const [calculDone, setCalculDone] = useState<boolean>(false);
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-        // event.preventDefault();
         const target = event.target as HTMLButtonElement;
         const name = target.name;
         setDejParameters(prev => ({
@@ -52,7 +37,7 @@ export default function DEJAdult() {
         event.preventDefault();
 
         if (dejParameters.weight > 0 && dejParameters.height > 0 && dejParameters.age > 0 && dejParameters.nap > 0) {
-            const imc = dejParameters.weight / ((dejParameters.height / 100) * (dejParameters.height / 100));
+            const imc: number = CalculateIMC(dejParameters.weight, dejParameters.height)
             setCalculDone(true);
             setDejResults({ weight: dejParameters.weight, height: dejParameters.height, imc: imc, age: dejParameters.age, gender: dejParameters.gender, nap: dejParameters.nap })
         } else {
@@ -153,9 +138,9 @@ export default function DEJAdult() {
                     <p>
                         Pour <span className="font-bold">{dejResults.gender === 'f' ? "une femme" : "un homme"}</span> de <span className="font-bold">{dejResults.age} ans</span>, mesurant <span className="font-bold">{dejResults.height / 100} m</span> pour <span className="font-bold">{dejResults.weight} kg</span> et ayant un <span className="font-bold">NAP à {dejResults.nap}</span> on obtient un DEJ de
                         {dejResults.gender === "f" ?
-                            <span className="font-bold"> {((9.740 * dejResults.weight + 184.96 * (dejResults.height / 100) - 4.6756 * dejResults.age + 655.0955) * dejResults.nap).toFixed(0)} kcal</span>
+                            <span className="font-bold"> {CalculateDEJHandBWoman(dejResults.weight, dejParameters.height, dejParameters.age, dejParameters.nap)} kcal</span>
                             :
-                            <span className="font-bold"> {((13.7516 * dejResults.weight + 500.33 * (dejResults.height / 100) - 6.7550 * dejResults.age + 66.479) * dejResults.nap).toFixed(0)} kcal</span>
+                            <span className="font-bold"> {CalculateDEJHandBMan(dejResults.weight, dejParameters.height, dejParameters.age, dejParameters.nap)} kcal</span>
                         }.
                     </p>
                     <p className="underline">
@@ -164,9 +149,9 @@ export default function DEJAdult() {
                     <p>
                         Pour <span className="font-bold">{dejResults.gender === 'f' ? "une femme" : "un homme"}</span> de <span className="font-bold">{dejResults.age} ans</span>, mesurant <span className="font-bold">{dejResults.height / 100} m</span> pour <span className="font-bold">{dejResults.weight} kg</span> et ayant un <span className="font-bold">NAP à {dejResults.nap}</span> on obtient un DEJ de
                         {dejResults.gender === "f" ?
-                            <span className="font-bold"> {((0.963 * Math.pow(dejResults.weight, 0.48) * Math.pow((dejResults.height / 100), 0.50) * Math.pow(dejResults.age, -0.13)) * dejResults.nap * 239).toFixed(0)} kcal</span>
+                            <span className="font-bold"> {CalculateDEJBlackWoman(dejResults.weight, dejParameters.height, dejParameters.age, dejParameters.nap)} kcal</span>
                             :
-                            <span className="font-bold"> {((1.083 * Math.pow(dejResults.weight, 0.48) * Math.pow((dejResults.height / 100), 0.50) * Math.pow(dejResults.age, -0.13)) * dejResults.nap * 239).toFixed(0)} kcal</span>
+                            <span className="font-bold"> {CalculateDEJBlackMan(dejResults.weight, dejParameters.height, dejParameters.age, dejParameters.nap)} kcal</span>
                         }.
                     </p>
                 </div>}

@@ -6,31 +6,22 @@ import Input from "./Input";
 import { Calculator } from 'lucide-react';
 import Title from "./Title";
 import TitleTwo from "./TitleTwo";
-
-interface WeightHeight {
-    weight: number,
-    height: number,
-}
-
-interface IMCResults {
-    weight: number,
-    height: number,
-    imc: number,
-}
+import { CalculateIMC } from "@/utils/CalculateIMC";
+import { IMCParameters, IMCResults } from "@/types/IMC";
+import { IMCCategory } from "@/utils/IMCCategory";
 
 export default function IMCForm() {
 
-    const [weightHeight, setWeightHeight] = useState<WeightHeight>({ weight: 0, height: 0 });
-    const [calculDone, setCalculDone] = useState<boolean>(false);
+    const [weightHeight, setWeightHeight] = useState<IMCParameters>({ weight: 0, height: 0 });
     const [IMCresults, setIMCResults] = useState<IMCResults>({ weight: 0, height: 0, imc: 0 });
+    const [calculDone, setCalculDone] = useState<boolean>(false);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (weightHeight.weight > 0 && weightHeight.height > 0) {
-            const imc = weightHeight.weight / ((weightHeight.height / 100) * (weightHeight.height / 100));
-            console.log("imc : ", imc);
             setCalculDone(true);
+            const imc = CalculateIMC(weightHeight.weight, weightHeight.height)
             setIMCResults({ weight: weightHeight.weight, height: weightHeight.height, imc: imc })
         } else if (weightHeight.weight > 0 && weightHeight.height === 0) {
             alert("Vous avez oublié d'entrer une taille")
@@ -43,21 +34,7 @@ export default function IMCForm() {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-
-        setWeightHeight(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
-
-    const getIMCCategory = (imc: number) => {
-        if (imc < 18.5) return "un état de maigreur"
-        if (imc < 25) return "un équilibre staturo-pondéral"
-        if (imc < 30) return "un surpoids"
-        if (imc < 35) return "une obésité de grade I"
-        if (imc < 40) return "une obésité de grade II"
-        if (imc < 45) return "une obésité de grade III"
-        if (imc >= 45) return "une obésité de grade IV"
+        setWeightHeight(prev => ({ ...prev, [name]: value }))
     }
 
     const resetForm = () => {
@@ -68,9 +45,7 @@ export default function IMCForm() {
     return (
         <>
             <div>
-                <Title
-                    text="Calcul de l&apos;IMC"
-                />
+                <Title text="Calcul de l&apos;IMC" />
             </div>
 
             <form
@@ -111,11 +86,9 @@ export default function IMCForm() {
                 <div
                     className="flex flex-col gap-4 px-4 pb-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
                 >
-                    <TitleTwo 
-                        text="✅ Résultat&nbsp;:"
-                    />
+                    <TitleTwo text="✅ Résultat&nbsp;:" />
                     <p>
-                        Pour un poids de <span className="font-bold">{IMCresults.weight} kg</span> et une taille de <span className="font-bold">{(IMCresults.height / 100).toFixed(2)} m</span>, on obtient un IMC de <span className="font-bold">{IMCresults.imc.toFixed(2)} kg/m²</span>, ce qui correspond à <span className="font-bold">{getIMCCategory(IMCresults.imc)}</span>.
+                        Pour un poids de <span className="font-bold">{IMCresults.weight} kg</span> et une taille de <span className="font-bold">{(IMCresults.height / 100).toFixed(2)} m</span>, on obtient un IMC de <span className="font-bold">{IMCresults.imc.toFixed(2)} kg/m²</span>, ce qui correspond à <span className="font-bold">{IMCCategory(IMCresults.imc)}</span>.
                     </p>
                 </div>
             }
