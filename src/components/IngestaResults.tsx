@@ -1,6 +1,6 @@
 import TitleTwo from "./TitleTwo";
 
-export default function IngestaResults(props: { energy: number, proteins: number, fats: number, ags: number, agmi: number, agpi: number, cholesterol: number, carbohydrates: number, sugar: number, fibers: number }) {
+export default function IngestaResults(props: { energy: number, proteins: number, fats: number, ags: number, agmi: number, agpi: number, cholesterol: number, carbohydrates: number, sugar: number, fibers: number, alcool: number, sodium: number, potassium: number, phosphore: number, fer: number, calcium: number, vitD: number }) {
     return (
 
         <div
@@ -119,6 +119,48 @@ export default function IngestaResults(props: { energy: number, proteins: number
                 </div>
                 <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) bg-(--blueLightColor) p-1 min-h-10 font-bold">
                     {(props.fibers).toFixed(1)} g
+                </div>
+                <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    Alcool
+                </div>
+                <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    {(props.alcool).toFixed(1)} g
+                </div>
+                <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    Sodium
+                </div>
+                <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    {(props.sodium).toFixed(1)} g
+                </div>
+                <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    Potassium
+                </div>
+                <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    {(props.potassium).toFixed(1)} g
+                </div>
+                <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    Phosphore
+                </div>
+                <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    {(props.phosphore).toFixed(1)} g
+                </div>
+                <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    Fer
+                </div>
+                <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    {(props.fer).toFixed(1)} g
+                </div>
+                <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    Calcium
+                </div>
+                <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    {(props.calcium).toFixed(1)} g
+                </div>
+                <div className="flex flex-col justify-center items-start px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    Vitamine D
+                </div>
+                <div className="flex flex-col justify-center items-center px-3 border-b border-r border-(--grayMediumColor) p-1 min-h-10 font-bold">
+                    {(props.vitD).toFixed(1)} g
                 </div>
             </div>
         </div>

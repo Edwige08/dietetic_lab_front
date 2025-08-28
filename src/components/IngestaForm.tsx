@@ -422,6 +422,13 @@ export default function IngestaForm() {
                     carbohydrates={totals["Glucides (g/100 g)"]}
                     sugar={totals["Sucres (g/100 g)"]}
                     fibers={totals["Fibres alimentaires (g/100 g)"]}
+                    alcool={totals["Alcool (g/100 g)"]}
+                    sodium={totals["Sodium (mg/100 g)"]}
+                    potassium={totals["Potassium (mg/100 g)"]}
+                    phosphore={totals["Phosphore (mg/100 g)"]}
+                    fer={totals["Fer (mg/100 g)"]}
+                    calcium={totals["Calcium (mg/100 g)"]}
+                    vitD={totals["Vitamine D (µg/100 g)"]}
                 />
             }
         </>
