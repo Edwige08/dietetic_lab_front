@@ -9,6 +9,8 @@ import Title from "./Title";
 import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
 import { UndernutParameters, UndernutResults } from "@/types/Undernutrition";
+import { IMCCategorySimple } from "@/utils/IMCCategory";
+import { textPreviousWeight } from "@/utils/PreviousWeight";
 
 export default function UndernutritionAdult() {
     const [parameters, setParameters] = useState<UndernutParameters>({
@@ -37,23 +39,6 @@ export default function UndernutritionAdult() {
     });
     const [calculDone, setCalculDone] = useState<boolean>(false);
 
-    const getIMCCategory = (imc: number) => {
-        if (imc < 18.5) return "maigreur"
-        if (imc < 25) return "équilibre staturo-pondéral"
-        if (imc < 30) return "surpoids"
-        if (imc < 35) return "obésité de grade I"
-        if (imc < 40) return "obésité de grade II"
-        if (imc < 45) return "obésité de grade III"
-        if (imc >= 45) return "obésité de grade IV"
-    }
-
-    const textPreviousWeight = (data: string) => {
-        if (data == "none") return "";
-        if (data == "one-month") return "il y a 1 mois ou plus";
-        if (data == "six-month") return "il y a 6 mois ou plus";
-        if (data == "before-disease") return "avant le début de la maladie";
-    }
-
     const resetForm = () => {
         setParameters({ weight: 0, height: 0, previousWeight: 0, previousWeightDate: "none", albuminemia: 0, sarcopenia: false, firstEtiological: false, secondEtiological: false, thirdEtiological: false });
         setCalculDone(false);
@@ -61,7 +46,6 @@ export default function UndernutritionAdult() {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-
         setParameters(prev => ({
             ...prev,
             [name]: value
@@ -76,7 +60,6 @@ export default function UndernutritionAdult() {
     }
 
     const handleChangeFirstEtiological = () => {
-
         setParameters(prev => ({
             ...prev,
             firstEtiological: !parameters.firstEtiological
@@ -255,7 +238,7 @@ export default function UndernutritionAdult() {
                         text="✅ Résultat&nbsp;:"
                     />
                     <p>
-                        Pour un poids de <span className="font-bold">{evaluationResults.weight} kg</span> et une taille de <span className="font-bold">{evaluationResults.height} cm</span>, on obtient un IMC de <span className="font-bold">{evaluationResults.imc.toFixed(2)} kg/m²</span> ({getIMCCategory(evaluationResults.imc)}).
+                        Pour un poids de <span className="font-bold">{evaluationResults.weight} kg</span> et une taille de <span className="font-bold">{evaluationResults.height} cm</span>, on obtient un IMC de <span className="font-bold">{evaluationResults.imc.toFixed(2)} kg/m²</span> ({IMCCategorySimple(evaluationResults.imc)}).
                     </p>
                     {evaluationResults.previousWeight > 0 && evaluationResults.weight > 0 &&
                         <p>
