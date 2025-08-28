@@ -5,6 +5,7 @@ import Input from "./Input";
 import ButtonGreen from "./ButtonGreen";
 import Title from "./Title";
 import { Calculator, Mars, Venus } from "lucide-react";
+import TitleTwo from "./TitleTwo";
 
 interface DejParameters {
     weight: number,
@@ -140,9 +141,9 @@ export default function DEJAdult() {
                 <div
                     className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
                 >
-                    <h2 className="text-lg font-bold">
-                        ✅ Résultats :
-                    </h2>
+                    <TitleTwo
+                        text="✅ Résultats&nbsp;:"
+                    />
                     <p>
                         Pour un poids de <span className="font-bold">{dejResults.weight} kg</span> et une taille de <span className="font-bold">{dejResults.height} cm</span>, on obtient un IMC de <span className="font-bold">{dejResults.imc.toFixed(2)} kg/m²</span>.
                     </p>

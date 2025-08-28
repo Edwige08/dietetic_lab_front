@@ -1,3 +1,5 @@
+import TitleTwo from "./TitleTwo";
+
 export default function UndernutritionInformation() {
     return (
         <div
@@ -5,9 +7,9 @@ export default function UndernutritionInformation() {
         >
 
             <div className="flex flex-col gap-4 mb-5">
-                <h2 className="text-xl font-bold">
-                    👩‍🏫 Comment diagnostiquer la dénutrition ?
-                </h2>
+                <TitleTwo
+                    text="👩‍🏫 Comment diagnostiquer la dénutrition&nbsp;?"
+                />
                 <p>
                     Selon la Haute Autorité de Santé (novembre 2021), le diagnostic de la dénutrition est posé en cas de présence d&apos;au moins 1 critère phénotypique et 1 critère étiologique. Les critères diffèrent en fonction de la tranche d&apos;âge dans laquelle se situe le patient (enfant, adulte ou personne de 70 ans et plus).
                 </p>

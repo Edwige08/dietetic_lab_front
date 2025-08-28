@@ -4,6 +4,8 @@ import { useState } from "react";
 import ButtonGreen from "./ButtonGreen";
 import Input from "./Input";
 import { Calculator } from 'lucide-react';
+import Title from "./Title";
+import TitleTwo from "./TitleTwo";
 
 interface WeightHeight {
     weight: number,
@@ -66,11 +68,11 @@ export default function IMCForm() {
     return (
         <>
             <div>
-
-                <h2 className="py-4 text-3xl font-bold text-(--greenSecondColor) ">
-                    Calcul de l&apos;IMC
-                </h2>
+                <Title
+                    text="Calcul de l&apos;IMC"
+                />
             </div>
+
             <form
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
                 onSubmit={handleSubmit}
@@ -104,13 +106,14 @@ export default function IMCForm() {
                     </button>
                 }
             </form>
+
             {calculDone &&
                 <div
-                    className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
+                    className="flex flex-col gap-4 px-4 pb-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
                 >
-                    <h2 className="text-lg font-bold">
-                        ✅ Résultat :
-                    </h2>
+                    <TitleTwo 
+                        text="✅ Résultat&nbsp;:"
+                    />
                     <p>
                         Pour un poids de <span className="font-bold">{IMCresults.weight} kg</span> et une taille de <span className="font-bold">{(IMCresults.height / 100).toFixed(2)} m</span>, on obtient un IMC de <span className="font-bold">{IMCresults.imc.toFixed(2)} kg/m²</span>, ce qui correspond à <span className="font-bold">{getIMCCategory(IMCresults.imc)}</span>.
                     </p>

@@ -1,12 +1,14 @@
+import TitleTwo from "./TitleTwo";
+
 export default function SRIInformation() {
     return (
         <div
             className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--grayLightColor) border border-gray-300 rounded-xl shadow-xl"
         >
             <div className="flex flex-col gap-4 mb-5">
-                <h2 className="text-xl font-bold">
-                    👩‍🏫 Comment évaluer le risque de syndrome de renutrition inappropriée (SRI)&nbsp;?
-                </h2>
+                <TitleTwo
+                    text="👩‍🏫 Comment évaluer le risque de syndrome de renutrition inappropriée (SRI)&nbsp;?"
+                />
                 <p>
                     Afin de diagnostiquer le risque de SRI, il suffit de repérer soit au minimum 1 critère majeur, soit au minimum 2 critères mineurs.
                 </p>

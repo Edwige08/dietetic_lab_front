@@ -6,6 +6,7 @@ import InputCheckbox from "./InputCheckbox";
 import ButtonGreen from "./ButtonGreen";
 import Title from "./Title";
 import { Calculator } from "lucide-react";
+import TitleTwo from "./TitleTwo";
 
 interface SRIParameters {
     weight: number,
@@ -204,9 +205,9 @@ export default function SRIForm() {
                 <div
                     className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
                 >
-                    <h2 className="text-lg font-bold">
-                        ✅ Résultats :
-                    </h2>
+                    <TitleTwo
+                        text="✅ Résultat&nbsp;:"
+                    />
                     {(results.weight > 0 && results.height > 0) &&
                         <p>
                             Pour un poids de <span className="font-bold">{results.weight} kg</span> et une taille de <span className="font-bold">{results.height} cm</span>, on obtient un IMC de <span className="font-bold">{results.imc.toFixed(2)} kg/m²</span>.

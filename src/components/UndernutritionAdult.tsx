@@ -6,6 +6,7 @@ import ButtonGreen from "./ButtonGreen";
 import InputCheckbox from "./InputCheckbox";
 import { Calculator } from "lucide-react";
 import Title from "./Title";
+import TitleTwo from "./TitleTwo";
 
 export default function UndernutritionAdult() {
     const [parameters, setParameters] = useState<WeightHeight>({
@@ -274,9 +275,9 @@ export default function UndernutritionAdult() {
                 <div
                     className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
                 >
-                    <h2 className="text-lg font-bold">
-                        ✅ Résultat :
-                    </h2>
+                    <TitleTwo
+                        text="✅ Résultat&nbsp;:"
+                    />
                     <p>
                         Pour un poids de <span className="font-bold">{evaluationResults.weight} kg</span> et une taille de <span className="font-bold">{evaluationResults.height} cm</span>, on obtient un IMC de <span className="font-bold">{evaluationResults.imc.toFixed(2)} kg/m²</span> ({getIMCCategory(evaluationResults.imc)}).
                     </p>
