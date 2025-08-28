@@ -558,7 +558,7 @@ export default function IngestaForm() {
                         {foodList.map((food, index) => {
                             return (
                                 <IngestaColapse
-                                    index={index}
+                                    key={index}
                                     food={food.alim_nom_fr}
                                     quantity={food.quantity}
                                     calories={adjustedValue(food["Energie, Règlement UE N° 1169/2011 (kcal/100 g)"], food.quantity)}

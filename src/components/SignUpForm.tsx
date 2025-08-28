@@ -54,7 +54,7 @@ export default function SignUpForm() {
                             href="/signin"
                             className="underline text-center"
                         >
-                            J'ai déjà un compte
+                            J&apos;ai déjà un compte
                         </Link>
                     </div>
                 </div>

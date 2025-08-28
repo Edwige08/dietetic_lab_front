@@ -1,8 +1,8 @@
 import { Trash2 } from "lucide-react";
 
-export default function IngestaColapse(props: { index: number, food: string, quantity: number, calories: number, protein: number, fats: number, carbohydrates: number, onClick: React.MouseEventHandler<HTMLButtonElement> }) {
+export default function IngestaColapse(props: { food: string, quantity: number, calories: number, protein: number, fats: number, carbohydrates: number, onClick: React.MouseEventHandler<HTMLButtonElement> }) {
     return (
-        <div key={props.index} className="collapse collapse-arrow border-base-300 border">
+        <div className="collapse collapse-arrow border-base-300 border">
             <input type="checkbox" />
             <div className="collapse-title font-semibold flex flex-row justify-between">
                 <div>{props.food}</div>
