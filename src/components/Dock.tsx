@@ -43,8 +43,8 @@ export default function Dock() {
                         </div>
                         <ul className="text-end">
                             <li><Link href="/about" className="text-md">A propos</Link></li>
-                            <li><Link href="/" className="text-md">Vos retours</Link></li>
-                            <li><Link href="/" className="text-md">Mentions légales</Link></li>
+                            <li><Link href="/work-in-progress" className="text-md">Vos retours</Link></li>
+                            <li><Link href="/work-in-progress" className="text-md">Mentions légales</Link></li>
                         </ul>
                     </div>
                 </div>

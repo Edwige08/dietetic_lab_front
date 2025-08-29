@@ -21,8 +21,8 @@ export default function Navbar() {
                         <li></li>
                         <br />
                         <li><Link href="/about" className="text-base">A propos</Link></li>
-                        <li><Link href="/" className="text-base">Vos retours</Link></li>
-                        <li><Link href="/" className="text-base">Mentions légales</Link></li>
+                        <li><Link href="/work-in-progress" className="text-base">Vos retours</Link></li>
+                        <li><Link href="/work-in-progress" className="text-base">Mentions légales</Link></li>
                     </ul>
                 </div>
             </div>

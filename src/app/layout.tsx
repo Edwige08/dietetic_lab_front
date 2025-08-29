@@ -37,7 +37,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Mon App PWA" />
       </Head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased pb-20`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased pb-20 min-h-screen bg-(--background)`}
       >
         <div className="hidden md:flex">
           <Navbar />
