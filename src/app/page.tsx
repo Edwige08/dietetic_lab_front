@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col pt-4 items-center ">
         <Image
           src="/logo_image_fond.png"
           width={500}
@@ -13,8 +13,8 @@ export default function Home() {
           alt="Logo de Dietetic Lab"
           className="w-20"
         />
-        <h1 className="text-2xl font-bold mb-5">Bienvenue sur Dietetic Lab !</h1>
-        <p className="text-lg mb-5">Que voulez-vous faire aujourd&apos;hui ?</p>
+        <h1 className="text-center text-2xl font-bold mb-5">Bienvenue sur Dietetic Lab&nbsp;!</h1>
+        <p className="text-lg mb-5">Que voulez-vous faire aujourd&apos;hui&nbsp;?</p>
       </div>
 
       <div className="flex flex-col gap-1">
