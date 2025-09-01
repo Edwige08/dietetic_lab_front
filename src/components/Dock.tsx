@@ -25,10 +25,10 @@ export default function Dock() {
                 <div className="drawer-content">
                     <label htmlFor="my-drawer" className="drawer-button flex flex-col justify-center items-center">
                         <Popcorn />
-                        <span className="dock-label">Outils diet</span>
+                        <span className="dock-label cursor-pointer">Outils diet</span>
                     </label>
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side cursor-auto">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <div className="menu h-full w-60 p-4 justify-between bg-white text-black">
                         <div>
