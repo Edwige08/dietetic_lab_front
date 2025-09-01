@@ -4,6 +4,7 @@ import "./globals.css";
 import Dock from "@/components/Dock";
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
+import Return from "@/components/Return";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({
         <div className="hidden md:flex">
           <Navbar />
         </div>
+        <Return />
         {children}
         <div className="md:hidden">
           <Dock />
