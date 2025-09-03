@@ -9,9 +9,9 @@ export default function Home() {
             />
             <p className="text-center px-4 max-w-md">
                 Cette page est encore en cours de développement. <br />
-                Vous pouvez revenir plus tard pour la consulter lorsqu'elle sera fraîchement créée.
+                Vous pouvez revenir plus tard pour la consulter lorsqu&apos;elle sera fraîchement créée.
             </p>
-            <Link href="/" className="btn btn-link">Retour à l'accueil</Link>
+            <Link href="/" className="btn btn-link">Retour à l&apos;accueil</Link>
         </div>
     )
 }
