@@ -6,3 +6,8 @@ export interface DataSignUp {
     password: string,
     is_dietetician: boolean,
 }
+
+export interface DataSignIn {
+    mail: string,
+    password: string,
+}

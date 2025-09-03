@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from "react";
 
-export default function InputText(props: { title: string, name: string, placeholder?: string, value: string, onChange?: ChangeEventHandler<HTMLInputElement>, disabled?: boolean, unity?: string }) {
+export default function InputText(props: { title: string, name: string, type: "text" | "password", placeholder?: string, value: string, onChange?: ChangeEventHandler<HTMLInputElement>, disabled?: boolean, unity?: string }) {
     return (
         <div className="flex flex-col gap-1">
             <label htmlFor={props.name}>
@@ -8,7 +8,7 @@ export default function InputText(props: { title: string, name: string, placehol
             </label>
             <input
                 name={props.name}
-                type="string"
+                type={props.type}
                 placeholder={props.placeholder}
                 className="p-2 border border-gray-300 rounded-lg w-full"
                 value={props.value}
