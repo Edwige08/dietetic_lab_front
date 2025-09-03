@@ -1,5 +1,6 @@
 'use client'
 
+import { useUser } from "@/contexts/UserContext";
 import { House, Popcorn, UserRound } from "lucide-react"
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
@@ -7,17 +8,22 @@ import { useRouter, usePathname } from "next/navigation";
 export default function Dock() {
     const router = useRouter();
     const pathname = usePathname();
+    const { user, isAuthenticated } = useUser();
+
+    const handleNavigationProfile = () => {
+        isAuthenticated ? router.push("/personnalProfile") : router.push('/signin');
+    }
 
     const handleNavigation = (path: string) => {
         router.push(path);
     }
-    
+
     return (
         <div className="dock dock-xl bg-white">
 
-            <button className={pathname === "/signin" ? "dock-active" : ""} onClick={() => handleNavigation('/signin')}>
+            <button className={pathname === "/signin" ? "dock-active" : ""} onClick={() => handleNavigationProfile()}>
                 <UserRound />
-                <span className="dock-label">Mon compte</span>
+                <span className="dock-label">{isAuthenticated ? "Mon profil" : "Mon compte"}</span>
             </button>
 
             <div className="drawer">
