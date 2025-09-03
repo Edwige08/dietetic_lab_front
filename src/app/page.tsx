@@ -16,8 +16,8 @@ export default function Home() {
         <h1 className="text-center text-3xl font-bold mb-5">Bienvenue sur Dietetic Lab&nbsp;!</h1>
         <p className="text-lg mx-10 mb-3 text-center">
           Cette application est un outil de travail pour les professionnels de la nutrition.
-          Il vous permet d'évaluer de façon efficace l'état de santé de vos patients
-          (calcul d'IMC, dépense énergétique journalière, évaluation de la dénutrition, du SRI, calcul des ingesta grâce aux données de la table du Ciqual). <br />
+          Il vous permet d&apos;évaluer de façon efficace l&apos;état de santé de vos patients
+          (calcul d&apos;IMC, dépense énergétique journalière, évaluation de la dénutrition, du SRI, calcul des ingesta grâce aux données de la table du Ciqual). <br />
           Vous trouverez ci-dessous les outils proposés : </p>
         <p className="text-3xl mb-5">
           ⬇️
