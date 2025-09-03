@@ -11,10 +11,18 @@ export default function Home() {
           width={500}
           height={500}
           alt="Logo de Dietetic Lab"
-          className="w-20"
+          className="w-30"
         />
-        <h1 className="text-center text-2xl font-bold mb-5">Bienvenue sur Dietetic Lab&nbsp;!</h1>
-        <p className="text-lg mb-5">Que voulez-vous faire aujourd&apos;hui&nbsp;?</p>
+        <h1 className="text-center text-3xl font-bold mb-5">Bienvenue sur Dietetic Lab&nbsp;!</h1>
+        <p className="text-lg mx-10 mb-3 text-center">
+          Cette application est un outil de travail pour les professionnels de la nutrition.
+          Il vous permet d'évaluer de façon efficace l'état de santé de vos patients
+          (calcul d'IMC, dépense énergétique journalière, évaluation de la dénutrition, du SRI, calcul des ingesta grâce aux données de la table du Ciqual). <br />
+          Vous trouverez ci-dessous les outils proposés : </p>
+        <p className="text-3xl mb-5">
+          ⬇️
+        </p>
+        {/* <p className="text-lg mb-5">Que voulez-vous faire aujourd&apos;hui&nbsp;?</p> */}
       </div>
 
       <div className="flex flex-col gap-1">
@@ -62,6 +70,13 @@ export default function Home() {
             description="Calculer les ingesta d'un patient grâce à la table de composition nutritionnelle du Ciqual"
           />
         </Link>
+      </div>
+      <div className="flex flex-row justify-center gap-3 p-5">
+        <Link href="/about" className="hover:underline">A propos</Link>
+        <p>-</p>
+        <Link href="/work-in-progress" className="hover:underline">FAQ</Link>
+        <p>-</p>
+        <Link href="/work-in-progress" className="hover:underline">Vos retours</Link>
       </div>
     </div>
   );
