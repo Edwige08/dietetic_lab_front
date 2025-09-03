@@ -5,6 +5,7 @@ import Dock from "@/components/Dock";
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Return from "@/components/Return";
+import { UserProvider } from "@/contexts/UserContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,14 +41,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased pb-20 min-h-screen bg-(--background)`}
       >
+        <UserProvider>
         <div className="hidden md:flex">
           <Navbar />
         </div>
         <Return />
-        {children}
+          {children}
         <div className="md:hidden">
           <Dock />
         </div>
+        </UserProvider>
       </body>
     </html>
   );
