@@ -13,8 +13,8 @@ export default function Home() {
           alt="Logo de Dietetic Lab"
           className="w-30"
         />
-        <h1 className="text-center text-3xl font-bold mb-5">Bienvenue sur Dietetic Lab&nbsp;!</h1>
-        <p className="text-lg mx-10 mb-3 text-center">
+        <h1 className="text-center text-2xl md:text-3xl font-bold mb-5">Bienvenue sur Dietetic Lab&nbsp;!</h1>
+        <p className="md:text-lg mx-10 mb-3 text-center">
           Cette application est un outil de travail pour les professionnels de la nutrition.
           Il vous permet d&apos;évaluer de façon efficace l&apos;état de santé de vos patients
           (calcul d&apos;IMC, dépense énergétique journalière, évaluation de la dénutrition, du SRI, calcul des ingesta grâce aux données de la table du Ciqual). <br />
