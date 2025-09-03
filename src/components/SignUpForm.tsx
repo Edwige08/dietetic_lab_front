@@ -70,6 +70,9 @@ export default function SignUpForm() {
             />
             <div className="card bg-white w-96 shadow-sm">
                 <form className="card-body" onSubmit={handleSubmit}>
+                    {message ?
+                        <div className="p-2 text-center border border-(--redColor) bg-(--redLightColor)">{message}</div> : ""
+                    }
                     <div className="flex flex-row items-center gap-15">
                         <div className="flex flex-row gap-2">
                             <input onChange={handleChange} type="radio" name="gender" value="f" className="radio radio-warning" />
