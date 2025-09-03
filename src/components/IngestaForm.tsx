@@ -342,6 +342,7 @@ export default function IngestaForm() {
 
                 <div className="relative">
                     <InputText
+                        type="text"
                         title="Aliment : "
                         name="food"
                         value={foodWithQuantity.food}
