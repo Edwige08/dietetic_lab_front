@@ -74,7 +74,7 @@ export default function Home() {
       <div className="flex flex-row justify-center gap-3 p-5">
         <Link href="/about" className="hover:underline">A propos</Link>
         <p>-</p>
-        <Link href="/work-in-progress" className="hover:underline">FAQ</Link>
+        <Link href="/faq" className="hover:underline">FAQ</Link>
         <p>-</p>
         <Link href="/work-in-progress" className="hover:underline">Vos retours</Link>
       </div>
