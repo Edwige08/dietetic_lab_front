@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, LoginResponse, LoginResult } from '@/types/users';
+import { useRouter } from 'next/navigation';
 
 interface UserContextType {
   user: User | null;
@@ -21,10 +22,12 @@ export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const router = useRouter();
+
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     const userData = localStorage.getItem('user_data');
-    
+
     if (token && userData) {
       try {
         const parsedUser: User = JSON.parse(userData);
@@ -57,26 +60,29 @@ export function UserProvider({ children }: UserProviderProps) {
       }
 
       const data: LoginResponse = await response.json();
-      
+
       localStorage.setItem('access_token', data.access);
       localStorage.setItem('user_data', JSON.stringify(data.user));
-      
+
       setUser(data.user);
-      
+
       return { success: true };
     } catch (error) {
       console.error('Erreur login:', error);
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error instanceof Error ? error.message : 'Erreur inconnue'
       };
     }
   };
 
   const logout = (): void => {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('user_data');
-    setUser(null);
+    router.push("/")
+    setTimeout(() => {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('user_data');
+      setUser(null);
+    }, 1000);
   };
 
   const value: UserContextType = {
