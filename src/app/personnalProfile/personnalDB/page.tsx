@@ -5,7 +5,7 @@ import BDDView from "@/components/BDDView";
 import Title from "@/components/Title";
 import { useUser } from "@/contexts/UserContext";
 import { PersonnalDB } from "@/types/FoodDB";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -13,6 +13,7 @@ export default function Home() {
     const [userDatabases, setUserDatabases] = useState<PersonnalDB[]>();
     const [message, setMessage] = useState<string>();
 
+    const router = useRouter();
     const { isAuthenticated } = useUser();
 
     async function getUserDB() {
@@ -49,9 +50,18 @@ export default function Home() {
         getUserDB();
     }, [])
 
+    const goBackProfile = () => {
+        if (window.confirm(`Avez-vous bien terminé d'ajouter des aliments à votre base ?`)) {
+            router.push('/personnalProfile')
+        }
+    }
+
     return (
         <div className="flex flex-col items-center">
-            <Link href="/personnalProfile">Retour profil</Link>
+            <button type="button" className="border py-2 px-5 rounded-lg bg-(--redLightColor)" onClick={() => goBackProfile()}>
+
+                Retour profil
+            </button>
             <div className="px-4 mx-3 w-[90%] md:w-[75%]">
                 <Title text="Ma base de données alimentaires" />
             </div>
@@ -63,7 +73,17 @@ export default function Home() {
                 {userDatabases && userDatabases.length === 0 ?
                     <BDDCreation />
                     :
-                    <BDDView />
+                    <div>
+                        {userDatabases && userDatabases.map((db) => (
+
+                            <BDDView
+                                databaseName={db.title}
+                                databaseFood={db.foods}
+                                dbId={db.id}
+                                key={db.id}
+                            />
+                        ))}
+                    </div>
                 }
             </div>
         </div>
