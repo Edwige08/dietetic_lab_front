@@ -29,25 +29,25 @@ export default function FoodColapse(props: {
                     <div>{props.food}</div>
                 </div>
                 <div className="collapse-content text-sm">
-                    <p>Pour 100 g :</p>
+                    <p className="underline">Pour 100 g :</p>
                     <ul>
-                        <li>- Energie : {props.calories} kcal</li>
-                        <li>- Protéines : {props.protein} g</li>
-                        <li>- Lipides : {props.fats} g</li>
-                        <li className="">&nbsp;&nbsp; dont AGS : {props.ags} g</li>
-                        <li className="">&nbsp;&nbsp; dont AGMI : {props.agmi} g</li>
-                        <li className="">&nbsp;&nbsp; dont AGPI : {props.agpi} g</li>
-                        <li className="">&nbsp;&nbsp; cholestérol : {props.cholesterol} g</li>
-                        <li>- Glucides : {props.carbohydrates} g</li>
-                        <li className="">&nbsp;&nbsp; dont sucres : {props.sugar} g</li>
-                        <li>- Fibres : {props.fibers} g</li>
-                        <li>- Alcool : {props.alcohol} g</li>
-                        <li>- Sodium : {props.sodium} g</li>
-                        <li>- Potassium : {props.potassium} g</li>
-                        <li>- Phosphore : {props.phosphorus} g</li>
-                        <li>- Fer : {props.iron} g</li>
-                        <li>- Calcium : {props.calcium} g</li>
-                        <li>- Vitamine D : {props.vitamin_d} g</li>
+                        <li className="flex flex-row"><p className="min-w-35">- Energie : </p><p className="w-[50%]">{props.calories} kcal</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Protéines : </p><p className="w-[50%]">{props.protein} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Lipides : </p><p className="w-[50%]">{props.fats} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">&nbsp;&nbsp; dont AGS : </p><p className="w-[50%]">{props.ags} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">&nbsp;&nbsp; dont AGMI : </p><p className="w-[50%]">{props.agmi} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">&nbsp;&nbsp; dont AGPI : </p><p className="w-[50%]">{props.agpi} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">&nbsp;&nbsp; cholestérol : </p><p className="w-[50%]">{props.cholesterol} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Glucides : </p><p className="w-[50%]">{props.carbohydrates} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">&nbsp;&nbsp; dont sucres : </p><p className="w-[50%]">{props.sugar} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Fibres : </p><p className="w-[50%]">{props.fibers} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Alcool : </p><p className="w-[50%]">{props.alcohol} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Sodium : </p><p className="w-[50%]">{props.sodium} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Potassium : </p><p className="w-[50%]">{props.potassium} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Phosphore : </p><p className="w-[50%]">{props.phosphorus} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Fer : </p><p className="w-[50%]">{props.iron} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Calcium : </p><p className="w-[50%]">{props.calcium} g</p></li>
+                        <li className="flex flex-row"><p className="min-w-35">- Vitamine D : </p><p className="w-[50%]">{props.vitamin_d} g</p></li>
                     </ul>
                 </div>
             </div>
