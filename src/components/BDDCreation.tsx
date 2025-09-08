@@ -7,6 +7,7 @@ import { FoodDetails, PersonnalDB } from "@/types/FoodDB";
 import FoodColapse from "./FoodColapse";
 import BDDCreationStepOne from "./BDDCreationStepOne";
 import BDDCreationStepTwo from "./BDDCreationStepTwo";
+import { scrollToTop } from "@/utils/ScrollToTop";
 
 export default function BDDCreation() {
     const [stepTwo, setStepTwo] = useState<boolean>(false);
@@ -68,8 +69,6 @@ export default function BDDCreation() {
                 body: JSON.stringify({ title: databaseName })
             })
             const data = await response.json();
-            console.log("🌟 (vérif si data.id existe) : ", data);
-
 
             if (!response.ok) {
                 throw new Error(data.detail || data.message || `Erreur ${response.status}`)
@@ -133,7 +132,7 @@ export default function BDDCreation() {
                 throw new Error(data.message || 'Erreur pour créer un aliment')
             }
 
-            setMessage(`✅ ${foodDetails.title} ajouté à votre base`);
+            setMessage(`✅ ${foodDetails.title} a bien été ajouté à votre base`);
             setDatabaseDetails(prev => ({
                 ...prev,
                 foods: [...prev.foods, foodDetails]
@@ -159,6 +158,7 @@ export default function BDDCreation() {
                 vitamin_d: 0,
                 personal_db: databaseDetails.id,
             })
+            scrollToTop();
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : "❌ Une erreur est survenue lors de la création de l'aliment"
@@ -207,37 +207,38 @@ export default function BDDCreation() {
                         vitamin_dValue={foodDetails.vitamin_d}
                     />
 
-                    <div>
-                        <TitleTwo text={`Aliments ajoutés dans "${databaseName}" :`} />
-                        {databaseDetails.foods.map((food, index) => {
-                            return (
-                                <FoodColapse
-                                    key={index}
-                                    food={food.title}
-                                    calories={food.calories_kcal}
-                                    protein={food.proteins}
-                                    fats={food.fats}
-                                    carbohydrates={food.carbohydrates}
-                                    fibers={food.fibers}
-                                    sugar={food.sugars}
-                                    ags={food.ags}
-                                    agmi={food.agmi}
-                                    agpi={food.agpi}
-                                    cholesterol={food.cholesterol}
-                                    alcohol={food.alcohol}
-                                    sodium={food.sodium}
-                                    potassium={food.potassium}
-                                    phosphorus={food.phosphorus}
-                                    iron={food.iron}
-                                    calcium={food.calcium}
-                                    vitamin_d={food.vitamin_d}
-                                    onClick={() => removeFood()}
-                                />
-                            )
-                        })}
-                    </div>
+                    {databaseDetails.foods.length > 0 &&
+                        <div>
+                            <TitleTwo text={`Aliments ajoutés dans "${databaseName}" :`} />
+                            {databaseDetails.foods.map((food, index) => {
+                                return (
+                                    <FoodColapse
+                                        key={index}
+                                        food={food.title}
+                                        calories={food.calories_kcal}
+                                        protein={food.proteins}
+                                        fats={food.fats}
+                                        carbohydrates={food.carbohydrates}
+                                        fibers={food.fibers}
+                                        sugar={food.sugars}
+                                        ags={food.ags}
+                                        agmi={food.agmi}
+                                        agpi={food.agpi}
+                                        cholesterol={food.cholesterol}
+                                        alcohol={food.alcohol}
+                                        sodium={food.sodium}
+                                        potassium={food.potassium}
+                                        phosphorus={food.phosphorus}
+                                        iron={food.iron}
+                                        calcium={food.calcium}
+                                        vitamin_d={food.vitamin_d}
+                                        onClick={() => removeFood()}
+                                    />
+                                )
+                            })}
+                        </div>
+                    }
                 </>
-
             }
         </div>
     )
