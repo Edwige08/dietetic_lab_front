@@ -80,7 +80,7 @@ export default function Home() {
                         description="Créer ou modifier ma base de donneés nutritionnelles, utilisée pour le calcul des ingesta"
                     />
                 </Link>
-                <Link href={"/personnalProfile/personnalDB"}>
+                <Link href={"/personnalProfile/personnalInformations"}>
                     <CardSection
                         emoji="👩‍💻"
                         bgColor="bg-(--grayLightColor)"
