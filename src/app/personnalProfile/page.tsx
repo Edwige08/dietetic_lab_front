@@ -13,8 +13,9 @@ export default function Home() {
     }
 
     if (!isAuthenticated) {
-        return <div>Pas connecté</div>;
+        return <div>Vous n'êtes pas connecté</div>;
     }
+
     return (
         <div className="flex flex-col items-center">
             <Title text={`Bienvenue ${user ? `${user.firstname}` : ""} !`} />
@@ -85,6 +86,14 @@ export default function Home() {
                         bgColor="bg-(--grayLightColor)"
                         title="Mes informations personnelles"
                         description="Modifier mes informations personnelles ou supprimer mon compte"
+                    />
+                </Link>
+                <Link href={"/personnalProfile/writeMessage"}>
+                    <CardSection
+                        emoji="📨"
+                        bgColor="bg-(--grayLightColor)"
+                        title="Ecrire un message à Dietetic Lab"
+                        description="Faire un retour à la développeuse concernant l'application"
                     />
                 </Link>
                 <div className="flex flex-col justify-center py-5 m-auto">
