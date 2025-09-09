@@ -54,6 +54,37 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
         }
     }
 
+    async function deleteFood(databaseId: number, foodId: number) {
+        if (!isAuthenticated) {
+            setMessage("Vous devez être connecté pour supprimer une base de données");
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem('access_token');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/foods/${foodId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            })
+
+            if (!response.ok) {
+                throw new Error(`❌ Erreur ${response.status} : ${response.statusText}`)
+            }
+
+            console.log("✅ Aliment supprimé avec succès");
+
+            // AJOUTER LA MISE A JOUR DU USESTATE
+
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
+            console.log(errorMessage);
+            setMessage(`Erreur lors de la suppression : ${errorMessage}`);
+            return false;
+        }
+    }
+
     const handleDeleteDB = (databaseId: number, databaseTitle: string) => {
         if (window.confirm(`Êtes-vous sûr de vouloir supprimer la base "${databaseTitle}" ?`)) {
             deleteUserDB(databaseId);
