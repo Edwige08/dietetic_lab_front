@@ -18,7 +18,7 @@ export default function Home() {
           Cette application est un outil de travail pour les professionnels de la nutrition.
           Il vous permet d&apos;évaluer de façon efficace l&apos;état de santé de vos patients
           (calcul d&apos;IMC, dépense énergétique journalière, évaluation de la dénutrition, du SRI, calcul des ingesta grâce aux données de la table du Ciqual). <br />
-          Vous trouverez ci-dessous les outils proposés : </p>
+          Vous trouverez ci-dessous les outils proposés&nbsp;: </p>
         <p className="text-3xl mb-5">
           ⬇️
         </p>

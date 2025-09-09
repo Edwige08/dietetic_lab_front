@@ -1,14 +1,11 @@
 'use client';
 
-import ButtonGreen from "@/components/ButtonGreen"
 import SeeMessages from "@/components/SeeMessages";
 import Title from "@/components/Title"
 import WriteMessage from "@/components/WriteMessage";
-import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 export default function Home() {
-    const [comment, setComment] = useState<string>("");
     const [seeWriteMessage, setSeeWriteMessage] = useState<boolean>(true);
 
     const handleChangeSeerWrite = () => {

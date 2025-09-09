@@ -8,7 +8,7 @@ export default function BDDCreationStepOne(props: { onSubmit: FormEventHandler<H
         <form onSubmit={props.onSubmit}>
             <TitleTwo text="1. Je nomme ma base de données" />
             <p className="pb-5 italic">
-                Veuillez entrer ci-dessous le nom que vous allez donner à votre base de données nutritionnelles, puis cliquez sur le bouton "Valider".
+                Veuillez entrer ci-dessous le nom que vous allez donner à votre base de données nutritionnelles, puis cliquez sur le bouton &quot;Valider&quot;.
             </p>
             <InputText
                 title="Nom :"

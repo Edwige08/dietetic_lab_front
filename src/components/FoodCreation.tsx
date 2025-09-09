@@ -29,7 +29,7 @@ export default function FoodCreation(props: {
     return (
         <form onSubmit={props.onSubmit}>
             <p className="py-5 italic">
-                Veuillez entrer le nom de votre aliment, ainsi que ses valeurs nutritionnelles pour 100g. Si certaines valeurs sont absentes, vous pouvez laisser le chiffre "0".
+                Veuillez entrer le nom de votre aliment, ainsi que ses valeurs nutritionnelles pour 100g. Si certaines valeurs sont absentes, vous pouvez laisser le chiffre &quot;0&quot;.
             </p>
             <InputText
                 title="Nom de l'aliment :"

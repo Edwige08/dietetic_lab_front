@@ -31,7 +31,7 @@ export default function BDDCreationStepTwo(props: {
         <form onSubmit={props.onSubmit}>
             <TitleTwo text={`2. J'ajoute chaque aliment et ses valeurs nutritionnelles à "${props.databaseName}"`} />
             <p className="pb-5 italic">
-                Veuillez entrer le nom de votre aliment, ainsi que ses valeurs nutritionnelles pour 100g. Si certaines valeurs sont absentes, vous pouvez laisser le chiffre "0".
+                Veuillez entrer le nom de votre aliment, ainsi que ses valeurs nutritionnelles pour 100g. Si certaines valeurs sont absentes, vous pouvez laisser le chiffre &quot;0&quot;.
             </p>
             <InputText
                 title="Nom de l'aliment :"

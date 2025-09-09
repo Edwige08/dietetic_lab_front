@@ -46,9 +46,10 @@ export default function Home() {
             console.log(errorMessage);
         }
     }
+    
     useEffect(() => {
-        getUserDB();
-    }, [])
+        if (isAuthenticated) getUserDB();
+    }, [isAuthenticated]);
 
     const goBackProfile = () => {
         if (window.confirm(`Avez-vous bien terminé d'ajouter des aliments à votre base ?`)) {

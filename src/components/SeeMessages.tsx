@@ -66,7 +66,7 @@ export default function SeeMessages(props: { onClick: MouseEventHandler<HTMLButt
                     {comments && comments.length > 0 ?
                         <div className="flex flex-col gap-2">
                             {comments.map((comment) => (
-                                <div className="border p-2 rounded-lg">
+                                <div className="border p-2 rounded-lg" key={comment.id}>
                                     <p className="italic text-(--greenSecondColor)">
                                         Ecrit le : {comment.created_at}
                                     </p>
@@ -80,8 +80,8 @@ export default function SeeMessages(props: { onClick: MouseEventHandler<HTMLButt
                         :
                         <div className="py-2 text-center">
                             <p className="pb-10">
-                                Pour le moment vous n'avez écrit aucun message. <br />
-                                N'hésitez pas à me faire part de vos retours ou suggestions.
+                                Pour le moment vous n&apos;avez écrit aucun message. <br />
+                                N&apos;hésitez pas à me faire part de vos retours ou suggestions.
                             </p>
                             <div className="flex flex-row justify-center">
                                 <button onClick={props.onClick} className="link link-primary flex flex-row gap-2 border px-5 py-2 rounded-lg">

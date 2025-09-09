@@ -13,7 +13,7 @@ export default function Home() {
     }
 
     if (!isAuthenticated) {
-        return <div>Vous n'êtes pas connecté</div>;
+        return <div>Vous n&apos;êtes pas connecté</div>;
     }
 
     return (

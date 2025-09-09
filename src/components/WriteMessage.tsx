@@ -69,9 +69,9 @@ export default function WriteMessage() {
                     </div>
                 }
                 <p className="py-2 text-center">
-                    Vous pouvez écrire ci-dessous votre commentaires, puis l'envoyer en cliquant sur le bouton "Envoyer".
+                    Vous pouvez écrire ci-dessous votre commentaires, puis l&apos;envoyer en cliquant sur le bouton &ldquo;Envoyer&ldquo;.
                 </p>
-                <textarea name="comment" id="" placeholder="Votre commentaire" className="border rounded-lg p-2 h-70" value={comment} onChange={handleChange} />
+                <textarea name="comment" placeholder="Votre commentaire" className="border rounded-lg p-2 h-70" value={comment} onChange={handleChange} />
 
                 <div className="flex flex-col items-center py-2">
                     <ButtonGreen text="Envoyer" />

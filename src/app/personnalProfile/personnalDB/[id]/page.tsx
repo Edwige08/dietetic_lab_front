@@ -7,7 +7,7 @@ import TitleTwo from "@/components/TitleTwo";
 import { useUser } from "@/contexts/UserContext";
 import { FoodDetails, PersonnalDB } from "@/types/FoodDB";
 import { scrollToTop } from "@/utils/ScrollToTop";
-import { ChevronDown, ChevronUp, CirclePlus, CopyMinus, CopyPlus } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { use, useEffect, useState } from "react";
 
 type Props = {
@@ -174,7 +174,7 @@ export default function Home({ params }: Props) {
                             {!seeAddFood ?
                                 <p className="flex flex-row gap-2 items-center hover:underline"><ChevronDown /> Ajouter des aliments</p>
                                 :
-                                <p className="flex flex-row gap-2 items-center hover:underline"><ChevronUp /> Fermer l'ajout d'aliments</p>
+                                <p className="flex flex-row gap-2 items-center hover:underline"><ChevronUp /> Fermer l&apos;ajout d&apos;aliments</p>
                             }
                         </button>
                         {userDatabase && seeAddFood && <FoodCreation

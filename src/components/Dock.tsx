@@ -8,7 +8,7 @@ import { useRouter, usePathname } from "next/navigation";
 export default function Dock() {
     const router = useRouter();
     const pathname = usePathname();
-    const { user, isAuthenticated } = useUser();
+    const { isAuthenticated } = useUser();
 
     const handleNavigationProfile = () => {
         isAuthenticated ? router.push("/personnalProfile") : router.push('/signin');
