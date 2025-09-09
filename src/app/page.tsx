@@ -1,27 +1,36 @@
 import CardSection from "@/components/CardSection";
+import Title from "@/components/Title";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div>
-      <div className="flex flex-col pt-4 items-center ">
+      <div className="flex flex-row  pt-4 items-center justify-center">
         <Image
+          src="/logo_and_text.png"
+          width={500}
+          height={500}
+          alt="Logo de Dietetic Lab"
+          className="w-80 pt-3 pb-10"
+        />
+        {/* <Image
           src="/logo_image_fond.png"
           width={500}
           height={500}
           alt="Logo de Dietetic Lab"
           className="w-30"
         />
-        <h1 className="text-center text-2xl md:text-3xl font-bold mb-5">Bienvenue sur Dietetic Lab&nbsp;!</h1>
-        <p className="md:text-lg mx-10 mb-3 text-center">
+        <Title text="Dietetic Lab"/> */}
+        {/* <h1 className="text-center text-2xl md:text-3xl font-bold mb-5">Bienvenue sur Dietetic Lab&nbsp;!</h1> */}
+        {/* <p className="md:text-lg mx-10 mb-3 text-center">
           Cette application est un outil de travail pour les professionnels de la nutrition.
           Il vous permet d&apos;évaluer de façon efficace l&apos;état de santé de vos patients
           (calcul d&apos;IMC, dépense énergétique journalière, évaluation de la dénutrition, du SRI, calcul des ingesta grâce aux données de la table du Ciqual). <br />
           Vous trouverez ci-dessous les outils proposés&nbsp;: </p>
         <p className="text-3xl mb-5">
           ⬇️
-        </p>
+        </p> */}
         {/* <p className="text-lg mb-5">Que voulez-vous faire aujourd&apos;hui&nbsp;?</p> */}
       </div>
 
