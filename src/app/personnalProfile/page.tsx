@@ -1,6 +1,7 @@
 'use client'
 
 import CardSection from "@/components/CardSection";
+import CardSectionSimple from "@/components/CardSectionSimple";
 import Title from "@/components/Title";
 import TitleTwo from "@/components/TitleTwo";
 import { useUser } from "@/contexts/UserContext";
@@ -73,25 +74,22 @@ export default function Home() {
                     <TitleTwo text="⚙️ Configuration ⚙️" />
                 </div>
                 <Link href={"/personnalProfile/personnalDB"}>
-                    <CardSection
+                    <CardSectionSimple
                         emoji="📝"
-                        bgColor="bg-(--grayLightColor)"
                         title="Ma base de données nutritionnelles"
                         description="Créer ou modifier ma base de donneés nutritionnelles, utilisée pour le calcul des ingesta"
                     />
                 </Link>
                 <Link href={"/personnalProfile/personnalInformations"}>
-                    <CardSection
+                    <CardSectionSimple
                         emoji="👩‍💻"
-                        bgColor="bg-(--grayLightColor)"
                         title="Mes informations personnelles"
                         description="Modifier mes informations personnelles ou supprimer mon compte"
                     />
                 </Link>
                 <Link href={"/personnalProfile/writeMessage"}>
-                    <CardSection
+                    <CardSectionSimple
                         emoji="📨"
-                        bgColor="bg-(--grayLightColor)"
                         title="Ecrire un message à Dietetic Lab"
                         description="Faire un retour à la développeuse concernant l'application"
                     />

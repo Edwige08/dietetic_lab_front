@@ -1,0 +1,15 @@
+export default function CardSectionSimple(props: { emoji: string, title: string, description: string }) {
+    return (
+        <>
+            <div className="card card-side bg-white shadow-md mx-3 my-2">
+                <figure className="rounded-lg text-3xl w-30 bg-(--grayLightColor)">
+                    {props.emoji}
+                </figure>
+                <div className="card-body w-full p-4 gap-1">
+                    <h2 className="card-title">{props.title}</h2>
+                    <p className="">{props.description}</p>
+                </div>
+            </div>
+        </>
+    )
+}
