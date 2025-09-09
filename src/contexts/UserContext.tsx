@@ -42,6 +42,11 @@ export function UserProvider({ children }: UserProviderProps) {
   }, []);
 
   const login = async (email: string, password: string): Promise<LoginResult> => {
+
+    console.log('All env vars:', process.env);
+    console.log('Backend URL:', process.env.NEXT_PUBLIC_BACK_END_URL);
+    console.log('Full URL:', `${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/auth/login/`);
+
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/auth/login/`, {
         method: 'POST',
