@@ -1,4 +1,4 @@
-const monthInLetters = (month: number) => {
+export const monthInLetters = (month: number) => {
     if (month == 0) return "janvier";
     if (month == 1) return "février";
     if (month == 2) return "mars";
