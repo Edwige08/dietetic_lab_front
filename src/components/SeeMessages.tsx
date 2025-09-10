@@ -2,7 +2,7 @@
 
 import { useUser } from "@/contexts/UserContext";
 import { Comments } from "@/types/Comments";
-import { getDate } from "@/utils/GetDate";
+import { getDate, getHour } from "@/utils/GetDate";
 import { ChevronRight } from "lucide-react";
 import { MouseEventHandler, useEffect, useState } from "react";
 
@@ -69,7 +69,7 @@ export default function SeeMessages(props: { onClick: MouseEventHandler<HTMLButt
                             {comments.map((comment) => (
                                 <div className="border p-2 rounded-lg" key={comment.id}>
                                     <p className="italic text-(--greenSecondColor) pb-1">
-                                        Ecrit le {getDate(comment.created_at)}
+                                        Ecrit le {getDate(comment.created_at)} à {getHour(comment.created_at)} : 
                                     </p>
                                     <p className=" text-(--grayColor)">
 

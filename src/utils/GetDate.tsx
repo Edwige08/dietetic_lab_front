@@ -16,6 +16,12 @@ export const monthInLetters = (month: number) => {
 export const getDate = (date: string) => {
     const pubDate = new Date(date);
     const publicationDate = `${pubDate.getDate()}${pubDate.getDate() == 1 ? "er" : ""
-        } ${monthInLetters(pubDate.getMonth())} ${pubDate.getFullYear()} à ${pubDate.getHours()}h${pubDate.getMinutes()} :`;
+        } ${monthInLetters(pubDate.getMonth())} ${pubDate.getFullYear()}`;
+    return publicationDate
+}
+
+export const getHour = (date: string) => {
+    const pubDate = new Date(date);
+    const publicationDate = `${pubDate.getHours()}h${pubDate.getMinutes()}`;
     return publicationDate
 }
