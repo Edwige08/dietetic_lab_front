@@ -1,33 +1,48 @@
 'use client';
 
-import ButtonGreen from "@/components/ButtonGreen";
-import InputCheckboxWithTitle from "@/components/InputCheckboxWithTitle";
-import InputText from "@/components/InputText";
 import Title from "@/components/Title";
 import { useUser } from "@/contexts/UserContext";
-import { DataSignUp } from "@/types/SignInSignUp";
-import { LogInIcon } from "lucide-react";
-import { useState } from "react";
+import { UserInformations } from "@/types/users";
+import { getDate } from "@/utils/GetDate";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-    const { isAuthenticated } = useUser();
+    const { isAuthenticated, user } = useUser();
 
-    const [formData, setFormData] = useState<DataSignUp>({ firstname: "", lastname: "", gender: "", mail: "", password: "", is_dietetician: false });
+    const [formData, setFormData] = useState<UserInformations>({ id: 0, firstname: "", lastname: "", gender: "", mail: "", is_dietetician: false, created_at: "" });
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    // Faire un GET et mettre les informations user dans le formData
+    async function getUserInformations() {
+        setIsLoading(true);
+        if (!isAuthenticated) return;
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
+        try {
+            const token = localStorage.getItem('access_token');
+            
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/users/${user?.id}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
 
-        setFormData(prev => ({
-            ...prev,
-            [name]: (name === 'is_dietetician' ? !formData.is_dietetician : value)
-        }))
+            if (!response.ok) {
+                throw new Error(`❌ Erreur ${response.status} : ${response.statusText}`)
+            }
+
+            const data = await response.json();
+            setFormData(data);
+            setIsLoading(false);
+
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
+            setIsLoading(false);
+        }
     }
 
-    async function handleSubmit() {
-        // Faire le PATCH
-    }
+    useEffect(() => {
+        if (isAuthenticated) getUserInformations();
+    }, [isAuthenticated === true]);
 
     return (
         <div className="flex flex-col items-center">
@@ -35,57 +50,17 @@ export default function Home() {
             <div
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
             >
-                <form className="card-body" onSubmit={handleSubmit}>
-                    <div className="flex flex-row items-center gap-15">
-                        <div className="flex flex-row gap-2">
-                            <input onChange={handleChange} type="radio" name="gender" value="f" className="radio radio-warning" />
-                            <label htmlFor="gender" className="flex flex-col justify-center">Mme</label>
-                        </div>
-                        <div className="flex flex-row gap-2">
-                            <input onChange={handleChange} type="radio" name="gender" value="h" className="radio radio-warning" />
-                            <label htmlFor="gender" className="flex flex-col justify-center">M.</label>
-                        </div>
-                        <div className="flex flex-row gap-2">
-                            <input onChange={handleChange} type="radio" name="gender" value="other" className="radio radio-warning" />
-                            <label htmlFor="gender" className="flex flex-col justify-center">Autre</label>
-                        </div>
+                {isLoading ?
+                    <div>Chargement...</div>
+                    :
+                    <div>
+                        <p><span className="underline">Nom</span> : {formData.lastname}</p>
+                        <p><span className="underline">Prénom</span> : {formData.firstname}</p>
+                        <p><span className="underline">Email</span> : {formData.mail}</p>
+                        <p><span className="underline">Diététicien.ne</span> : {formData.is_dietetician ? "oui" : "non"}</p>
+                        <p><span className="underline">Compte créé le</span> : {getDate(formData.created_at)}</p>
                     </div>
-                    <InputText
-                        title="Nom :"
-                        name="lastname"
-                        type="text"
-                        value={formData.lastname}
-                        onChange={handleChange}
-                    />
-                    <InputText
-                        title="Prénom :"
-                        name="firstname"
-                        type="text"
-                        value={formData.firstname}
-                        onChange={handleChange}
-                    />
-                    <InputText
-                        title="Adresse mail :"
-                        name="email"
-                        type="email"
-                        value={formData.mail}
-                        onChange={handleChange}
-                    />
-                    <InputCheckboxWithTitle
-                        description="Etes-vous diététicien.ne ?"
-                        name="is_dietetician"
-                        title="Je suis diététicien.ne"
-                        onChange={handleChange}
-                        checked={formData.is_dietetician}
-                    />
-                    <div className="flex flex-col card-actions items-center mt-5">
-                        <ButtonGreen
-                            text={"Modifier mes infos"}
-                            type="submit"
-                            lucide={LogInIcon}
-                        />
-                    </div>
-                </form>
+                }
             </div>
         </div>
     )

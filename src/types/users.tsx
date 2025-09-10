@@ -19,3 +19,13 @@ export interface LoginResult {
   success: boolean;
   error?: string;
 }
+
+export interface UserInformations {
+  id: number;
+  firstname: string;
+  lastname: string;
+  gender: string;
+  mail: string;
+  is_dietetician: boolean;
+  created_at: string;
+}
