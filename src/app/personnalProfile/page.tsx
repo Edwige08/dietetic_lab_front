@@ -2,13 +2,13 @@
 
 import CardSection from "@/components/CardSection";
 import CardSectionSimple from "@/components/CardSectionSimple";
-import Title from "@/components/Title";
 import TitleTwo from "@/components/TitleTwo";
 import { useUser } from "@/contexts/UserContext";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
-    const { user, isAuthenticated, loading, logout } = useUser();
+    const { isAuthenticated, loading, logout } = useUser();
     if (loading) {
         return <div>Chargement...</div>;
     }
@@ -19,11 +19,16 @@ export default function Home() {
 
     return (
         <div className="flex flex-col items-center">
-            <Title text={`Bienvenue ${user ? `${user.firstname}` : ""} !`} />
+            <div className="flex flex-row pt-4 items-center justify-center">
+                <Image
+                    src="/logo_and_text.png"
+                    width={500}
+                    height={500}
+                    alt="Logo de Dietetic Lab"
+                    className="w-80 pt-3 pb-10"
+                />
+            </div>
             <div className="flex flex-col px-5">
-                <div className="flex flex-col justify-center items-center">
-                    <TitleTwo text="⬇️ Accéder aux outils diet ⬇️" />
-                </div>
                 <Link href={"/imc"}>
                     <CardSection
                         bgColor="bg-(--orangeColor)"
