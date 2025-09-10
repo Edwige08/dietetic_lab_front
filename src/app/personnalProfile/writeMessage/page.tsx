@@ -19,8 +19,8 @@ export default function Home() {
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
             >
                 <div role="tablist" className="tabs tabs-lift">
-                    <button role="tab" onClick={handleChangeSeerWrite} className={`tab w-[50%] text-lg ${seeWriteMessage ? "tab-active font-bold underline" : ""}`} disabled={seeWriteMessage}>Ecrire un message</button>
-                    <button role="tab" onClick={handleChangeSeerWrite} className={`tab w-[50%] text-lg ${seeWriteMessage ? "" : "tab-active font-bold underline"}`} disabled={!seeWriteMessage}>Messages envoyés</button>
+                    <button role="tab" onClick={handleChangeSeerWrite} className={` text-black w-[50%] py-2 rounded-t-lg ${seeWriteMessage ? " font-bold underline text-black border-x border-t border-black" : "border-b border-black bg-(--grayLightColor) text-gray-700"}`} disabled={seeWriteMessage}>Ecrire un message</button>
+                    <button role="tab" onClick={handleChangeSeerWrite} className={` text-black w-[50%] py-2 rounded-t-lg ${seeWriteMessage ? "border-b border-black bg-(--grayLightColor) text-gray-700" : " font-bold underline text-black border-x border-t border-black"}`} disabled={!seeWriteMessage}>Messages envoyés</button>
                 </div>
 
                 {seeWriteMessage ?
