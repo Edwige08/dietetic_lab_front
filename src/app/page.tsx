@@ -20,7 +20,7 @@ export default function Home() {
         <ButtonGreen text="Se connecter" lucide={UserRound} />
       </Link>
 
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col pb-4">
         <Link href={"/imc"}>
           <CardSection
             bgColor="bg-(--orangeColor)"
@@ -65,13 +65,6 @@ export default function Home() {
             description="Calculer les ingesta d'un patient grâce à la table de composition nutritionnelle du Ciqual"
           />
         </Link>
-      </div>
-      <div className="flex flex-row justify-center gap-3 p-5">
-        <Link href="/about" className="hover:underline">A propos</Link>
-        <p>-</p>
-        <Link href="/faq" className="hover:underline">FAQ</Link>
-        <p>-</p>
-        <Link href="/work-in-progress" className="hover:underline">Vos retours</Link>
       </div>
     </div>
   );
