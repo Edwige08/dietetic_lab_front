@@ -9,18 +9,22 @@ export default function WriteMessage() {
 
     const [comment, setComment] = useState<string>("");
     const [message, setMessage] = useState<string>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
         setMessage("");
+        setIsLoading(true);
 
         if (!isAuthenticated) {
             setMessage("Vous devez être connecté pour créer une base de données");
+            setIsLoading(false);
             return;
         }
 
         if (comment === "") {
             setMessage("Vous n'avez rien écrit 🤷‍♀️");
+            setIsLoading(false);
             return;
         }
 
@@ -38,23 +42,26 @@ export default function WriteMessage() {
             const data = await response.json();
             console.log("DATA : ", data);
 
-
             if (!response.ok) {
                 console.log("ATTENTION ! response : ", response);
-
+                setIsLoading(false);
                 throw new Error(data.detail || data.message || `Erreur ${response.status}`)
             }
 
             setMessage("✅ Votre message a bien été envoyé");
             setComment("");
+            setIsLoading(false);
+
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : "❌ Une erreur est survenue lors de la création de la base de donneés"
             console.log("errorMessage : ", errorMessage);
 
             setMessage(errorMessage);
+            setIsLoading(false);
         }
     }
+    
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = event.target;
         setComment(value);
@@ -74,7 +81,7 @@ export default function WriteMessage() {
                 <textarea name="comment" placeholder="Votre commentaire" className="border rounded-lg p-2 h-70" value={comment} onChange={handleChange} />
 
                 <div className="flex flex-col items-center py-2">
-                    <ButtonGreen text="Envoyer" />
+                    <ButtonGreen disabled={isLoading} text={`${isLoading ? "Envoi..." :"Envoyer"} `} />
                 </div>
             </form>
         </div>
