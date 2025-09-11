@@ -42,14 +42,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased pb-20 min-h-screen bg-(--background)`}
       >
         <UserProvider>
-        <div className="hidden md:flex">
-          <Navbar />
-        </div>
-        <Return />
+          <div className="hidden md:flex">
+            <Navbar />
+          </div>
+          <div className="md:hidden">
+            <Return />
+          </div>
           {children}
-        <div className="md:hidden">
-          <Dock />
-        </div>
+          <div className="md:hidden">
+            <Dock />
+          </div>
         </UserProvider>
       </body>
     </html>

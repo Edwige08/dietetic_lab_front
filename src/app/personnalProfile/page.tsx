@@ -6,9 +6,10 @@ import TitleTwo from "@/components/TitleTwo";
 import { useUser } from "@/contexts/UserContext";
 import Link from "next/link";
 import Image from "next/image";
+import Title from "@/components/Title";
 
 export default function Home() {
-    const { isAuthenticated, loading, logout } = useUser();
+    const { user, isAuthenticated, loading, logout } = useUser();
     if (loading) {
         return <div>Chargement...</div>;
     }
@@ -19,7 +20,7 @@ export default function Home() {
 
     return (
         <div className="flex flex-col items-center">
-            <div className="flex flex-row pt-4 items-center justify-center">
+            <div className="flex flex-row pt-4 items-center justify-center md:hidden">
                 <Image
                     src="/logo_and_text.png"
                     width={500}
@@ -28,7 +29,16 @@ export default function Home() {
                     className="w-80 pt-3 pb-10"
                 />
             </div>
-            <div className="flex flex-col px-5">
+            <div className="hidden md:flex md:flex-col">
+
+                <div>
+                    <Title text={isAuthenticated ? `Bienvenue ${user?.firstname} !` : "Bienvenue sur Dietetic Lab"} />
+                </div>
+                <div className="flex flex-col mt-3 justify-center items-center">
+                    <TitleTwo text=" Accès aux outils ⤵️" />
+                </div>
+            </div>
+            <div className="flex flex-col px-5 lg:grid lg:grid-cols-3 xl:grid-cols-2 lg:gap-4">
                 <Link href={"/imc"}>
                     <CardSection
                         bgColor="bg-(--orangeColor)"
@@ -78,27 +88,30 @@ export default function Home() {
                 <div className="flex flex-col mt-10 justify-center items-center">
                     <TitleTwo text="⚙️ Configuration ⚙️" />
                 </div>
-                <Link href={"/personnalProfile/personnalDB"}>
-                    <CardSectionSimple
-                        emoji="📝"
-                        title="Ma base de données nutritionnelles"
-                        description="Créer ou modifier ma base de donneés nutritionnelles, utilisée pour le calcul des ingesta"
-                    />
-                </Link>
-                <Link href={"/personnalProfile/personnalInformations"}>
-                    <CardSectionSimple
-                        emoji="👩‍💻"
-                        title="Mes informations personnelles"
-                        description="Modifier mes informations personnelles ou supprimer mon compte"
-                    />
-                </Link>
-                <Link href={"/personnalProfile/writeMessage"}>
-                    <CardSectionSimple
-                        emoji="📨"
-                        title="Ecrire un message à Dietetic Lab"
-                        description="Faire un retour à la développeuse concernant l'application"
-                    />
-                </Link>
+                <div className="flex flex-col px-5 lg:grid lg:grid-cols-3 xl:grid-cols-2 lg:gap-4 md:mb-7">
+                    <Link href={"/personnalProfile/personnalDB"}>
+                        <CardSectionSimple
+                            emoji="📝"
+                            title="Ma base de données nutritionnelles"
+                            description="Créer ou modifier ma base de donneés nutritionnelles, utilisée pour le calcul des ingesta"
+                        />
+                    </Link>
+                    <Link href={"/personnalProfile/personnalInformations"}>
+                        <CardSectionSimple
+                            emoji="👩‍💻"
+                            title="Mes informations personnelles"
+                            description="Modifier mes informations personnelles ou supprimer mon compte"
+                        />
+                    </Link>
+                    <Link href={"/personnalProfile/writeMessage"}>
+                        <CardSectionSimple
+                            emoji="📨"
+                            title="Ecrire un message à Dietetic Lab"
+                            description="Faire un retour à la développeuse concernant l'application"
+                        />
+                    </Link>
+                </div>
+
                 <div className="flex flex-col justify-center py-5 m-auto">
                     <button
                         type="button"

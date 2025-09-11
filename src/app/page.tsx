@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <div className="flex flex-row pt-4 items-center justify-center">
+      <div className="flex flex-row pt-4 items-center justify-center md:hidden">
         <Image
           src="/logo_and_text.png"
           width={500}
@@ -20,7 +20,7 @@ export default function Home() {
         <ButtonGreen text="Se connecter" lucide={UserRound} />
       </Link>
 
-      <div className="flex flex-col pb-4">
+      <div className="flex flex-col px-5 lg:grid lg:grid-cols-3 xl:grid-cols-2 lg:gap-4">
         <Link href={"/imc"}>
           <CardSection
             bgColor="bg-(--orangeColor)"

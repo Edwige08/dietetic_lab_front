@@ -1,8 +1,13 @@
-import { UserRound } from "lucide-react";
+'use client';
+
+import { useUser } from "@/contexts/UserContext";
+import { UserRound, UserRoundCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
+    const { user, isAuthenticated } = useUser();
+
     return (
         <div className="navbar mb-2 shadow-sm bg-white">
             <div className="navbar-start">
@@ -22,30 +27,33 @@ export default function Navbar() {
                         <li></li>
                         <br />
                         <li><Link href="/about" className="text-base">A propos</Link></li>
-                        <li><Link href="/work-in-progress" className="text-base">Vos retours</Link></li>
-                        <li><Link href="/work-in-progress" className="text-base">Mentions légales</Link></li>
+                        <li><Link href="/faq" className="text-base">FAQ</Link></li>
                     </ul>
                 </div>
             </div>
             <div className="navbar-center">
-                <Link href="/" className="flex flex-row items-center gap-2 font-bold text-3xl">
+                <Link href={isAuthenticated ? "/personnalProfile" : "/"} className="flex flex-row items-center gap-2 font-bold text-3xl">
                     <Image
-                        src="/logo_image.png"
-                        width={500}
-                        height={500}
+                        src="/logo_image2.png"
+                        width={492}
+                        height={166}
                         alt="Logo de Dietetic Lab"
-                        className="h-11 w-11"
+                        className="h-16 w-49"
                     />
-                    <p>
-                        <span className="text-(--greenColor)">Dietetic</span> <span className="text-(--grayColor)">Lab</span>
-                    </p>
                 </Link>
             </div>
             <div className="navbar-end">
-                <Link href="/signin" className="flex flex-row gap-2 text-lg hover:underline">
-                <UserRound />
-                <p>Mon compte</p>
+                {isAuthenticated && user ? 
+                <Link href="/personnalProfile" className="flex flex-row gap-2 justify-center items-center text-(--greenSecondColor) hover:underline">
+                    <UserRoundCheck />
+                    <p>{user.firstname} {user.lastname}</p>
                 </Link>
+                :
+                <Link href="/signin" className="flex flex-row gap-2 text-lg hover:underline">
+                    <UserRound />
+                    <p>Mon compte</p>
+                </Link>
+                }
             </div>
         </div>
     )
