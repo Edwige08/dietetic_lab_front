@@ -14,9 +14,7 @@ import { textPreviousWeight } from "@/utils/PreviousWeight";
 import { useData } from "@/contexts/DataContext";
 
 export default function UndernutritionAdult() {
-    const { data, resetData, updateData } = useData();
-
-    const [parameters, setParameters] = useState<UndernutParameters>({
+    const initialParameters: UndernutParameters = {
         weight: 0,
         height: 0,
         previousWeight: 0,
@@ -26,8 +24,9 @@ export default function UndernutritionAdult() {
         etiologicalFoodIntake: false,
         etiologicalAbsorption: false,
         etiologicalAgression: false,
-    });
-    const [evaluationResults, setEvaluationResults] = useState<UndernutResults>({
+    }
+
+    const initialResults: UndernutResults = {
         weight: 0,
         height: 0,
         imc: 0,
@@ -39,7 +38,12 @@ export default function UndernutritionAdult() {
         etiologicalFoodIntake: false,
         etiologicalAbsorption: false,
         etiologicalAgression: false,
-    });
+    }
+
+    const { data, resetData, updateData } = useData();
+
+    const [parameters, setParameters] = useState<UndernutParameters>(initialParameters);
+    const [evaluationResults, setEvaluationResults] = useState<UndernutResults>(initialResults);
     const [calculDone, setCalculDone] = useState<boolean>(false);
 
     useEffect(() => {
@@ -58,45 +62,44 @@ export default function UndernutritionAdult() {
     }, [data.weight, data.height])
 
     const resetForm = () => {
-        setParameters({ weight: 0, height: 0, previousWeight: 0, previousWeightDate: "none", albuminemia: 0, sarcopenia: false, etiologicalFoodIntake: false, etiologicalAbsorption: false, etiologicalAgression: false });
+        setParameters(initialParameters);
         setCalculDone(false);
         resetData();
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        setParameters(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
 
-    const handleChangeSarcopenia = () => {
-        setParameters(prev => ({
-            ...prev,
-            sarcopenia: !parameters.sarcopenia
-        }))
-    }
+        if (name === 'sarcopenia') {
+            setParameters(prev => ({
+                ...prev,
+                sarcopenia: !parameters.sarcopenia
+            }))
 
-    const handleChangeFirstEtiological = () => {
-        setParameters(prev => ({
-            ...prev,
-            etiologicalFoodIntake: !parameters.etiologicalFoodIntake
-        }))
-    }
+        } else if (name === 'etiologicalFoodIntake') {
+            setParameters(prev => ({
+                ...prev,
+                etiologicalFoodIntake: !parameters.etiologicalFoodIntake
+            }))
 
-    const handleChangeSecondEtiological = () => {
-        setParameters(prev => ({
-            ...prev,
-            etiologicalAbsorption: !parameters.etiologicalAbsorption
-        }))
-    }
+        } else if (name === 'etiologicalAbsorption') {
+            setParameters(prev => ({
+                ...prev,
+                etiologicalAbsorption: !parameters.etiologicalAbsorption
+            }))
 
-    const handleChangeThirdEtiological = () => {
-        setParameters(prev => ({
-            ...prev,
-            etiologicalAgression: !parameters.etiologicalAgression
-        }))
+        } else if (name === 'etiologicalAgression') {
+            setParameters(prev => ({
+                ...prev,
+                etiologicalAgression: !parameters.etiologicalAgression
+            }))
+
+        } else {
+            setParameters(prev => ({
+                ...prev,
+                [name]: value
+            }))
+        }
     }
 
     const handleChangePreviousWeightDate = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -223,7 +226,7 @@ export default function UndernutritionAdult() {
                             name="sarcopenia"
                             checked={parameters.sarcopenia}
                             title="Réduction quantifiée de la masse musculaire et/ou de la fonction musculaire"
-                            onChange={handleChangeSarcopenia}
+                            onChange={handleChange}
                         />
                     </li>
                 </ul>
@@ -236,7 +239,7 @@ export default function UndernutritionAdult() {
                             name="etiologicalFoodIntake"
                             checked={parameters.etiologicalFoodIntake}
                             title="Réduction de la prise alimentaire ≥ 50 % pendant plus d’1 semaine, ou toute réduction des apports pendant plus de 2 semaines par rapport à la consommation alimentaire habituelle quantifiée ou aux besoins protéino-énergétiques estimés"
-                            onChange={handleChangeFirstEtiological}
+                            onChange={handleChange}
                         />
                     </li>
                     <li>
@@ -244,7 +247,7 @@ export default function UndernutritionAdult() {
                             name="etiologicalAbsorption"
                             checked={parameters.etiologicalAbsorption}
                             title="Absorption réduite (malabsorption/maldigestion)"
-                            onChange={handleChangeSecondEtiological}
+                            onChange={handleChange}
                         />
                     </li>
                     <li>
@@ -252,7 +255,7 @@ export default function UndernutritionAdult() {
                             name="etiologicalAgression"
                             checked={parameters.etiologicalAgression}
                             title="Situation d’agression (hypercatabolisme protéique avec ou sans syndrome inflammatoire) : pathologie aiguë ou pathologie chronique évolutive ou pathologie maligne évolutive"
-                            onChange={handleChangeThirdEtiological}
+                            onChange={handleChange}
                         />
                     </li>
                 </ul>

@@ -12,9 +12,7 @@ import { UndernutParameters, UndernutResults } from "@/types/Undernutrition";
 import { useData } from "@/contexts/DataContext";
 
 export default function UndernutritionSenior() {
-    const { data, resetData, updateData } = useData();
-
-    const [parameters, setParameters] = useState<UndernutParameters>({
+    const initialParameters: UndernutParameters = {
         weight: 0,
         height: 0,
         previousWeight: 0,
@@ -24,9 +22,9 @@ export default function UndernutritionSenior() {
         etiologicalFoodIntake: false,
         etiologicalAbsorption: false,
         etiologicalAgression: false,
-    });
-    const [calculDone, setCalculDone] = useState<boolean>(false);
-    const [evaluationResults, setEvaluationResults] = useState<UndernutResults>({
+    }
+
+    const initialResults: UndernutResults = {
         weight: 0,
         height: 0,
         imc: 0,
@@ -38,7 +36,13 @@ export default function UndernutritionSenior() {
         etiologicalFoodIntake: false,
         etiologicalAbsorption: false,
         etiologicalAgression: false,
-    });
+    }
+
+    const { data, resetData, updateData } = useData();
+
+    const [parameters, setParameters] = useState<UndernutParameters>(initialParameters);
+    const [calculDone, setCalculDone] = useState<boolean>(false);
+    const [evaluationResults, setEvaluationResults] = useState<UndernutResults>(initialResults);
 
     useEffect(() => {
         setParameters({
@@ -63,7 +67,7 @@ export default function UndernutritionSenior() {
     }
 
     const resetForm = () => {
-        setParameters({ weight: 0, height: 0, previousWeight: 0, previousWeightDate: "none", albuminemia: 0, sarcopenia: false, etiologicalFoodIntake: false, etiologicalAbsorption: false, etiologicalAgression: false });
+        setParameters(initialParameters);
         setCalculDone(false);
         resetData();
     }
@@ -71,39 +75,36 @@ export default function UndernutritionSenior() {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
 
-        setParameters(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
+        if (name === 'sarcopenia') {
+            setParameters(prev => ({
+                ...prev,
+                sarcopenia: !parameters.sarcopenia
+            }))
 
-    const handleChangeSarcopenia = () => {
-        setParameters(prev => ({
-            ...prev,
-            sarcopenia: !parameters.sarcopenia
-        }))
-    }
+        } else if (name === 'etiologicalFoodIntake') {
+            setParameters(prev => ({
+                ...prev,
+                etiologicalFoodIntake: !parameters.etiologicalFoodIntake
+            }))
 
-    const handleChangeFirstEtiological = () => {
+        } else if (name === 'etiologicalAbsorption') {
+            setParameters(prev => ({
+                ...prev,
+                etiologicalAbsorption: !parameters.etiologicalAbsorption
+            }))
 
-        setParameters(prev => ({
-            ...prev,
-            etiologicalFoodIntake: !parameters.etiologicalFoodIntake
-        }))
-    }
+        } else if (name === 'etiologicalAgression') {
+            setParameters(prev => ({
+                ...prev,
+                etiologicalAgression: !parameters.etiologicalAgression
+            }))
 
-    const handleChangeSecondEtiological = () => {
-        setParameters(prev => ({
-            ...prev,
-            etiologicalAbsorption: !parameters.etiologicalAbsorption
-        }))
-    }
-
-    const handleChangeThirdEtiological = () => {
-        setParameters(prev => ({
-            ...prev,
-            etiologicalAgression: !parameters.etiologicalAgression
-        }))
+        } else {
+            setParameters(prev => ({
+                ...prev,
+                [name]: value
+            }))
+        }
     }
 
     const handleChangePreviousWeightDate = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -231,7 +232,7 @@ export default function UndernutritionSenior() {
                             name="sarcopenia"
                             checked={parameters.sarcopenia}
                             title="Sarcopénie confirmée par une réduction quantifiée de la force et de la masse musculaire"
-                            onChange={handleChangeSarcopenia}
+                            onChange={handleChange}
                         />
                     </li>
                 </ul>
@@ -244,7 +245,7 @@ export default function UndernutritionSenior() {
                             name="etiologicalFoodIntake"
                             checked={parameters.etiologicalFoodIntake}
                             title="Réduction de la prise alimentaire ≥ 50 % pendant plus d’1 semaine, ou toute réduction des apports pendant plus de 2 semaines par rapport à la consommation alimentaire habituelle ou aux besoins protéino-énergétiques"
-                            onChange={handleChangeFirstEtiological}
+                            onChange={handleChange}
                         />
                     </li>
                     <li>
@@ -252,7 +253,7 @@ export default function UndernutritionSenior() {
                             name="etiologicalAbsorption"
                             checked={parameters.etiologicalAbsorption}
                             title="Absorption réduite (malabsorption/maldigestion)"
-                            onChange={handleChangeSecondEtiological}
+                            onChange={handleChange}
                         />
                     </li>
                     <li>
@@ -260,7 +261,7 @@ export default function UndernutritionSenior() {
                             name="etiologicalAgression"
                             checked={parameters.etiologicalAgression}
                             title="Situation d’agression (avec ou sans syndrome inflammatoire) : pathologie aiguë ou pathologie chronique évolutive ou pathologie maligne évolutive"
-                            onChange={handleChangeThirdEtiological}
+                            onChange={handleChange}
                         />
                     </li>
                 </ul>
