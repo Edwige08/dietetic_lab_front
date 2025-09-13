@@ -253,16 +253,16 @@ export default function SRIForm() {
                         <p className="underline">
                             Critère(s) majeur(s) :
                         </p>
-                        {((results.imc < 16) || (results.weightLoss > 15) || (results.lowIngestaTen) || (results.potassium < 10) || (results.phosphorus < 0.75) || (results.magnesium > 10)) ?
+                        {((results.imc < 16) || (results.weightLoss > 15) || (results.lowIngestaTen) || (results.potassium > 0 && results.potassium < 3.5) || (results.phosphorus > 0 && results.phosphorus < 0.81) || (results.magnesium > 0 && results.magnesium > 0.65)) ?
                             <ul className="pl-5 list-disc">
                                 {results.imc < 16 && <li>IMC inférieur à 16 kg/m²</li>}
                                 {results.weightLoss > 15 && <li>Perte de poids de plus de 15 % en 3 à 6 mois</li>}
                                 {results.lowIngestaTen && <li>Ingesta faibles ou nuls depuis plus de 10 jours</li>}
-                                {results.potassium < 16 && <li>Potassium trop bas</li>}
-                                {results.phosphorus < 0.75 && <li>Phosphore trop bas</li>}
-                                {results.magnesium < 16 && <li>Magnésium trop bas</li>}
+                                {results.potassium > 0 && results.potassium < 3.5 && <li>Potassium trop bas (inférieur à 3,5 mmol/L)</li>}
+                                {results.phosphorus > 0 && results.phosphorus < 0.81 && <li>Phosphore trop bas (inférieur à 0,81 mmol/L)</li>}
+                                {results.magnesium > 0 && results.magnesium < 0.65 && <li>Magnésium trop bas (inférieur à 0,65 mmol/L)</li>}
                             </ul>
-                            : ""}
+                            : "Aucun"}
                     </div>
                     <div>
                         <p className="underline">
@@ -275,7 +275,7 @@ export default function SRIForm() {
                                 {results.lowIngestaFive && <li>Ingesta faibles ou nuls depuis plus de 5 jours</li>}
                                 {results.atcd && <li>Antécédents d&apos;éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique</li>}
                             </ul>
-                            : ""}
+                            : "Aucun"}
                     </div>
                     <div>
                         La présence d&apos;1 critère majeur ou d&apos;au moins 2 critères mineurs suffit à diagnostiquer le risque de SRI.
