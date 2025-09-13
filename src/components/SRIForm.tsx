@@ -12,10 +12,7 @@ import { SRIParameters, SRIResults } from "@/types/SRI";
 import { useData } from "@/contexts/DataContext";
 
 export default function SRIForm() {
-    const { data, resetData, updateData } = useData();
-
-    const [calculDone, setCalculDone] = useState<boolean>(false);
-    const [parameters, setParameters] = useState<SRIParameters>({
+    const initialParameters: SRIParameters = {
         weight: 0,
         height: 0,
         previousWeight: 0,
@@ -25,8 +22,9 @@ export default function SRIForm() {
         phosphorus: 0,
         magnesium: 0,
         atcd: false,
-    })
-    const [results, setResults] = useState<SRIResults>({
+    }
+
+    const initialResults: SRIResults = {
         weight: 0,
         height: 0,
         imc: 0,
@@ -38,7 +36,13 @@ export default function SRIForm() {
         phosphorus: 0,
         magnesium: 0,
         atcd: false
-    })
+    }
+
+    const { data, resetData, updateData } = useData();
+
+    const [calculDone, setCalculDone] = useState<boolean>(false);
+    const [parameters, setParameters] = useState<SRIParameters>(initialParameters);
+    const [results, setResults] = useState<SRIResults>(initialResults);
 
     useEffect(() => {
         setParameters({
@@ -57,31 +61,30 @@ export default function SRIForm() {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
 
-        setParameters(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
+        if (name === 'lowIngestaFive') {
+            setParameters(prev => ({
+                ...prev,
+                lowIngestaFive: !parameters.lowIngestaFive
+            }))
 
-    const handleChangeIngestaFive = () => {
-        setParameters(prev => ({
-            ...prev,
-            lowIngestaFive: !parameters.lowIngestaFive
-        }))
-    }
+        } else if (name === 'lowIngestaTen') {
+            setParameters(prev => ({
+                ...prev,
+                lowIngestaTen: !parameters.lowIngestaTen
+            }))
 
-    const handleChangeIngestaTen = () => {
-        setParameters(prev => ({
-            ...prev,
-            lowIngestaTen: !parameters.lowIngestaTen
-        }))
-    }
+        } else if (name === 'atcd') {
+            setParameters(prev => ({
+                ...prev,
+                atcd: !parameters.atcd
+            }))
 
-    const handleChangeAtcd = () => {
-        setParameters(prev => ({
-            ...prev,
-            atcd: !parameters.atcd
-        }))
+        } else {
+            setParameters(prev => ({
+                ...prev,
+                [name]: value
+            }))
+        }
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -136,7 +139,7 @@ export default function SRIForm() {
     }
 
     const resetForm = () => {
-        setParameters({ weight: 0, height: 0, previousWeight: 0, lowIngestaFive: false, lowIngestaTen: false, potassium: 0, phosphorus: 0, magnesium: 0, atcd: false });
+        setParameters(initialParameters);
         setCalculDone(false);
         resetData();
     }
@@ -177,13 +180,13 @@ export default function SRIForm() {
                         name="lowIngestaFive"
                         checked={parameters.lowIngestaFive}
                         title="Ingesta faibles ou nuls depuis plus de 5 jours"
-                        onChange={handleChangeIngestaFive}
+                        onChange={handleChange}
                     />
                     <InputCheckbox
                         name="lowIngestaTen"
                         checked={parameters.lowIngestaTen}
                         title="Ingesta faibles ou nuls depuis plus de 10 jours"
-                        onChange={handleChangeIngestaTen}
+                        onChange={handleChange}
                     />
                     <p>
                         Taux sanguins avant renutrition :
@@ -213,7 +216,7 @@ export default function SRIForm() {
                         name="atcd"
                         checked={parameters.atcd}
                         title="Antécédents d&apos;éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique"
-                        onChange={handleChangeAtcd}
+                        onChange={handleChange}
                     />
                     <ButtonGreen
                         text="Calculer"
