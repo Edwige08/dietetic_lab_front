@@ -1,6 +1,6 @@
 'use client'
 
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import Input from "./Input";
 import ButtonGreen from "./ButtonGreen";
 import Title from "./Title";
@@ -9,11 +9,25 @@ import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
 import { CalculateDEJBlackMan, CalculateDEJBlackWoman, CalculateDEJHandBMan, CalculateDEJHandBWoman } from "@/utils/CalculateDEJ";
 import { DEJParameters, DEJResults } from "@/types/DEJ";
+import { useData } from "@/contexts/DataContext";
 
 export default function DEJAdult() {
+    const { data, updateData, resetData } = useData();
+
     const [dejParameters, setDejParameters] = useState<DEJParameters>({ weight: 0, height: 0, age: 0, gender: "f", nap: 0 })
     const [dejResults, setDejResults] = useState<DEJResults>({ weight: 0, height: 0, imc: 0, age: 0, gender: "f", nap: 0 })
     const [calculDone, setCalculDone] = useState<boolean>(false);
+
+    useEffect(() => {
+        setDejParameters({
+            weight: data.weight,
+            height: data.height,
+            age: data.age,
+            gender: data.gender,
+            nap: data.nap,
+        })
+    }, [data.weight, data.height])
+
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
         const target = event.target as HTMLButtonElement;
@@ -39,7 +53,15 @@ export default function DEJAdult() {
         if (dejParameters.weight > 0 && dejParameters.height > 0 && dejParameters.age > 0 && dejParameters.nap > 0) {
             const imc: number = CalculateIMC(dejParameters.weight, dejParameters.height)
             setCalculDone(true);
-            setDejResults({ weight: dejParameters.weight, height: dejParameters.height, imc: imc, age: dejParameters.age, gender: dejParameters.gender, nap: dejParameters.nap })
+            setDejResults({ weight: dejParameters.weight, height: dejParameters.height, imc: imc, age: dejParameters.age, gender: dejParameters.gender, nap: dejParameters.nap });
+            updateData({
+                weight: dejParameters.weight,
+                height: dejParameters.height,
+                age: dejParameters.age,
+                gender: dejParameters.gender,
+                nap: dejParameters.nap,
+            })
+
         } else {
             alert("Merci de bien remplir tous les champs.")
         }
@@ -48,6 +70,7 @@ export default function DEJAdult() {
     const resetForm = () => {
         setDejParameters({ weight: 0, height: 0, age: 0, gender: "f", nap: 0 })
         setCalculDone(false);
+        resetData();
     }
 
     return (
@@ -112,15 +135,13 @@ export default function DEJAdult() {
                     type="submit"
                     lucide={Calculator}
                 />
-                {calculDone &&
-                    <button
-                        type="reset"
-                        onClick={resetForm}
-                        className="underline"
-                    >
-                        Reset
-                    </button>
-                }
+                <button
+                    type="reset"
+                    onClick={resetForm}
+                    className="underline"
+                >
+                    Réinitialiser
+                </button>
             </form>
             {calculDone &&
                 <div

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "./Input";
 import ButtonGreen from "./ButtonGreen";
 import InputCheckbox from "./InputCheckbox";
@@ -9,8 +9,11 @@ import { Calculator } from "lucide-react";
 import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
 import { UndernutParameters, UndernutResults } from "@/types/Undernutrition";
+import { useData } from "@/contexts/DataContext";
 
 export default function UndernutritionSenior() {
+    const { data, resetData, updateData } = useData();
+
     const [parameters, setParameters] = useState<UndernutParameters>({
         weight: 0,
         height: 0,
@@ -18,9 +21,9 @@ export default function UndernutritionSenior() {
         previousWeightDate: "none",
         albuminemia: 0,
         sarcopenia: false,
-        firstEtiological: false,
-        secondEtiological: false,
-        thirdEtiological: false,
+        etiologicalFoodIntake: false,
+        etiologicalAbsorption: false,
+        etiologicalAgression: false,
     });
     const [calculDone, setCalculDone] = useState<boolean>(false);
     const [evaluationResults, setEvaluationResults] = useState<UndernutResults>({
@@ -32,10 +35,25 @@ export default function UndernutritionSenior() {
         weightLoss: 0,
         albuminemia: 0,
         sarcopenia: false,
-        firstEtiological: false,
-        secondEtiological: false,
-        thirdEtiological: false,
+        etiologicalFoodIntake: false,
+        etiologicalAbsorption: false,
+        etiologicalAgression: false,
     });
+
+    useEffect(() => {
+        setParameters({
+            weight: data.weight,
+            height: data.height,
+            previousWeight: data.previousWeight,
+            previousWeightDate: data.previousWeightDate,
+            albuminemia: data.albuminemia,
+            sarcopenia: data.sarcopenia,
+            etiologicalFoodIntake: data.etiologicalFoodIntake,
+            etiologicalAbsorption: data.etiologicalAbsorption,
+            etiologicalAgression: data.etiologicalAgression,
+
+        })
+    }, [data.weight, data.height])
 
     const textPreviousWeight = (data: string) => {
         if (data == "none") return "";
@@ -45,8 +63,9 @@ export default function UndernutritionSenior() {
     }
 
     const resetForm = () => {
-        setParameters({ weight: 0, height: 0, previousWeight: 0, previousWeightDate: "none", albuminemia: 0, sarcopenia: false, firstEtiological: false, secondEtiological: false, thirdEtiological: false });
+        setParameters({ weight: 0, height: 0, previousWeight: 0, previousWeightDate: "none", albuminemia: 0, sarcopenia: false, etiologicalFoodIntake: false, etiologicalAbsorption: false, etiologicalAgression: false });
         setCalculDone(false);
+        resetData();
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,21 +88,21 @@ export default function UndernutritionSenior() {
 
         setParameters(prev => ({
             ...prev,
-            firstEtiological: !parameters.firstEtiological
+            etiologicalFoodIntake: !parameters.etiologicalFoodIntake
         }))
     }
 
     const handleChangeSecondEtiological = () => {
         setParameters(prev => ({
             ...prev,
-            secondEtiological: !parameters.secondEtiological
+            etiologicalAbsorption: !parameters.etiologicalAbsorption
         }))
     }
 
     const handleChangeThirdEtiological = () => {
         setParameters(prev => ({
             ...prev,
-            thirdEtiological: !parameters.thirdEtiological
+            etiologicalAgression: !parameters.etiologicalAgression
         }))
     }
 
@@ -102,7 +121,18 @@ export default function UndernutritionSenior() {
         if (parameters.weight > 0 && parameters.height > 0) {
             const imc = CalculateIMC(parameters.weight, parameters.height)
             setCalculDone(true);
-            setEvaluationResults({ weight: parameters.weight, height: parameters.height, imc: imc, previousWeight: parameters.previousWeight, previousWeightDate: parameters.previousWeightDate, weightLoss: 0, albuminemia: parameters.albuminemia, sarcopenia: parameters.sarcopenia, firstEtiological: parameters.firstEtiological, secondEtiological: parameters.secondEtiological, thirdEtiological: parameters.thirdEtiological })
+            setEvaluationResults({ weight: parameters.weight, height: parameters.height, imc: imc, previousWeight: parameters.previousWeight, previousWeightDate: parameters.previousWeightDate, weightLoss: 0, albuminemia: parameters.albuminemia, sarcopenia: parameters.sarcopenia, etiologicalFoodIntake: parameters.etiologicalFoodIntake, etiologicalAbsorption: parameters.etiologicalAbsorption, etiologicalAgression: parameters.etiologicalAgression })
+            updateData({
+                weight: parameters.weight,
+                height: parameters.height,
+                previousWeight: parameters.previousWeight,
+                previousWeightDate: parameters.previousWeightDate,
+                albuminemia: parameters.albuminemia,
+                sarcopenia: parameters.sarcopenia,
+                etiologicalFoodIntake: parameters.etiologicalFoodIntake,
+                etiologicalAbsorption: parameters.etiologicalAbsorption,
+                etiologicalAgression: parameters.etiologicalAgression,
+            })
         }
 
         if (parameters.weight > 0 && parameters.previousWeight > 0) {
@@ -111,6 +141,17 @@ export default function UndernutritionSenior() {
                 ...prev,
                 weightLoss: parseInt(weightLoss)
             }))
+            updateData({
+                weight: parameters.weight,
+                height: parameters.height,
+                previousWeight: parameters.previousWeight,
+                previousWeightDate: parameters.previousWeightDate,
+                albuminemia: parameters.albuminemia,
+                sarcopenia: parameters.sarcopenia,
+                etiologicalFoodIntake: parameters.etiologicalFoodIntake,
+                etiologicalAbsorption: parameters.etiologicalAbsorption,
+                etiologicalAgression: parameters.etiologicalAgression,
+            })
         }
     }
 
@@ -200,24 +241,24 @@ export default function UndernutritionSenior() {
                 <ul className="flex flex-col gap-3">
                     <li>
                         <InputCheckbox
-                            name="firstEtiological"
-                            checked={parameters.firstEtiological}
+                            name="etiologicalFoodIntake"
+                            checked={parameters.etiologicalFoodIntake}
                             title="Réduction de la prise alimentaire ≥ 50 % pendant plus d’1 semaine, ou toute réduction des apports pendant plus de 2 semaines par rapport à la consommation alimentaire habituelle ou aux besoins protéino-énergétiques"
                             onChange={handleChangeFirstEtiological}
                         />
                     </li>
                     <li>
                         <InputCheckbox
-                            name="secondEtiological"
-                            checked={parameters.secondEtiological}
+                            name="etiologicalAbsorption"
+                            checked={parameters.etiologicalAbsorption}
                             title="Absorption réduite (malabsorption/maldigestion)"
                             onChange={handleChangeSecondEtiological}
                         />
                     </li>
                     <li>
                         <InputCheckbox
-                            name="thirdEtiological"
-                            checked={parameters.thirdEtiological}
+                            name="etiologicalAgression"
+                            checked={parameters.etiologicalAgression}
                             title="Situation d’agression (avec ou sans syndrome inflammatoire) : pathologie aiguë ou pathologie chronique évolutive ou pathologie maligne évolutive"
                             onChange={handleChangeThirdEtiological}
                         />
@@ -228,15 +269,13 @@ export default function UndernutritionSenior() {
                     type="submit"
                     lucide={Calculator}
                 />
-                {calculDone &&
-                    <button
-                        type="reset"
-                        onClick={resetForm}
-                        className="underline"
-                    >
-                        Reset
-                    </button>
-                }
+                <button
+                    type="reset"
+                    onClick={resetForm}
+                    className="underline"
+                >
+                    Reset
+                </button>
             </form>
             {calculDone &&
                 <div
@@ -272,15 +311,15 @@ export default function UndernutritionSenior() {
                         <p className="underline">
                             Critère(s) étiologique(s) :
                         </p>
-                        {(evaluationResults.firstEtiological || evaluationResults.secondEtiological || evaluationResults.thirdEtiological) ?
+                        {(evaluationResults.etiologicalFoodIntake || evaluationResults.etiologicalAbsorption || evaluationResults.etiologicalAgression) ?
                             <ul className="pl-5 list-disc">
-                                {(evaluationResults.firstEtiological) ? <li>Réduction de la prise alimentaire</li> : ""}
-                                {(evaluationResults.secondEtiological) ? <li>Absorption réduite</li> : ""}
-                                {(evaluationResults.thirdEtiological) ? <li>Situation d&apos;agression</li> : ""}
+                                {(evaluationResults.etiologicalFoodIntake) ? <li>Réduction de la prise alimentaire</li> : ""}
+                                {(evaluationResults.etiologicalAbsorption) ? <li>Absorption réduite</li> : ""}
+                                {(evaluationResults.etiologicalAgression) ? <li>Situation d&apos;agression</li> : ""}
                             </ul>
                             : "Aucun"}
                     </div>
-                    {(((evaluationResults.weightLoss >= 5) && (evaluationResults.previousWeightDate === "one-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "six-month")) || ((evaluationResults.weightLoss >= 10) && ((evaluationResults.previousWeightDate === "before-disease" || evaluationResults.previousWeightDate === "none"))) || (evaluationResults.imc < 22) || (evaluationResults.sarcopenia)) && (evaluationResults.firstEtiological || evaluationResults.secondEtiological || evaluationResults.thirdEtiological) ?
+                    {(((evaluationResults.weightLoss >= 5) && (evaluationResults.previousWeightDate === "one-month")) || ((evaluationResults.weightLoss >= 10) && (evaluationResults.previousWeightDate === "six-month")) || ((evaluationResults.weightLoss >= 10) && ((evaluationResults.previousWeightDate === "before-disease" || evaluationResults.previousWeightDate === "none"))) || (evaluationResults.imc < 22) || (evaluationResults.sarcopenia)) && (evaluationResults.etiologicalFoodIntake || evaluationResults.etiologicalAbsorption || evaluationResults.etiologicalAgression) ?
                         <div className="flex flex-col gap-4">
                             <p>En présence d&apos;au moins un critère phénotypique et un critère étiologique, le diagnostic de dénutrition est confirmé.</p>
 

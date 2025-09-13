@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "./Input";
 import InputCheckbox from "./InputCheckbox";
 import ButtonGreen from "./ButtonGreen";
@@ -9,8 +9,11 @@ import { Calculator } from "lucide-react";
 import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
 import { SRIParameters, SRIResults } from "@/types/SRI";
+import { useData } from "@/contexts/DataContext";
 
 export default function SRIForm() {
+    const { data, resetData, updateData } = useData();
+
     const [calculDone, setCalculDone] = useState<boolean>(false);
     const [parameters, setParameters] = useState<SRIParameters>({
         weight: 0,
@@ -36,6 +39,20 @@ export default function SRIForm() {
         magnesium: 0,
         atcd: false
     })
+
+    useEffect(() => {
+        setParameters({
+            weight: data.weight,
+            height: data.height,
+            previousWeight: data.previousWeight,
+            lowIngestaFive: data.lowIngestaFive,
+            lowIngestaTen: data.lowIngestaTen,
+            potassium: data.potassium,
+            phosphorus: data.phosphorus,
+            magnesium: data.magnesium,
+            atcd: data.atcd,
+        })
+    }, [data.weight, data.height])
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -85,6 +102,17 @@ export default function SRIForm() {
                 magnesium: parameters.magnesium,
                 atcd: parameters.atcd,
             }))
+            updateData({
+                weight: parameters.weight,
+                height: parameters.height,
+                previousWeight: parameters.previousWeight,
+                lowIngestaFive: parameters.lowIngestaFive,
+                lowIngestaTen: parameters.lowIngestaTen,
+                potassium: parameters.potassium,
+                phosphorus: parameters.phosphorus,
+                magnesium: parameters.magnesium,
+                atcd: parameters.atcd,
+            })
         }
 
         if (parameters.weight > 0 && parameters.previousWeight > 0) {
@@ -93,7 +121,24 @@ export default function SRIForm() {
                 ...prev,
                 weightLoss: parseInt(weightLoss)
             }))
+            updateData({
+                weight: parameters.weight,
+                height: parameters.height,
+                previousWeight: parameters.previousWeight,
+                lowIngestaFive: parameters.lowIngestaFive,
+                lowIngestaTen: parameters.lowIngestaTen,
+                potassium: parameters.potassium,
+                phosphorus: parameters.phosphorus,
+                magnesium: parameters.magnesium,
+                atcd: parameters.atcd,
+            })
         }
+    }
+
+    const resetForm = () => {
+        setParameters({ weight: 0, height: 0, previousWeight: 0, lowIngestaFive: false, lowIngestaTen: false, potassium: 0, phosphorus: 0, magnesium: 0, atcd: false });
+        setCalculDone(false);
+        resetData();
     }
 
     return (
@@ -175,6 +220,13 @@ export default function SRIForm() {
                         type="submit"
                         lucide={Calculator}
                     />
+                    <button
+                        type="reset"
+                        onClick={resetForm}
+                        className="underline"
+                    >
+                        Reset
+                    </button>
                 </div>
             </form>
             {calculDone &&

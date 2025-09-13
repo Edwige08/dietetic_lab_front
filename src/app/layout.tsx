@@ -6,6 +6,7 @@ import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Return from "@/components/Return";
 import { UserProvider } from "@/contexts/UserContext";
+import { DataProvider } from "@/contexts/DataContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,16 +43,19 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased pb-20 min-h-screen bg-(--background)`}
       >
         <UserProvider>
-          <div className="hidden md:flex">
-            <Navbar />
-          </div>
-          <div className="md:hidden">
-            <Return />
-          </div>
-          {children}
-          <div className="md:hidden">
-            <Dock />
-          </div>
+          <DataProvider>
+
+            <div className="hidden md:flex">
+              <Navbar />
+            </div>
+            <div className="md:hidden">
+              <Return />
+            </div>
+            {children}
+            <div className="md:hidden">
+              <Dock />
+            </div>
+          </DataProvider>
         </UserProvider>
       </body>
     </html>

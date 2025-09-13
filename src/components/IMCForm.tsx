@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonGreen from "./ButtonGreen";
 import Input from "./Input";
 import { Calculator } from 'lucide-react';
@@ -9,20 +9,36 @@ import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
 import { IMCParameters, IMCResults } from "@/types/IMC";
 import { IMCCategory } from "@/utils/IMCCategory";
+import { useData } from "@/contexts/DataContext";
 
 export default function IMCForm() {
+    const { data, resetData, updateData } = useData();
 
-    const [weightHeight, setWeightHeight] = useState<IMCParameters>({ weight: 0, height: 0 });
+    const [weightHeight, setWeightHeight] = useState<IMCParameters>({ weight: data.weight, height: data.height });
     const [IMCresults, setIMCResults] = useState<IMCResults>({ weight: 0, height: 0, imc: 0 });
     const [calculDone, setCalculDone] = useState<boolean>(false);
+
+    useEffect(() => {
+        setWeightHeight({
+            weight: data.weight,
+            height: data.height,
+        })
+    }, [data.weight, data.height])
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (weightHeight.weight > 0 && weightHeight.height > 0) {
             setCalculDone(true);
-            const imc = CalculateIMC(weightHeight.weight, weightHeight.height)
-            setIMCResults({ weight: weightHeight.weight, height: weightHeight.height, imc: imc })
+            const imc = CalculateIMC(weightHeight.weight, weightHeight.height);
+            setIMCResults({ weight: weightHeight.weight, height: weightHeight.height, imc: imc });
+            updateData({
+            weight: weightHeight.weight,
+            height: weightHeight.height,
+        });
+        
+        console.log(`💾 Données enregistrées dans le useContext = poids ${weightHeight.weight} et taille ${weightHeight.height}`);
+    
         } else if (weightHeight.weight > 0 && weightHeight.height === 0) {
             alert("Vous avez oublié d'entrer une taille")
         } else if (weightHeight.weight === 0 && weightHeight.height > 0) {
@@ -40,6 +56,7 @@ export default function IMCForm() {
     const resetForm = () => {
         setWeightHeight({ weight: 0, height: 0 });
         setCalculDone(false);
+        resetData();
     }
 
     return (
@@ -71,15 +88,13 @@ export default function IMCForm() {
                     type="submit"
                     lucide={Calculator}
                 />
-                {calculDone &&
-                    <button
-                        type="reset"
-                        onClick={resetForm}
-                        className="underline"
-                    >
-                        Reset
-                    </button>
-                }
+                <button
+                    type="reset"
+                    onClick={resetForm}
+                    className="underline"
+                >
+                    Réinitialiser
+                </button>
             </form>
 
             {calculDone &&

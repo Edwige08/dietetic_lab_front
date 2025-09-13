@@ -5,9 +5,9 @@ export interface UndernutParameters {
     previousWeightDate: "none" | "one-month" | "six-month" | "before-disease",
     albuminemia: number,
     sarcopenia: boolean,
-    firstEtiological: boolean,
-    secondEtiological: boolean,
-    thirdEtiological: boolean,
+    etiologicalFoodIntake: boolean,
+    etiologicalAbsorption: boolean,
+    etiologicalAgression: boolean,
 }
 
 export interface UndernutResults {
@@ -19,7 +19,7 @@ export interface UndernutResults {
     weightLoss: number,
     albuminemia: number,
     sarcopenia: boolean,
-    firstEtiological: boolean,
-    secondEtiological: boolean,
-    thirdEtiological: boolean,
+    etiologicalFoodIntake: boolean,
+    etiologicalAbsorption: boolean,
+    etiologicalAgression: boolean,
 }
