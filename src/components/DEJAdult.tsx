@@ -148,7 +148,7 @@ export default function DEJAdult() {
                     className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
                 >
                     <TitleTwo
-                        text="✅ Résultats&nbsp;:"
+                        text="🎯 Résultats&nbsp;:"
                     />
                     <p>
                         Pour un poids de <span className="font-bold">{dejResults.weight} kg</span> et une taille de <span className="font-bold">{dejResults.height} cm</span>, on obtient un IMC de <span className="font-bold">{dejResults.imc.toFixed(2)} kg/m²</span>.

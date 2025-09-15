@@ -7,7 +7,7 @@ export default function IngestaResults(props: { energy: number, proteins: number
             className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
         >
             <TitleTwo
-                text="Résultats"
+                text="🎯 Résultats&nbsp;:"
             />
             <div className="flex flex-row justify-evenly  gap-2">
                 <div className="flex flex-col gap-1">

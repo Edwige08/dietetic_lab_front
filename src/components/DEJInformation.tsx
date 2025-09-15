@@ -11,7 +11,7 @@ export default function DEJInformation() {
                 />
                 <p>Tout d&apos;abord, il faut calculer le <span className="underline font-bold">Métabolisme de Base</span> (MB).</p>
                 <p>
-                    La première méthode est l&apos;utilisation de la <span className="font-bold">formule de Harris et Benedict</span>, qui est la suivante :
+                    La première méthode est l&apos;utilisation de la <span className="font-bold">formule de Harris et Benedict</span>, qui est la suivante&nbsp;:
                 </p>
                 <p className="underline">
                     Pour la femme :
@@ -30,7 +30,7 @@ export default function DEJInformation() {
                     </p>
                 </div>
                 <p>
-                    La seconde méthode est l&apos;utilisation de la <span className="font-bold">formule de Black et al.</span>, qui est la suivante :
+                    La seconde méthode est l&apos;utilisation de la <span className="font-bold">formule de Black et al.</span>, qui est la suivante&nbsp;:
                 </p>
                 <p className="underline">
                     Pour la femme :
@@ -51,7 +51,7 @@ export default function DEJInformation() {
                 <p className="italic">
                     * Pour chacune des formules : Poids en kg, Taille en m, Age en années et le MB en kcal
                 </p>
-                <p>Ensuite, pour obtenir la Dépense Energétique Journalière, on multiplie le Métabolisme de Base avec le Niveau d&apos;Activité Physique :</p>
+                <p>Ensuite, pour obtenir la <span className="font-bold">Dépense Energétique Journalière</span> (DEJ), on multiplie le Métabolisme de Base (MB) avec le <span className="font-bold">Niveau d&apos;Activité Physique</span> (NAP)&nbsp;:</p>
                 <div className="flex justify-center">
                     <p className="py-2 px-6 w-fit text-center font-bold text-lg border bg-white">
                         DEJ = MB x NAP
@@ -69,36 +69,38 @@ export default function DEJInformation() {
                         NAP
                     </div>
                     <div className="border p-1 bg-(--greenLightColor)">
-                        Très actif
+                        Très sédentaire
                     </div>
                     <div className="border p-1 bg-(--greenLightColor)">
-                        &gt; 2,40
+                        1,40
                     </div>
                     <div className="border p-1 bg-(--greenLightColor)">
-                        Vigoureusement actif
+                        Activité moyenne
                     </div>
                     <div className="border p-1 bg-(--greenLightColor)">
-                        2,00 - 2,40
+                        1,70
                     </div>
                     <div className="border p-1 bg-(--greenLightColor)">
-                        Modérément actif
+                        Activité élevée
                     </div>
                     <div className="border p-1 bg-(--greenLightColor)">
-                        1,70 - 1,99
-                    </div>
-                    <div className="border p-1 bg-(--greenLightColor)">
-                        Sédentaire
-                    </div>
-                    <div className="border p-1 bg-(--greenLightColor)">
-                        1,40 - 1,69
-                    </div>
-                    <div className="border p-1 bg-(--greenLightColor)">
-                        Extrêmement inactif
-                    </div>
-                    <div className="border p-1 bg-(--greenLightColor)">
-                        &lt; 1,40
+                        2,30
                     </div>
                 </div>
+
+                <div className="flex flex-col gap-4 mb-5">
+                <div>
+                    <span className="">Source : </span>
+                    <ul className="pl-5 list-disc">
+                        <li>
+                            <a href="https://www.anses.fr/fr/system/files/NUT2012SA0103Ra-2.pdf" className="link italic text-(--grayColor)">
+                                HAS - Actualisation des repères du PNNS : élaboration des références nutritionnelles
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
             </div>
 
         </div>

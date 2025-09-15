@@ -9,7 +9,7 @@ export default function IMCInformation() {
                 <TitleTwo
                 text="👩‍🏫 Comment calcule-t-on l&apos;IMC&nbsp;?"
                 />
-                <p>L&apos;Indice de Masse Corporelle, ou IMC, se calcule grâce au poids (en kg) et à la taille (en m), avec la formule suivante :</p>
+                <p>L&apos;Indice de Masse Corporelle, ou IMC, se calcule grâce au poids (en kg) et à la taille (en m), avec la formule suivante&nbsp;:</p>
                 <div className="flex justify-center">
                     <p className="py-2 px-6 w-fit text-center font-bold text-lg border bg-white">
                         IMC = Poids (kg) / (Taille (m))²
@@ -24,6 +24,9 @@ export default function IMCInformation() {
                 <TitleTwo
                 text="📊 Interprétation de l&apos;IMC&nbsp;:"
                 />
+                <div>
+                    <p>Pour un adulte entre 18 et 65 ans (hors femmes enceintes et grands sportifs)&nbsp;: </p>
+                </div>
                 <div className="grid grid-cols-2 text-center border">
                     <div className="flex flex-col justify-center items-center border p-1 min-h-12 bg-white font-bold">
                         Valeur de l&apos;IMC

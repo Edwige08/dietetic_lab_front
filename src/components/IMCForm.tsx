@@ -101,8 +101,8 @@ export default function IMCForm() {
                 <div
                     className="flex flex-col gap-4 px-4 pb-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
                 >
-                    <TitleTwo text="✅ Résultat&nbsp;:" />
-                    <p>
+                    <TitleTwo text="🎯 Résultats&nbsp;:" />
+                    <p> 
                         Pour un poids de <span className="font-bold">{IMCresults.weight} kg</span> et une taille de <span className="font-bold">{(IMCresults.height / 100).toFixed(2)} m</span>, on obtient un IMC de <span className="font-bold">{IMCresults.imc.toFixed(2)} kg/m²</span>, ce qui correspond à <span className="font-bold">{IMCCategory(IMCresults.imc)}</span>.
                     </p>
                 </div>

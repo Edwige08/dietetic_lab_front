@@ -228,7 +228,7 @@ export default function SRIForm() {
                         onClick={resetForm}
                         className="underline"
                     >
-                        Reset
+                        Réinitialiser
                     </button>
                 </div>
             </form>
@@ -237,7 +237,7 @@ export default function SRIForm() {
                     className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
                 >
                     <TitleTwo
-                        text="✅ Résultat&nbsp;:"
+                        text="🎯 Résultats&nbsp;:"
                     />
                     {(results.weight > 0 && results.height > 0) &&
                         <p>
