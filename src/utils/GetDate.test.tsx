@@ -1,11 +1,11 @@
 import { expect, test } from 'vitest';
 import { getDate, getHour, monthInLetters } from './GetDate';
 
-test('', () => {
+test('"2025-09-09T09:14:10.532784Z" donne 9 septembre 2025', () => {
     expect(getDate("2025-09-09T09:14:10.532784Z")).toBe('9 septembre 2025')
 })
 
-test('', () => {
+test('"2025-09-09T09:14:10.532784Z" donne 11h14', () => {
     expect(getHour("2025-09-09T09:14:10.532784Z")).toBe('11h14')
 })
 

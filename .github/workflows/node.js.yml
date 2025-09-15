@@ -14,6 +14,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      TZ: Europe/Paris
+
     strategy:
       matrix:
         node-version: [22.x]
