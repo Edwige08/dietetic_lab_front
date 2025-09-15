@@ -1,24 +1,32 @@
+'use client'
+import ButtonDisconnect from "@/components/ButtonDisconnect";
 import ButtonGreen from "@/components/ButtonGreen";
 import CardSection from "@/components/CardSection";
+import { useUser } from "@/contexts/UserContext";
 import { UserRound } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  const { isAuthenticated } = useUser();
+
   return (
     <div>
       <div className="flex flex-row pt-4 items-center justify-center md:hidden">
         <Image
-          src="/logo_and_text.png"
+          src="/logo_2.png"
           width={500}
           height={500}
           alt="Logo de Dietetic Lab"
           className="w-80 pt-3 pb-10"
         />
       </div>
-      <Link href="/signin" className="flex flex-col justify-center items-center pb-5">
-        <ButtonGreen text="Se connecter" lucide={UserRound} />
-      </Link>
+
+      {!isAuthenticated &&
+        <Link href="/signin" className="flex flex-col justify-center items-center pb-5">
+          <ButtonGreen text="Se connecter" lucide={UserRound} />
+        </Link>
+      }
 
       <div className="flex flex-col px-5 lg:grid lg:grid-cols-3 xl:grid-cols-2 lg:gap-4">
         <Link href={"/imc"}>
@@ -66,6 +74,12 @@ export default function Home() {
           />
         </Link>
       </div>
+
+      {isAuthenticated &&
+        <div className="flex flex-col">
+          <ButtonDisconnect />
+        </div>
+      }
     </div>
   );
 }
