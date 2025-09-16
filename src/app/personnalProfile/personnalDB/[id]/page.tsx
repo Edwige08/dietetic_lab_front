@@ -1,5 +1,6 @@
 'use client';
 
+import ButtonGreen from "@/components/ButtonGreen";
 import FoodColapse from "@/components/FoodColapse";
 import FoodCreation from "@/components/FoodCreation";
 import Title from "@/components/Title";
@@ -7,7 +8,8 @@ import TitleTwo from "@/components/TitleTwo";
 import { useUser } from "@/contexts/UserContext";
 import { FoodDetails, PersonnalDB } from "@/types/FoodDB";
 import { scrollToTop } from "@/utils/ScrollToTop";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { Check, ChevronDown, ChevronUp } from "lucide-react";
+import Link from "next/link";
 import { use, useEffect, useState } from "react";
 
 type Props = {
@@ -169,14 +171,21 @@ export default function Home({ params }: Props) {
                 {userDatabase ?
                     <div className=" p-2">
                         <Title text={`Modifier "${userDatabase?.title}"`} />
-                        {message}
-                        <button className="border p-2 rounded-lg min-w-60 bg-(--greenLightColor) " onClick={() => handleSeeAddFood()}>
-                            {!seeAddFood ?
-                                <p className="flex flex-row gap-2 items-center hover:underline"><ChevronDown /> Ajouter des aliments</p>
-                                :
-                                <p className="flex flex-row gap-2 items-center hover:underline"><ChevronUp /> Fermer l&apos;ajout d&apos;aliments</p>
-                            }
-                        </button>
+
+                        <div className="p-2 pb-4 text-center">
+                            {message}
+                        </div>
+
+                        <div className="flex flex-col items-center">
+                            <button className="border p-2 rounded-lg min-w-60 bg-(--orangeLightColor) " onClick={() => handleSeeAddFood()}>
+                                {!seeAddFood ?
+                                    <p className="flex flex-row gap-2 items-center hover:underline"><ChevronDown /> Ajouter des aliments</p>
+                                    :
+                                    <p className="flex flex-row gap-2 items-center hover:underline"><ChevronUp /> Fermer l&apos;ajout d&apos;aliments</p>
+                                }
+                            </button>
+
+                        </div>
                         {userDatabase && seeAddFood && <FoodCreation
                             onSubmit={handleSubmitStepTwo}
                             databaseName={userDatabase.title}
@@ -227,6 +236,9 @@ export default function Home({ params }: Props) {
                                 onClick={() => removeFood()}
                             />
                         ))}
+                        <Link href="/personnalProfile/personnalDB" className="flex flex-row justify-center pt-5">
+                            <ButtonGreen text="Terminer" lucide={Check} />
+                        </Link>
                     </div>
                     :
                     <p className="text-center">Chargement...</p>

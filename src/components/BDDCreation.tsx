@@ -8,6 +8,9 @@ import FoodColapse from "./FoodColapse";
 import BDDCreationStepOne from "./BDDCreationStepOne";
 import BDDCreationStepTwo from "./BDDCreationStepTwo";
 import { scrollToTop } from "@/utils/ScrollToTop";
+import ButtonGreen from "./ButtonGreen";
+import { Check } from "lucide-react";
+import Link from "next/link";
 
 export default function BDDCreation() {
     const [stepTwo, setStepTwo] = useState<boolean>(false);
@@ -236,6 +239,9 @@ export default function BDDCreation() {
                                     />
                                 )
                             })}
+                            <Link href="/personnalProfile/personnalDB" className="flex flex-row justify-center pt-5">
+                                <ButtonGreen text="Terminer" lucide={Check} />
+                            </Link>
                         </div>
                     }
                 </>
