@@ -22,7 +22,7 @@ export default function FoodColapse(props: {
     onClick: React.MouseEventHandler<HTMLButtonElement>
 }) {
     return (
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row items-start gap-2">
             <div className="collapse collapse-arrow border-base-300 border">
                 <input type="checkbox" />
                 <div className="collapse-title font-semibold flex flex-row justify-between gap-2">
@@ -51,7 +51,7 @@ export default function FoodColapse(props: {
                     </ul>
                 </div>
             </div>
-            <button type="button" className="text-(--redColor)" onClick={props.onClick} title="Supprimer cet aliment de la liste">
+            <button type="button" className="pt-4 text-(--redColor)" onClick={props.onClick} title="Supprimer cet aliment de la liste">
                 <Trash2 />
             </button>
         </div>
