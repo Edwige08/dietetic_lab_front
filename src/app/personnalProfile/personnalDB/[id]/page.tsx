@@ -68,12 +68,10 @@ export default function Home({ params }: Props) {
             }
 
             const data = await response.json();
-            console.log("🍌", data);
             setUserDatabase(data);
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
-            console.log(errorMessage);
         }
     }
 
@@ -111,7 +109,6 @@ export default function Home({ params }: Props) {
                 body: JSON.stringify(foodDetails)
             })
             const data = await response.json();
-            console.log("🔮 data step 2 : ", data);
 
             if (!response.ok) {
                 throw new Error(data.message || 'Erreur pour créer un aliment')

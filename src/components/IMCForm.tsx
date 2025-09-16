@@ -37,8 +37,6 @@ export default function IMCForm() {
             height: weightHeight.height,
         });
         
-        console.log(`💾 Données enregistrées dans le useContext = poids ${weightHeight.weight} et taille ${weightHeight.height}`);
-    
         } else if (weightHeight.weight > 0 && weightHeight.height === 0) {
             alert("Vous avez oublié d'entrer une taille")
         } else if (weightHeight.weight === 0 && weightHeight.height > 0) {

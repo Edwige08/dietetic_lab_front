@@ -60,17 +60,13 @@ const initialData: DataState = {
 export function DataProvider({ children }: DataProviderProps) {
     const [data, setData] = useState<DataState>(initialData);
 
-    console.log(data);
-
     // Update multiple fields :
     const updateData = (newData: Partial<DataState>) => {
         setData(prevData => ({
             ...prevData,
             ...newData
         }));
-        console.log("📊 Données mises à jour:", newData);
     }
-
 
     // Update only one field :
     const updateField = <K extends keyof DataState>(field: K, value: DataState[K]) => {
@@ -78,13 +74,11 @@ export function DataProvider({ children }: DataProviderProps) {
             ...prev,
             [field]: value
         }));
-        console.log(`📝 ${field} mis à jour:`, value);
     }
 
     // Reset all datas :
     const resetData = () => {
         setData(initialData);
-        console.log("DONNEES REINITIALISEES");
     }
 
     const value: DataContextType = {

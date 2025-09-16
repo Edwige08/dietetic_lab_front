@@ -15,7 +15,6 @@ export default function SeeMessages(props: { onClick: MouseEventHandler<HTMLButt
 
     async function getUserComments() {
         setMessage("");
-        console.log("hello");
         setIsLoading(true);
 
 
@@ -40,13 +39,11 @@ export default function SeeMessages(props: { onClick: MouseEventHandler<HTMLButt
             }
 
             const data = await response.json();
-            console.log("🎁🎁 data : ", data.results);
             setComments(data.results);
             setIsLoading(false);
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
-            console.log(errorMessage);
             setIsLoading(false);
         }
     }

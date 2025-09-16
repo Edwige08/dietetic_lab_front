@@ -39,7 +39,6 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
                 throw new Error(`❌ Erreur ${response.status} : ${response.statusText}`)
             }
 
-            console.log("✅ Base de données supprimée avec succès");
 
             setUserDatabases(prev =>
                 prev.filter(db => db.id !== databaseId || [])
@@ -51,7 +50,6 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
-            console.log(errorMessage);
             setMessage(`Erreur lors de la suppression : ${errorMessage}`);
             return false;
         }
@@ -76,13 +74,11 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
                 throw new Error(`❌ Erreur ${response.status} : ${response.statusText}`)
             }
 
-            console.log("✅ Aliment supprimé avec succès");
 
             // AJOUTER LA MISE A JOUR DU USESTATE
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
-            console.log(errorMessage);
             setMessage(`Erreur lors de la suppression : ${errorMessage}`);
             return false;
         }

@@ -23,7 +23,6 @@ export default function IngestaForm() {
         try {
             const response = await fetch('/table_ciqual_2020.json');
             const data = await response.json();
-            console.log('❤️ ', data[0]);
             setCiqualData(data);
 
         } catch (error) {

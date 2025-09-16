@@ -33,7 +33,6 @@ export function UserProvider({ children }: UserProviderProps) {
         const parsedUser: User = JSON.parse(userData);
         setUser(parsedUser);
       } catch (error) {
-        console.error('Erreur parsing user data:', error);
         localStorage.removeItem('user_data');
         localStorage.removeItem('access_token');
       }

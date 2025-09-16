@@ -46,7 +46,6 @@ export default function SignUpForm() {
             }
 
             setMessage(data.message);
-            console.log(message);
             
             setTimeout(() => {
                 router.push('/signin')

@@ -40,10 +40,8 @@ export default function WriteMessage() {
                 body: JSON.stringify({ description: comment })
             })
             const data = await response.json();
-            console.log("DATA : ", data);
 
             if (!response.ok) {
-                console.log("ATTENTION ! response : ", response);
                 setIsLoading(false);
                 throw new Error(data.detail || data.message || `Erreur ${response.status}`)
             }
@@ -55,7 +53,6 @@ export default function WriteMessage() {
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : "❌ Une erreur est survenue lors de la création de la base de donneés"
-            console.log("errorMessage : ", errorMessage);
 
             setMessage(errorMessage);
             setIsLoading(false);
