@@ -54,11 +54,11 @@ export default function Home() {
                     <div>Chargement...</div>
                     :
                     <div>
-                        <p><span className="underline">Nom</span> : {formData.lastname}</p>
-                        <p><span className="underline">Prénom</span> : {formData.firstname}</p>
-                        <p><span className="underline">Email</span> : {formData.mail}</p>
-                        <p><span className="underline">Diététicien.ne</span> : {formData.is_dietetician ? "oui" : "non"}</p>
-                        <p><span className="underline">Compte créé le</span> : {getDate(formData.created_at)}</p>
+                        <p className="flex flex-row justify-start gap-1 pb-3 px-2"><span className="font-bold">Nom : </span><span>{formData.lastname}</span></p>
+                        <p className="flex flex-row justify-start gap-1 pb-3 px-2"><span className="font-bold">Prénom : </span><span>{formData.firstname}</span></p>
+                        <p className="flex flex-row justify-start gap-1 pb-3 px-2"><span className="font-bold">Email : </span><span>{formData.mail}</span></p>
+                        <p className="flex flex-row justify-start gap-1 pb-3 px-2"><span className="font-bold">Diététicien.ne : </span><span>{formData.is_dietetician ? "oui" : "non"}</span></p>
+                        <p className="flex flex-row justify-start gap-1 pb-3 px-2"><span className="font-bold">Compte créé le : </span><span>{getDate(formData.created_at)}</span></p>
                     </div>
                 }
             </div>
