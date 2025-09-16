@@ -17,6 +17,7 @@ export default function DEJAdult() {
     const [dejParameters, setDejParameters] = useState<DEJParameters>({ weight: 0, height: 0, age: 0, gender: "f", nap: 0 })
     const [dejResults, setDejResults] = useState<DEJResults>({ weight: 0, height: 0, imc: 0, age: 0, gender: "f", nap: 0 })
     const [calculDone, setCalculDone] = useState<boolean>(false);
+    const [message, setMessage] = useState<string>("");
 
     useEffect(() => {
         setDejParameters({
@@ -39,6 +40,7 @@ export default function DEJAdult() {
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMessage("")
         const { name, value } = event.target;
 
         setDejParameters(prev => ({
@@ -48,6 +50,7 @@ export default function DEJAdult() {
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        setMessage("")
         event.preventDefault();
 
         if (dejParameters.weight > 0 && dejParameters.height > 0 && dejParameters.age > 0 && dejParameters.nap > 0) {
@@ -63,13 +66,14 @@ export default function DEJAdult() {
             })
 
         } else {
-            alert("Merci de bien remplir tous les champs.")
+            setMessage("Merci de bien remplir tous les champs")
         }
     }
 
     const resetForm = () => {
         setDejParameters({ weight: 0, height: 0, age: 0, gender: "f", nap: 0 })
         setCalculDone(false);
+        setMessage("")
         resetData();
     }
 
@@ -130,6 +134,16 @@ export default function DEJAdult() {
                     value={dejParameters.nap}
                     onChange={handleChange}
                 />
+
+                {message &&
+                    <div role="alert" className="alert border border-(--redColor) text-(--redColor) p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{message}</span>
+                    </div>
+                }
+
                 <ButtonGreen
                     text="Calculer"
                     type="submit"
