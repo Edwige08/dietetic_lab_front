@@ -5,6 +5,7 @@ import { useUser } from "@/contexts/UserContext";
 import Link from "next/link";
 import Title from "@/components/Title";
 import ButtonDisconnect from "@/components/ButtonDisconnect";
+import { LogOut } from "lucide-react";
 
 export default function Home() {
     const { isAuthenticated, loading } = useUser();
@@ -49,7 +50,8 @@ export default function Home() {
                     </Link>
                 </div>
 
-                <ButtonDisconnect />
+                <ButtonDisconnect text="Déconnexion" lucide={LogOut} />
+
             </div>
         </div>
     )
