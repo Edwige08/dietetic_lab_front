@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ButtonGreen from "./ButtonGreen";
 import { useUser } from "@/contexts/UserContext";
+import { Send } from "lucide-react";
 
 export default function WriteMessage() {
     const { isAuthenticated } = useUser();
@@ -78,7 +79,7 @@ export default function WriteMessage() {
                 <textarea name="comment" placeholder="Votre commentaire" className="border rounded-lg p-2 h-70" value={comment} onChange={handleChange} />
 
                 <div className="flex flex-col items-center py-2">
-                    <ButtonGreen disabled={isLoading} text={`${isLoading ? "Envoi..." :"Envoyer"} `} />
+                    <ButtonGreen disabled={isLoading} text={`${isLoading ? "Envoi..." : "Envoyer"}`} lucide={Send} />
                 </div>
             </form>
         </div>
