@@ -61,7 +61,7 @@ export function UserProvider({ children }: UserProviderProps) {
 
       const data: LoginResponse = await response.json();
       localStorage.setItem('access_token', data.access);
-      localStorage.setItem('user_data', JSON.stringify(data.user));
+      // localStorage.setItem('user_data', JSON.stringify(data.user));
       setUser(data.user);
       return { success: true };
 
