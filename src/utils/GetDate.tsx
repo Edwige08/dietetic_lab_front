@@ -22,6 +22,6 @@ export const getDate = (date: string) => {
 
 export const getHour = (date: string) => {
     const pubDate = new Date(date);
-    const publicationDate = `${pubDate.getHours()}h${pubDate.getMinutes()}`;
+    const publicationDate = `${pubDate.getHours()}h${pubDate.getMinutes().toString().padStart(2, '0')}`;
     return publicationDate
 }

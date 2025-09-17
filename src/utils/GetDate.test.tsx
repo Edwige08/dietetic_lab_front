@@ -9,6 +9,14 @@ test('"2025-09-09T09:14:10.532784Z" donne 11h14', () => {
     expect(getHour("2025-09-09T09:14:10.532784Z")).toBe('11h14')
 })
 
+test('"2025-09-09T09:04:10.532784Z" donne 11h04', () => {
+    expect(getHour("2025-09-09T09:04:10.532784Z")).toBe('11h04')
+})
+
+test('"2025-09-09T07:04:10.532784Z" donne 9h04', () => {
+    expect(getHour("2025-09-09T07:04:10.532784Z")).toBe('9h04')
+})
+
 test('0 donne janvier', () => {
     expect(monthInLetters(0)).toBe('janvier')
 })
