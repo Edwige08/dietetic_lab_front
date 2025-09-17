@@ -8,6 +8,7 @@ interface UserContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<LoginResult>;
   logout: () => void;
+  logoutToSignInPage: () => void;
   loading: boolean;
   isAuthenticated: boolean;
 }
@@ -81,10 +82,20 @@ export function UserProvider({ children }: UserProviderProps) {
     }, 1000);
   };
 
+  const logoutToSignInPage = (): void => {
+    router.push("/signin")
+    setTimeout(() => {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('user_data');
+      setUser(null);
+    }, 1000);
+  };
+
   const value: UserContextType = {
     user,
     login,
     logout,
+    logoutToSignInPage,
     loading,
     isAuthenticated: !!user
   };
