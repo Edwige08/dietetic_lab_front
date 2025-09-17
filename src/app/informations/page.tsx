@@ -3,12 +3,12 @@
 import Title from "@/components/Title";
 import TitleTwo from "@/components/TitleTwo";
 import { BookOpenText, MessageCircleQuestionMark } from "lucide-react";
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 
 export default function Informations() {
     const [isFAQ, setIsFAQ] = useState<boolean>(true)
 
-    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const handleClick = () => {
         setIsFAQ(!isFAQ);
     }
         ; return (
@@ -45,15 +45,27 @@ export default function Informations() {
                         <div className="flex flex-col p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl text-justify">
                             <TitleTwo text="Qu'est-ce que Dietetic Lab&nbsp;?" />
                             <p>
-                                Dietetic Lab est un outil en ligne spécialement conçu pour les professionnels de la nutrition et de la diététique qui propose une suite de calculateurs et d'outils d'évaluation nutritionnelle pour faciliter le travail.
+                                Dietetic Lab est un outil en ligne spécialement conçu pour les professionnels de la nutrition et de la diététique qui propose une suite de calculateurs et d&apos;outils d&apos;évaluation nutritionnelle pour faciliter le travail.
                             </p>
                             <TitleTwo text="À qui s'adresse cet outil&nbsp;?" />
                             <p>
-                                Dietetic Lab s'adresse principalement aux diététicien.ne.s, nutritionnistes et étudiants en nutrition.
+                                Dietetic Lab s&apos;adresse principalement aux diététicien.ne.s, nutritionnistes et étudiants en nutrition.
+                            </p>
+                            <TitleTwo text="Je veux améliorer ma santé, suis-je au bon endroit&nbsp;?" />
+                            <p>
+                                Cet outil ne vous permettra pas d&apos;améliorer votre santé ou de suivre votre alimentation. Il est principalement à destination des professionnels de la nutrition afin de les aider dans leurs tâches quotidiennes.
                             </p>
                             <TitleTwo text="Dietetic Lab est-il gratuit&nbsp;?" />
                             <p>
-                                Oui, Dietetic Lab est un ensemble d'outils gratuits.
+                                Oui, Dietetic Lab est un ensemble d&apos;outils gratuits.
+                            </p>
+                            <TitleTwo text="Comment être sûr.e que ls calculs sont bons&nbsp;?" />
+                            <p>
+                                Dans chaque outil, Dietetic Lab indique les formules et sources utilisées pour les calculs présentés. Mais si vous décelez une erreur, n&apos;hésitez pas à nous en faire part pour la corriger au plus vite&nbsp;!
+                            </p>
+                            <TitleTwo text="J&apos;ai une question ou une remarque, comment vous la transmettre&nbsp;?" />
+                            <p>
+                                Après avoir créé un compte, dans la page &quot;Profile&quot;, vous avez la possibilité de laisser un message à la développeuse.
                             </p>
                         </div>
                     </div>

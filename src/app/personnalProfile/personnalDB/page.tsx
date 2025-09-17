@@ -56,12 +56,6 @@ export default function Home() {
         if (isAuthenticated) getUserDB();
     }, [isAuthenticated]);
 
-    const goBackProfile = () => {
-        if (window.confirm(`Avez-vous bien terminé d'ajouter des aliments à votre base ?`)) {
-            router.push('/personnalProfile')
-        }
-    }
-
     return (
         <div className="flex flex-col items-center">
             <div
