@@ -10,6 +10,8 @@ import { ListPlus } from "lucide-react";
 import IngestaResults from "./IngestaResults";
 import IngestaColapse from "./IngestaColapse";
 import { CiqualData, FoodDataWithQuantity, FoodWithQuantity } from "@/types/Ciqual";
+import { CalculateCalories } from "@/utils/CalculateCaloriesFromNutrients";
+import { CalculateJoules } from "@/utils/CalculateJoulesFromNutrients";
 
 export default function IngestaForm() {
     const [foodWithQuantity, setFoodWithQuantity] = useState<FoodWithQuantity>({ food: "", quantity: 0 })
@@ -123,10 +125,14 @@ export default function IngestaForm() {
             "Cholestérol (mg/100 g)": ciqualFood["Cholestérol (mg/100 g)"],
             "Cuivre (mg/100 g)": ciqualFood["Cuivre (mg/100 g)"],
             "Eau (g/100 g)": ciqualFood["Eau (g/100 g)"],
-            "Energie, N x facteur Jones, avec fibres (kJ/100 g)": ciqualFood["Energie, N x facteur Jones, avec fibres (kJ/100 g)"],
-            "Energie, N x facteur Jones, avec fibres (kcal/100 g)": ciqualFood["Energie, N x facteur Jones, avec fibres (kcal/100 g)"],
-            "Energie, Règlement UE N° 1169/2011 (kJ/100 g)": ciqualFood["Energie, Règlement UE N° 1169/2011 (kJ/100 g)"],
-            "Energie, Règlement UE N° 1169/2011 (kcal/100 g)": ciqualFood["Energie, Règlement UE N° 1169/2011 (kcal/100 g)"],
+            // "Energie, N x facteur Jones, avec fibres (kJ/100 g)": ciqualFood["Energie, N x facteur Jones, avec fibres (kJ/100 g)"],
+            "Energie, N x facteur Jones, avec fibres (kJ/100 g)": `${ciqualFood["Energie, N x facteur Jones, avec fibres (kJ/100 g)"] === "" ? ciqualFood["Energie, N x facteur Jones, avec fibres (kJ/100 g)"] : CalculateJoules(parseFloat(ciqualFood["Protéines, N x 6.25 (g/100 g)"]), parseFloat(ciqualFood["Lipides (g/100 g)"]), parseFloat(ciqualFood["Glucides (g/100 g)"]), parseFloat(ciqualFood["Alcool (g/100 g)"]))}`,
+            "Energie, N x facteur Jones, avec fibres (kcal/100 g)": `${ciqualFood["Energie, N x facteur Jones, avec fibres (kcal/100 g)"] === "" ? ciqualFood["Energie, N x facteur Jones, avec fibres (kcal/100 g)"] : CalculateCalories(parseFloat(ciqualFood["Protéines, N x 6.25 (g/100 g)"]), parseFloat(ciqualFood["Lipides (g/100 g)"]), parseFloat(ciqualFood["Glucides (g/100 g)"]), parseFloat(ciqualFood["Alcool (g/100 g)"]))}`,
+            // "Energie, N x facteur Jones, avec fibres (kcal/100 g)": ciqualFood["Energie, N x facteur Jones, avec fibres (kcal/100 g)"],
+            // "Energie, Règlement UE N° 1169/2011 (kJ/100 g)": ciqualFood["Energie, Règlement UE N° 1169/2011 (kJ/100 g)"],
+            "Energie, Règlement UE N° 1169/2011 (kJ/100 g)": `${ciqualFood["Energie, Règlement UE N° 1169/2011 (kJ/100 g)"] === "" ? ciqualFood["Energie, Règlement UE N° 1169/2011 (kJ/100 g)"] : CalculateJoules(parseFloat(ciqualFood["Protéines, N x 6.25 (g/100 g)"]), parseFloat(ciqualFood["Lipides (g/100 g)"]), parseFloat(ciqualFood["Glucides (g/100 g)"]), parseFloat(ciqualFood["Alcool (g/100 g)"]))}`,
+            // "Energie, Règlement UE N° 1169/2011 (kcal/100 g)": ciqualFood["Energie, Règlement UE N° 1169/2011 (kcal/100 g)"],
+            "Energie, Règlement UE N° 1169/2011 (kcal/100 g)": `${ciqualFood["Energie, Règlement UE N° 1169/2011 (kcal/100 g)"] === "" ? ciqualFood["Energie, Règlement UE N° 1169/2011 (kcal/100 g)"] : CalculateCalories(parseFloat(ciqualFood["Protéines, N x 6.25 (g/100 g)"]), parseFloat(ciqualFood["Lipides (g/100 g)"]), parseFloat(ciqualFood["Glucides (g/100 g)"]), parseFloat(ciqualFood["Alcool (g/100 g)"]))}`,
             "Fer (mg/100 g)": ciqualFood["Fer (mg/100 g)"],
             "Fibres alimentaires (g/100 g)": ciqualFood["Fibres alimentaires (g/100 g)"],
             "Fructose (g/100 g)": ciqualFood["Fructose (g/100 g)"],
