@@ -1,32 +1,21 @@
 'use client'
-import ButtonGreen from "@/components/ButtonGreen";
 import CardSection from "@/components/CardSection";
 import { useUser } from "@/contexts/UserContext";
-import { LogOut, UserRound } from "lucide-react";
-import Image from "next/image";
+import { LogOut } from "lucide-react";
 import Link from "next/link";
 import ButtonDisconnect from "@/components/ButtonDisconnect";
+import Title from "@/components/Title";
 
 export default function Home() {
   const { isAuthenticated } = useUser();
 
   return (
     <div>
-      <div className="flex flex-row pt-4 items-center justify-center md:hidden">
-        <Image
-          src="/logo_2.png"
-          width={500}
-          height={500}
-          alt="Logo de Dietetic Lab"
-          className="w-80 pt-3 pb-10"
-        />
-      </div>
 
-      {!isAuthenticated &&
-        <Link href="/signin" className="flex flex-col justify-center items-center pb-5">
-          <ButtonGreen text="Se connecter" lucide={UserRound} />
-        </Link>
-      }
+      <div className="px-10 pb-5 md:pt-5 md:pb-10">
+        <Title text="Le laboratoire diététique" />
+        <p className="text-center">Une plateforme complète d&apos;outils de <span className="font-bold">calcul</span> et d&apos;<span className="font-bold">évaluation nutritionnelle</span> destinée au <span className="font-bold">professionnels de la nutrition</span></p>
+      </div>
 
       <div className="flex flex-col px-5 lg:grid lg:grid-cols-3 xl:grid-cols-2 lg:gap-4">
         <Link href={"/imc"}>
@@ -77,7 +66,7 @@ export default function Home() {
 
       {isAuthenticated &&
         <div className="flex flex-col">
-          <ButtonDisconnect text="Déconnexion" lucide={LogOut}/>
+          <ButtonDisconnect text="Déconnexion" lucide={LogOut} />
         </div>
       }
     </div>

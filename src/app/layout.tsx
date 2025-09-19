@@ -44,13 +44,16 @@ export default function RootLayout({
         <UserProvider>
           <DataProvider>
 
-            <div className="hidden md:flex">
+            <div>
               <Navbar />
             </div>
+
             {children}
+
             <div className="md:hidden">
               <Dock />
             </div>
+
           </DataProvider>
         </UserProvider>
       </body>
