@@ -17,13 +17,13 @@ export default function Home() {
         <p className="text-center">Une plateforme complète d&apos;outils de <span className="font-bold">calcul</span> et d&apos;<span className="font-bold">évaluation nutritionnelle</span> destinée au <span className="font-bold">professionnels de la nutrition</span></p>
       </div>
 
-      <div className="flex flex-col px-5 lg:grid lg:grid-cols-3 xl:grid-cols-2 lg:gap-4">
+      <div className="flex flex-col px-2 md:px-5 lg:grid lg:grid-cols-3 xl:grid-cols-2 lg:gap-4">
         <Link href={"/imc"}>
           <CardSection
             bgColor="bg-(--orangeColor)"
             emoji="🥝"
             title="Indice de Masse Corporelle"
-            description="Calculer et interpréter l'IMC pour un adulte"
+            description="Calculer et interpréter l&apos;IMC pour un adulte"
           />
         </Link>
 
@@ -41,7 +41,7 @@ export default function Home() {
             emoji="🥥"
             bgColor="bg-(--redColor)"
             title="Dénutrition"
-            description="Dépiser la dénutrition chez la personne de plus de 18 ans et déterminer sa sévérité"
+            description="Dépiser la dénutrition et déterminer sa sévérité chez les plus de 18 ans"
           />
         </Link>
 
@@ -59,7 +59,7 @@ export default function Home() {
             emoji="🍍"
             bgColor="bg-(--blueColor)"
             title="Ingesta"
-            description="Calculer les ingesta d'un patient grâce à la table de composition nutritionnelle du Ciqual"
+            description="Calculer les ingesta d'un patient grâce aux données du Ciqual"
           />
         </Link>
       </div>
