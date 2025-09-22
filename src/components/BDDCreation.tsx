@@ -18,6 +18,7 @@ export default function BDDCreation() {
     const [databaseDetails, setDatabaseDetails] = useState<PersonnalDB>({ id: 0, title: "", foods: [] })
     const [message, setMessage] = useState<string>();
     const [foodDetails, setFoodDetails] = useState<FoodDetails>({
+        id: 0,
         title: "",
         calories_kcal: 0,
         proteins: 0,
@@ -140,6 +141,7 @@ export default function BDDCreation() {
                 foods: [...prev.foods, foodDetails]
             }))
             setFoodDetails({
+                id: 0,
                 title: "",
                 calories_kcal: 0,
                 proteins: 0,
