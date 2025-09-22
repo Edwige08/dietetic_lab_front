@@ -41,7 +41,7 @@ export default function Home() {
             emoji="🥥"
             bgColor="bg-(--redColor)"
             title="Dénutrition"
-            description="Dépiser la dénutrition et déterminer sa sévérité chez les plus de 18 ans"
+            description="Dépister la dénutrition et déterminer sa sévérité chez les plus de 18 ans"
           />
         </Link>
 
