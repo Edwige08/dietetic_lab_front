@@ -8,6 +8,7 @@ import { UserProvider } from "@/contexts/UserContext";
 import { DataProvider } from "@/contexts/DataContext";
 import { CSPostHogProvider } from '../components/PosthogProvider'
 import PostHogPageView from './PostHogPageView'
+import { Suspense } from 'react'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,10 +45,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased pb-20 min-h-screen bg-(--background)`}
       >
         <CSPostHogProvider>
-
           <UserProvider>
             <DataProvider>
-              <PostHogPageView />
+
+              <Suspense fallback={null}>
+                <PostHogPageView />
+              </Suspense>
+              
               <div>
                 <Navbar />
               </div>
