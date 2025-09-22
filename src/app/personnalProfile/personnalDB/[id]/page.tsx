@@ -24,6 +24,7 @@ export default function Home({ params }: Props) {
     const [userDatabase, setUserDatabase] = useState<PersonnalDB>();
     const [seeAddFood, setSeeAddFood] = useState<boolean>(false);
     const [foodDetails, setFoodDetails] = useState<FoodDetails>({
+        id: 0,
         title: "",
         calories_kcal: 0,
         proteins: 0,
@@ -123,6 +124,7 @@ export default function Home({ params }: Props) {
                 }
             })
             setFoodDetails({
+                id: 0,
                 title: "",
                 calories_kcal: 0,
                 proteins: 0,
