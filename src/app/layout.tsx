@@ -7,11 +7,7 @@ import Navbar from "@/components/Navbar";
 import { UserProvider } from "@/contexts/UserContext";
 import { DataProvider } from "@/contexts/DataContext";
 import { CSPostHogProvider } from '../components/PosthogProvider'
-import dynamic from 'next/dynamic'
-
-const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
-  ssr: false,
-})
+import PostHogPageView from './PostHogPageView'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
