@@ -1,4 +1,5 @@
 export interface FoodDetails {
+    id: number,
     title: string,
     calories_kcal: number,
     proteins: number,
