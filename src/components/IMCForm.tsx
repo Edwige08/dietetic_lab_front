@@ -10,9 +10,11 @@ import { CalculateIMC } from "@/utils/CalculateIMC";
 import { IMCParameters, IMCResults } from "@/types/IMC";
 import { IMCCategory } from "@/utils/IMCCategory";
 import { useData } from "@/contexts/DataContext";
+import { useAnalytics } from '@/utils/usePosthog'
 
 export default function IMCForm() {
     const { data, resetData, updateData } = useData();
+    const { trackEvent, identifyUser } = useAnalytics()
 
     const [weightHeight, setWeightHeight] = useState<IMCParameters>({ weight: data.weight, height: data.height });
     const [IMCresults, setIMCResults] = useState<IMCResults>({ weight: 0, height: 0, imc: 0 });
@@ -25,6 +27,12 @@ export default function IMCForm() {
             height: data.height,
         })
     }, [data.weight, data.height])
+
+    useEffect(() => {
+        trackEvent('imc_form_viewed', {
+            has_previous_data: !!(data.weight || data.height)
+        })
+    }, [trackEvent])
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -40,12 +48,28 @@ export default function IMCForm() {
                 height: weightHeight.height,
             });
 
+            trackEvent('imc_calculated', {
+                weight: weightHeight.weight,
+                height: weightHeight.height,
+                imc: parseFloat(imc.toFixed(2)),
+                is_reusing_data: weightHeight.weight === data.weight && weightHeight.height === data.height
+            })
+
         } else if (weightHeight.weight > 0 && weightHeight.height == 0) {
             setMessage("Vous avez oublié d'entrer une taille");
+            trackEvent('imc_calculation_error', {
+                error_type: 'missing_height',
+            })
         } else if (weightHeight.weight == 0 && weightHeight.height > 0) {
             setMessage("Vous avez oublié d'entrer un poids")
+            trackEvent('imc_calculation_error', {
+                error_type: 'missing_weight',
+            })
         } else {
             setMessage("Vous devez rentrer un poids et une taille")
+            trackEvent('imc_calculation_error', {
+                error_type: 'missing_both',
+            })
         }
     }
 
@@ -60,6 +84,11 @@ export default function IMCForm() {
         setCalculDone(false);
         setMessage("");
         resetData();
+
+        trackEvent('imc_form_reset', {
+            had_results: calculDone,
+            had_data: !!(data.weight || data.height)
+        })
     }
 
     return (

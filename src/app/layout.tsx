@@ -6,6 +6,12 @@ import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import { UserProvider } from "@/contexts/UserContext";
 import { DataProvider } from "@/contexts/DataContext";
+import { CSPostHogProvider } from '../components/PosthogProvider'
+import dynamic from 'next/dynamic'
+
+const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
+  ssr: false,
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,21 +47,25 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased pb-20 min-h-screen bg-(--background)`}
       >
-        <UserProvider>
-          <DataProvider>
+        <CSPostHogProvider>
 
-            <div>
-              <Navbar />
-            </div>
+          <UserProvider>
+            <DataProvider>
+              <PostHogPageView />
+              <div>
+                <Navbar />
+              </div>
 
-            {children}
+              {children}
 
-            <div className="md:hidden">
-              <Dock />
-            </div>
+              <div className="md:hidden">
+                <Dock />
+              </div>
 
-          </DataProvider>
-        </UserProvider>
+            </DataProvider>
+          </UserProvider>
+        </CSPostHogProvider>
+
       </body>
     </html>
   );
