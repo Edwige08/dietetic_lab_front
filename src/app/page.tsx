@@ -1,9 +1,7 @@
 'use client'
 import CardSection from "@/components/CardSection";
 import { useUser } from "@/contexts/UserContext";
-import { LogOut } from "lucide-react";
 import Link from "next/link";
-import ButtonDisconnect from "@/components/ButtonDisconnect";
 import Title from "@/components/Title";
 
 export default function Home() {
@@ -63,12 +61,6 @@ export default function Home() {
           />
         </Link>
       </div>
-
-      {isAuthenticated &&
-        <div className="flex flex-col">
-          <ButtonDisconnect text="Déconnexion" lucide={LogOut} />
-        </div>
-      }
     </div>
   );
 }
