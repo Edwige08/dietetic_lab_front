@@ -129,7 +129,7 @@ export default function Informations() {
                                 text="📊 Base de données nutritionnelle"
                             />
                             <p>
-                                Dietetic Lab s&apos;appuie sur les données de la table Ciqual, la base de données nutritionnelles de référence de l'Anses (Agence nationale de sécurité sanitaire de l'alimentation, de l'environnement et du travail), garantissant&nbsp;:
+                                Dietetic Lab s&apos;appuie sur les données de la table Ciqual, la base de données nutritionnelles de référence de l&apos;Anses (Agence nationale de sécurité sanitaire de l&apos;alimentation, de l&apos;environnement et du travail), garantissant&nbsp;:
                             </p>
                             <ul className="list-disc ml-7">
                                 <li>Plus de 3 000 aliments référencés</li>
