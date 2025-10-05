@@ -51,12 +51,14 @@ export default function RootLayout({
               <Suspense fallback={null}>
                 <PostHogPageView />
               </Suspense>
-              
+
               <div>
                 <Navbar />
               </div>
 
-              {children}
+              <div className="max-w-280 m-auto">
+                {children}
+              </div>
 
               <div className="md:hidden">
                 <Dock />
