@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FoodColapse from "./FoodColapse";
 import TitleTwo from "./TitleTwo";
 import { FoodDetails, PersonnalDB } from "@/types/FoodDB";
@@ -11,9 +11,12 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
     const [userDatabases, setUserDatabases] = useState<PersonnalDB[]>([]);
     const [message, setMessage] = useState<string>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [currentFood, setCurrentFood] = useState<FoodDetails[]>(props.databaseFood);
 
     const router = useRouter();
     const { isAuthenticated } = useUser();
+
+
 
     async function deleteUserDB(databaseId: number) {
         setMessage("");
@@ -46,26 +49,31 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
 
             setMessage("Base de données supprimée avec succès !");
             router.push('/personnalProfile');
+            setIsLoading(false);
             return true;
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
             setMessage(`Erreur lors de la suppression : ${errorMessage}`);
+            setIsLoading(false);
             return false;
         }
     }
 
-    async function deleteFood(databaseId: number, foodId: number) {
+    async function deleteFood(foodId: number) {
         if (!isAuthenticated) {
             setMessage("Vous devez être connecté pour supprimer une base de données");
             return;
         }
+
+        console.log("je rentre dans deleteFood");
 
         try {
             const token = localStorage.getItem('access_token');
             const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/foods/${foodId}/`, {
                 method: 'DELETE',
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 }
             })
@@ -74,12 +82,15 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
                 throw new Error(`❌ Erreur ${response.status} : ${response.statusText}`)
             }
 
-
+            setCurrentFood(prev => prev.filter(food => food.id !== foodId));
+            setMessage("Aliment supprimé avec succès !");
             // AJOUTER LA MISE A JOUR DU USESTATE
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
-            setMessage(`Erreur lors de la suppression : ${errorMessage}`);
+            setMessage(errorMessage);
+            console.log(errorMessage);
+
             return false;
         }
     }
@@ -90,13 +101,22 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
         }
     };
 
-    const removeFood = () => {
-        alert("La suppression d'un aliment de votre base de données n'est pas paramétrée pour le moment")
+    const removeFood = (foodId: number) => {
+        console.log("je rentre dans removeFood");
+
+        if (window.confirm(`Êtes-vous sûr de vouloir supprimer cet aliment ?`)) {
+            console.log("je valide la suppression");
+            deleteFood(foodId);
+        }
     }
 
     const handleUpdateDB = (databaseId: number) => {
         router.push(`/personnalProfile/personnalDB/${databaseId}`)
     }
+
+    useEffect(() => {
+        setCurrentFood(props.databaseFood);
+    }, [deleteFood]);
 
     return (
         <div>
@@ -111,7 +131,7 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
                     <button type="button" onClick={() => handleUpdateDB(props.dbId)} className="border rounded-lg w-30 py-1 bg-(--greenLightColor) hover:underline" >Modifier</button>
                     <button type="button" onClick={() => handleDeleteDB(props.dbId, props.databaseName)} className="border rounded-lg w-30 bg-(--redLightColor) hover:underline">Supprimer</button>
                 </div>
-                {props.databaseFood.map((food, index) => (
+                {currentFood.map((food, index) => (
 
                     <FoodColapse
                         key={index}
@@ -133,7 +153,7 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
                         iron={food.iron}
                         calcium={food.calcium}
                         vitamin_d={food.vitamin_d}
-                        onClick={() => removeFood()}
+                        onClick={() => removeFood(food.id)}
                     />
                 ))}
             </div>

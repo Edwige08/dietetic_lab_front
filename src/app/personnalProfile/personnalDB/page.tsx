@@ -53,7 +53,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        if (isAuthenticated) getUserDB();
+       getUserDB();
     }, [isAuthenticated]);
 
     return (
