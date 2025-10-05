@@ -6,7 +6,7 @@ import FoodCreation from "@/components/FoodCreation";
 import Title from "@/components/Title";
 import TitleTwo from "@/components/TitleTwo";
 import { useUser } from "@/contexts/UserContext";
-import { FoodDetails, PersonnalDB } from "@/types/FoodDB";
+import { FoodDetails, FoodBase } from "@/types/FoodDB";
 import { scrollToTop } from "@/utils/ScrollToTop";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
@@ -21,7 +21,7 @@ export default function Home({ params }: Props) {
     const resolvedParams = use(params);
 
     const [message, setMessage] = useState<string>();
-    const [userDatabase, setUserDatabase] = useState<PersonnalDB>();
+    const [userDatabase, setUserDatabase] = useState<FoodBase>();
     const [seeAddFood, setSeeAddFood] = useState<boolean>(false);
     const [foodDetails, setFoodDetails] = useState<FoodDetails>({
         id: 0,
@@ -46,11 +46,11 @@ export default function Home({ params }: Props) {
         personal_db: parseInt(resolvedParams.id),
     });
 
-    async function getPersonnalDB() {
+    async function getFoodBase() {
         setMessage("");
 
         if (!isAuthenticated) {
-            setMessage("Vous devez être connecté pour modifier une base de données");
+            setMessage("Vous devez être connecté pour modifier votre base alimentaire");
             return;
         }
 
@@ -77,7 +77,7 @@ export default function Home({ params }: Props) {
     }
 
     useEffect(() => {
-        if (isAuthenticated) getPersonnalDB();
+        if (isAuthenticated) getFoodBase();
     }, [isAuthenticated])
 
     const handleSeeAddFood = () => {
@@ -115,7 +115,7 @@ export default function Home({ params }: Props) {
                 throw new Error(data.message || 'Erreur pour créer un aliment')
             }
 
-            setMessage(`✅ ${foodDetails.title} a bien été ajouté à votre base`);
+            setMessage(`✅ ${foodDetails.title} a bien été ajouté à votre base alimentaire`);
             setUserDatabase(prev => {
                 if (!prev) return prev;
                 return {
@@ -235,7 +235,7 @@ export default function Home({ params }: Props) {
                                 onClick={() => removeFood()}
                             />
                         ))}
-                        <Link href="/personnalProfile/personnalDB" className="flex flex-row justify-center pt-5">
+                        <Link href="/personnalProfile/foodBase" className="flex flex-row justify-center pt-5">
                             <ButtonGreen text="Terminer" lucide={Check} />
                         </Link>
                     </div>

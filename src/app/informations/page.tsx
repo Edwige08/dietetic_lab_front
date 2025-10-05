@@ -49,7 +49,7 @@ export default function Informations() {
                             </p>
                             <TitleTwo text="À qui s'adresse cet outil&nbsp;?" />
                             <p>
-                                Dietetic Lab s&apos;adresse principalement aux diététicien.ne.s, nutritionnistes et étudiants en nutrition.
+                                Dietetic Lab s&apos;adresse principalement aux diététicien·ne·s, nutritionnistes et étudiants en nutrition.
                             </p>
                             <TitleTwo text="Je veux améliorer ma santé, suis-je au bon endroit&nbsp;?" />
                             <p>
@@ -59,7 +59,7 @@ export default function Informations() {
                             <p>
                                 Oui, Dietetic Lab est un ensemble d&apos;outils gratuits.
                             </p>
-                            <TitleTwo text="Comment être sûr.e que ls calculs sont bons&nbsp;?" />
+                            <TitleTwo text="Comment être sûr·e que les calculs sont bons&nbsp;?" />
                             <p>
                                 Dans chaque outil, Dietetic Lab indique les formules et sources utilisées pour les calculs présentés. Mais si vous décelez une erreur, n&apos;hésitez pas à nous en faire part pour la corriger au plus vite&nbsp;!
                             </p>
@@ -80,7 +80,7 @@ export default function Informations() {
                                 text="🔬 La mission de Dietetic Lab"
                             />
                             <p>
-                                Dietetic Lab est une application web innovante conçue spécifiquement pour accompagner les diététicien.ne.s et nutritionnistes dans leur pratique quotidienne. L&apos;objectif est de simplifier et d&apos;optimiser les calculs nutritionnels complexes grâce à des outils numériques précis et intuitifs.
+                                Dietetic Lab est une application web innovante conçue spécifiquement pour accompagner les diététicien·ne·s et nutritionnistes dans leur pratique quotidienne. L&apos;objectif est de simplifier et d&apos;optimiser les calculs nutritionnels complexes grâce à des outils numériques précis et intuitifs.
                             </p>
                             <br />
 
@@ -143,7 +143,7 @@ export default function Informations() {
                                 text="👥 À qui s&apos;adresse Dietetic Lab ?"
                             />
                             <p>
-                                Dietetic Lab s&apos;adresse aux diététicien.ne.s et à l&apos;ensemble des professionnels de la nutrition afin de faciliter les calculs du quotidien.
+                                Dietetic Lab s&apos;adresse aux diététicien·ne·s et à l&apos;ensemble des professionnels de la nutrition afin de faciliter les calculs du quotidien.
                             </p>
                             <br />
                             <hr />

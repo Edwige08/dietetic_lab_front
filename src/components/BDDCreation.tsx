@@ -3,7 +3,7 @@
 import { useState } from "react";
 import TitleTwo from "./TitleTwo";
 import { useUser } from "@/contexts/UserContext";
-import { FoodDetails, PersonnalDB } from "@/types/FoodDB";
+import { FoodDetails, FoodBase } from "@/types/FoodDB";
 import FoodColapse from "./FoodColapse";
 import BDDCreationStepOne from "./BDDCreationStepOne";
 import BDDCreationStepTwo from "./BDDCreationStepTwo";
@@ -15,7 +15,7 @@ import Link from "next/link";
 export default function BDDCreation() {
     const [stepTwo, setStepTwo] = useState<boolean>(false);
     const [databaseName, setDatabaseName] = useState<string>("");
-    const [databaseDetails, setDatabaseDetails] = useState<PersonnalDB>({ id: 0, title: "", foods: [] })
+    const [databaseDetails, setDatabaseDetails] = useState<FoodBase>({ id: 0, title: "", foods: [] })
     const [message, setMessage] = useState<string>();
     const [foodDetails, setFoodDetails] = useState<FoodDetails>({
         id: 0,
@@ -240,7 +240,7 @@ export default function BDDCreation() {
                                     />
                                 )
                             })}
-                            <Link href="/personnalProfile/personnalDB" className="flex flex-row justify-center pt-5">
+                            <Link href="/personnalProfile/foodBase" className="flex flex-row justify-center pt-5">
                                 <ButtonGreen text="Terminer" lucide={Check} />
                             </Link>
                         </div>

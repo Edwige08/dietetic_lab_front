@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import FoodColapse from "./FoodColapse";
 import TitleTwo from "./TitleTwo";
-import { FoodDetails, PersonnalDB } from "@/types/FoodDB";
+import { FoodDetails, FoodBase } from "@/types/FoodDB";
 import { useUser } from "@/contexts/UserContext";
 import { useRouter } from "next/navigation";
 
 export default function BDDView(props: { databaseName: string, databaseFood: FoodDetails[], dbId: number }) {
-    const [userDatabases, setUserDatabases] = useState<PersonnalDB[]>([]);
+    const [userDatabases, setUserDatabases] = useState<FoodBase[]>([]);
     const [message, setMessage] = useState<string>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [currentFood, setCurrentFood] = useState<FoodDetails[]>(props.databaseFood);
@@ -111,7 +111,7 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
     }
 
     const handleUpdateDB = (databaseId: number) => {
-        router.push(`/personnalProfile/personnalDB/${databaseId}`)
+        router.push(`/personnalProfile/foodBase/${databaseId}`)
     }
 
     useEffect(() => {

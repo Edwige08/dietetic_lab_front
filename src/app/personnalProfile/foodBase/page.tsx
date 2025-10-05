@@ -4,13 +4,13 @@ import BDDCreation from "@/components/BDDCreation";
 import BDDView from "@/components/BDDView";
 import Title from "@/components/Title";
 import { useUser } from "@/contexts/UserContext";
-import { PersonnalDB } from "@/types/FoodDB";
+import { FoodBase } from "@/types/FoodDB";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
 
-    const [userDatabases, setUserDatabases] = useState<PersonnalDB[]>();
+    const [userDatabases, setUserDatabases] = useState<FoodBase[]>();
     const [message, setMessage] = useState<string>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -66,7 +66,7 @@ export default function Home() {
                     :
                     <div className="flex flex-col items-center">
                         <div className="px-4 mx-3 w-[90%] md:w-[75%]">
-                            <Title text="Ma base de données alimentaires" />
+                            <Title text="Ma base alimentair" />
                         </div>
 
                         {message && <div>{message}</div>}

@@ -21,7 +21,7 @@ export interface FoodDetails {
     personal_db: number,
 }
 
-export interface PersonnalDB {
+export interface FoodBase {
     id: number,
     title: string,
     foods: FoodDetails[],

@@ -32,12 +32,12 @@ export default function Home() {
                             description="Modifier mes informations personnelles ou supprimer mon compte"
                         />
                     </Link>
-                    <Link href={"/personnalProfile/personnalDB"}>
+                    <Link href={"/personnalProfile/foodBase"}>
                         <CardSection
                             emoji="📝"
                             bgColor="bg-(--grayLightColor)"
-                            title="Ma base de données nutritionnelles"
-                            description="Créer ou modifier ma base de donneés nutritionnelles, utilisée pour le calcul des ingesta"
+                            title="Ma base alimentaire"
+                            description="Créer ou modifier ma base alimentaire, utilisée pour le calcul des ingesta en complément du Ciqual"
                         />
                     </Link>
                     <Link href={"/personnalProfile/writeMessage"}>
