@@ -114,8 +114,7 @@ export default function Informations() {
 
                             <h3 className="my-2 font-bold">Évaluation de la dénutrition</h3>
                             <ul className="list-disc ml-7">
-                                <li>Critères de dépistage de la HAS</li>
-                                <li>Protocoles de prévention intégrés</li>
+                                <li>Critères de dépistage de la Haute Autorité de Santé (HAS)</li>
                                 <li>Evaluation de la dénutrition de l&apos;adulte et de la personne âgée</li>
                             </ul>
 
@@ -130,13 +129,13 @@ export default function Informations() {
                                 text="📊 Base de données nutritionnelle"
                             />
                             <p>
-                                Dietetic Lab s&apos;appuie sur l&apos;API d&apos;Open Food Facts, la plus grande base de données alimentaires collaborative au monde, garantissant :
+                                Dietetic Lab s&apos;appuie sur les données de la table Ciqual, la base de données nutritionnelles de référence de l'Anses (Agence nationale de sécurité sanitaire de l'alimentation, de l'environnement et du travail), garantissant&nbsp;:
                             </p>
-                            <ul>
-                                <li>+2 millions d&apos;aliments référencés</li>
-                                <li>Données nutritionnelles détaillées et vérifiées</li>
-                                <li>Mise à jour continue par la communauté</li>
-                                <li>Transparence des informations</li>
+                            <ul className="list-disc ml-7">
+                                <li>Plus de 3 000 aliments référencés</li>
+                                <li>Données nutritionnelles validées scientifiquement</li>
+                                <li>Référence officielle pour les professionnels de santé en France</li>
+                                <li>Fiabilité et précision des compositions nutritionnelles</li>
                             </ul>
                             <br />
 
