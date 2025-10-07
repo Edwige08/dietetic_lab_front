@@ -135,24 +135,24 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
 
                     <FoodColapse
                         key={index}
-                        food={food.title}
-                        calories={food.calories_kcal}
-                        protein={food.proteins}
-                        fats={food.fats}
-                        carbohydrates={food.carbohydrates}
-                        fibers={food.fibers}
-                        sugar={food.sugars}
+                        alim_nom_fr={food.alim_nom_fr}
+                        energie_reg_ue_kcal={food.energie_reg_ue_kcal}
+                        proteines={food.proteines}
+                        lipides={food.lipides}
+                        glucides={food.glucides}
+                        fibres={food.fibres}
+                        sucres={food.sucres}
                         ags={food.ags}
                         agmi={food.agmi}
                         agpi={food.agpi}
                         cholesterol={food.cholesterol}
-                        alcohol={food.alcohol}
+                        alcool={food.alcool}
                         sodium={food.sodium}
                         potassium={food.potassium}
-                        phosphorus={food.phosphorus}
-                        iron={food.iron}
+                        phosphore={food.phosphore}
+                        fer={food.fer}
                         calcium={food.calcium}
-                        vitamin_d={food.vitamin_d}
+                        vitamine_d={food.vitamine_d}
                         onClick={() => removeFood(food.id)}
                     />
                 ))}
