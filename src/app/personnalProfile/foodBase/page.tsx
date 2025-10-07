@@ -36,12 +36,12 @@ export default function Home() {
                     'Authorization': `Bearer ${token}`,
                 },
             });
-
+            
             if (!response.ok) {
                 setIsLoading(false);
                 throw new Error(`❌ Erreur ${response.status} : ${response.statusText}`)
             }
-
+            
             const data = await response.json();
             setUserDatabases(data.results);
             setIsLoading(false);
@@ -55,7 +55,7 @@ export default function Home() {
     useEffect(() => {
        getUserDB();
     }, [isAuthenticated]);
-
+    
     return (
         <div className="flex flex-col items-center">
             <div
@@ -66,7 +66,7 @@ export default function Home() {
                     :
                     <div className="flex flex-col items-center">
                         <div className="px-4 mx-3 w-[90%] md:w-[75%]">
-                            <Title text="Ma base alimentair" />
+                            <Title text="Ma base alimentaire" />
                         </div>
 
                         {message && <div>{message}</div>}
