@@ -53,7 +53,7 @@ Outil d'aide au dépistage de la dénutrition selon les critères diagnostics de
 
 ---
 
-### 🔹 Évaluation du risque de SRI (Syndrome de Renutrition Inappropriée)
+### 🔹 Évaluation du risque de SRI (Syndrome de Renutrition Inappropriée)  
 Outil d'aide à l'évaluation du risque de Syndrome de Renutrition Inappropriée, selon les critères de la SFNCM.
 ---
 
@@ -100,9 +100,9 @@ Ils sont exécutés automatiquement via **GitHub Actions** lors de chaque push o
 
 ## 📬 Contact
 
-👩‍💻 Développeuse : Edwige
-🌐 Application : https://dietetic-lab.vercel.app/
-🐙 GitHub : https://github.com/Edwige08
+👩‍💻 Développeuse : Edwige  
+🌐 Application : https://dietetic-lab.vercel.app/  
+🐙 GitHub : https://github.com/Edwige08  
 
 ---
 
