@@ -10,7 +10,8 @@ export default function IngestaInformation() {
                     text="👩‍🏫 Comment sont calculés les ingesta&nbsp;?"
                 />
                 <p>
-                    Le calcul des ingesta se fait avec les données de la <span className="font-bold">table de composition nutritionnelle des aliments du Ciqual</span>. Elle renseigne sur la composition nutritionnelle moyenne des aliments les plus consommés en France.
+                    Le calcul des ingesta se fait avec les données de la <span className="font-bold">table de composition nutritionnelle des aliments du Ciqual</span>. Elle renseigne sur la composition nutritionnelle moyenne des aliments les plus consommés en France. <br />
+                    Si vous êtes connecté et que vous avez créé une base alimentaire, vous pourrez aussi utiliser vos aliments/plats. 
                 </p>
             </div>
 
