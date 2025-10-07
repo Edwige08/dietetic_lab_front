@@ -25,24 +25,24 @@ export default function Home({ params }: Props) {
     const [seeAddFood, setSeeAddFood] = useState<boolean>(false);
     const [foodDetails, setFoodDetails] = useState<FoodDetails>({
         id: 0,
-        title: "",
-        calories_kcal: 0,
-        proteins: 0,
-        fats: 0,
-        carbohydrates: 0,
-        sugars: 0,
-        fibers: 0,
+        alim_nom_fr: "",
+        energie_reg_ue_kcal: 0,
+        proteines: 0,
+        lipides: 0,
+        glucides: 0,
+        sucres: 0,
+        fibres: 0,
         ags: 0,
         agmi: 0,
         agpi: 0,
         cholesterol: 0,
-        alcohol: 0,
+        alcool: 0,
         sodium: 0,
         potassium: 0,
-        phosphorus: 0,
-        iron: 0,
+        phosphore: 0,
+        fer: 0,
         calcium: 0,
-        vitamin_d: 0,
+        vitamine_d: 0,
         personal_db: parseInt(resolvedParams.id),
     });
 
@@ -93,7 +93,7 @@ export default function Home({ params }: Props) {
             return;
         }
 
-        if (foodDetails.title === "") {
+        if (foodDetails.alim_nom_fr === "") {
             setMessage("Vous devez entrer un nom pour l'aliment");
             return;
         }
@@ -115,7 +115,7 @@ export default function Home({ params }: Props) {
                 throw new Error(data.message || 'Erreur pour créer un aliment')
             }
 
-            setMessage(`✅ ${foodDetails.title} a bien été ajouté à votre base alimentaire`);
+            setMessage(`✅ ${foodDetails.alim_nom_fr} a bien été ajouté à votre base alimentaire`);
             setUserDatabase(prev => {
                 if (!prev) return prev;
                 return {
@@ -125,24 +125,24 @@ export default function Home({ params }: Props) {
             })
             setFoodDetails({
                 id: 0,
-                title: "",
-                calories_kcal: 0,
-                proteins: 0,
-                fats: 0,
-                carbohydrates: 0,
-                sugars: 0,
-                fibers: 0,
+                alim_nom_fr: "",
+                energie_reg_ue_kcal: 0,
+                proteines: 0,
+                lipides: 0,
+                glucides: 0,
+                sucres: 0,
+                fibres: 0,
                 ags: 0,
                 agmi: 0,
                 agpi: 0,
                 cholesterol: 0,
-                alcohol: 0,
+                alcool: 0,
                 sodium: 0,
                 potassium: 0,
-                phosphorus: 0,
-                iron: 0,
+                phosphore: 0,
+                fer: 0,
                 calcium: 0,
-                vitamin_d: 0,
+                vitamine_d: 0,
                 personal_db: parseInt(resolvedParams.id),
             })
             scrollToTop();
@@ -188,24 +188,24 @@ export default function Home({ params }: Props) {
                         {userDatabase && seeAddFood && <FoodCreation
                             onSubmit={handleSubmitStepTwo}
                             databaseName={userDatabase.title}
-                            titleValue={foodDetails.title}
-                            caloriesValue={foodDetails.calories_kcal}
-                            proteinsValue={foodDetails.proteins}
-                            fatsValue={foodDetails.fats}
+                            titleValue={foodDetails.alim_nom_fr}
+                            caloriesValue={foodDetails.energie_reg_ue_kcal}
+                            proteinsValue={foodDetails.proteines}
+                            fatsValue={foodDetails.lipides}
                             agsValue={foodDetails.ags}
                             agmiValue={foodDetails.agmi}
                             agpiValue={foodDetails.agpi}
                             cholesterolValue={foodDetails.cholesterol}
-                            carbohydratesValue={foodDetails.carbohydrates}
-                            sugarsValue={foodDetails.sugars}
-                            fibersValue={foodDetails.fibers}
-                            alcoholValue={foodDetails.alcohol}
+                            carbohydratesValue={foodDetails.glucides}
+                            sugarsValue={foodDetails.sucres}
+                            fibersValue={foodDetails.fibres}
+                            alcoholValue={foodDetails.alcool}
                             sodiumValue={foodDetails.sodium}
                             potassiumValue={foodDetails.potassium}
-                            phosphorusValue={foodDetails.phosphorus}
-                            ironValue={foodDetails.iron}
+                            phosphorusValue={foodDetails.phosphore}
+                            ironValue={foodDetails.fer}
                             calciumValue={foodDetails.calcium}
-                            vitamin_dValue={foodDetails.vitamin_d}
+                            vitamin_dValue={foodDetails.vitamine_d}
                             onchange={handleChangeFoodDetails}
 
                         />}
@@ -214,24 +214,24 @@ export default function Home({ params }: Props) {
                         {userDatabase && userDatabase.foods.map((food, index) => (
                             <FoodColapse
                                 key={index}
-                                food={food.title}
-                                calories={food.calories_kcal}
-                                protein={food.proteins}
-                                fats={food.fats}
-                                carbohydrates={food.carbohydrates}
-                                fibers={food.fibers}
-                                sugar={food.sugars}
+                                alim_nom_fr={food.alim_nom_fr}
+                                energie_reg_ue_kcal={food.energie_reg_ue_kcal}
+                                proteines={food.proteines}
+                                lipides={food.lipides}
+                                glucides={food.glucides}
+                                fibres={food.fibres}
+                                sucres={food.sucres}
                                 ags={food.ags}
                                 agmi={food.agmi}
                                 agpi={food.agpi}
                                 cholesterol={food.cholesterol}
-                                alcohol={food.alcohol}
+                                alcool={food.alcool}
                                 sodium={food.sodium}
                                 potassium={food.potassium}
-                                phosphorus={food.phosphorus}
-                                iron={food.iron}
+                                phosphore={food.phosphore}
+                                fer={food.fer}
                                 calcium={food.calcium}
-                                vitamin_d={food.vitamin_d}
+                                vitamine_d={food.vitamine_d}
                                 onClick={() => removeFood()}
                             />
                         ))}
