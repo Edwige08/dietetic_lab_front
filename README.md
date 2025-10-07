@@ -31,14 +31,14 @@ Elle permet d'effectuer différents calculs et évaluations essentiels à la pra
 
 ### Utilisation avec ou sans compte
 
-- **Sans connexion** : accès à tous les outils de calcul.
-- **Avec compte** : possibilité d’envoyer un message à la développeuse et de **créer sa propre base alimentaire personnalisée** (fonctionnalité encore en cours de développement).
+- **Sans compte** : accès à tous les outils de calcul.
+- **Avec compte** : possibilité de **créer sa propre base alimentaire personnalisée** (fonctionnalité encore en cours de développement) ou d’envoyer un message à la développeuse.
 
 ---
 
 ## ⚙️ Fonctionnalités
 
-### 🔹 Calcul de l’IMC
+### 🔹 Calcul de l’IMC (Indice de Masse Corporelle)
 Outil de calcul de l'Indice de Masse Corporelle pour un adulte.
 
 ---
@@ -84,17 +84,17 @@ Ils sont exécutés automatiquement via **GitHub Actions** lors de chaque push o
 
 ## 🚀 Roadmap
 
-- Intégration de la base alimentaire personnalisée dans le calcul des ingesta
-- Création d'un outil de calcul des paramètres théoriques d’insulinothérapie fonctionnelle
-- Création d'un outil de calcul du NAP
-- Amélioration de l’interface mobile
+- [ ] Intégration de la base alimentaire personnalisée dans le calcul des ingesta
+- [ ] Création d'un outil de calcul des paramètres théoriques d’insulinothérapie fonctionnelle
+- [ ] Création d'un outil de calcul du NAP
+- [ ] Amélioration de l’interface mobile
 
 ---
 
 ## ⚠️ Avertissement
 
-Dietetic Lab est un outil d’aide au calcul **à visée informative et professionnelle**.
-Elle **ne remplace pas une prise en charge nutritionnelle par un diététicien** et ne fournit **aucun conseil nutritionnel personnalisé**.
+> Dietetic Lab est un outil d’aide au calcul **à visée informative et professionnelle**.
+> Elle **ne remplace pas une prise en charge nutritionnelle par un diététicien** et ne fournit **aucun conseil nutritionnel personnalisé**.
 
 ---
 
@@ -103,3 +103,7 @@ Elle **ne remplace pas une prise en charge nutritionnelle par un diététicien**
 👩‍💻 Développeuse : Edwige
 🌐 Application : https://dietetic-lab.vercel.app/
 🐙 GitHub : https://github.com/Edwige08
+
+---
+
+🩵 *Développé avec passion pour simplifier la pratique diététique.*
