@@ -1,4 +1,4 @@
-# 🧪 Dietetic Lab
+# 🍍 Dietetic Lab
 
 **Dietetic Lab** est une **Progressive Web App (PWA)** destinée aux **professionnels de la nutrition**, notamment les **diététiciens**.  
 Elle regroupe plusieurs outils permettant de réaliser rapidement différents calculs nutritionnels et évaluations cliniques, aussi bien sur **ordinateur** que sur **téléphone**.
@@ -9,7 +9,6 @@ Elle regroupe plusieurs outils permettant de réaliser rapidement différents ca
 
 - [Description](#-description)
 - [Fonctionnalités](#-fonctionnalités)
-- [Exemples d'utilisation](#-exemples-dutilisation)
 - [Stack technique](#-stack-technique)
 - [Tests et intégration continue](#-tests-et-intégration-continue)
 - [Roadmap](#-roadmap)
