@@ -11,6 +11,7 @@ import { DataSignUp } from "@/types/SignInSignUp";
 import { useRouter } from "next/navigation";
 import { PasswordValidation } from "@/types/PasswordValidation";
 import { VerifyEmail } from "@/utils/VerifyEmail";
+import { VerifyPassword } from "@/utils/VerifyPassword";
 
 export default function SignUpForm() {
     const router = useRouter();
@@ -24,20 +25,6 @@ export default function SignUpForm() {
         hasNum: false,
         hasSpecialChar: false
     });
-
-    const validatePassword = (password: string): PasswordValidation => {
-        const minLength = password.length >= 8;
-        const hasUppercase = /[A-Z]/.test(password);
-        const hasNum = /[0123456789]/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
-        return {
-            minLength,
-            hasUppercase,
-            hasNum,
-            hasSpecialChar
-        };
-    };
 
     const isPasswordValid = passwordValidation.minLength && 
                           passwordValidation.hasUppercase && 
@@ -60,7 +47,7 @@ export default function SignUpForm() {
         }));
 
         if (name === 'password') {
-            const validation = validatePassword(value);
+            const validation = VerifyPassword(value);
             setPasswordValidation(validation);
         }
     }
