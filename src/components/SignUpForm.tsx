@@ -10,6 +10,7 @@ import InputCheckboxWithTitle from "./InputCheckboxWithTitle";
 import { DataSignUp } from "@/types/SignInSignUp";
 import { useRouter } from "next/navigation";
 import { PasswordValidation } from "@/types/PasswordValidation";
+import { VerifyEmail } from "@/utils/VerifyEmail";
 
 export default function SignUpForm() {
     const router = useRouter();
@@ -69,6 +70,11 @@ export default function SignUpForm() {
 
         if (!isPasswordValid) {
             setMessage("Le mot de passe ne respecte pas tous les critères requis");
+            return;
+        }
+
+        if (!VerifyEmail(formData.mail)) {
+            setMessage("Le format de l'adresse email n'est pas correct");
             return;
         }
 
