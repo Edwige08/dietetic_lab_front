@@ -37,7 +37,7 @@ export default function BDDCreationStepTwo(props: {
                 </p>
                 <InputText
                     title="Nom de l'aliment :"
-                    name="title"
+                    name="alim_nom_fr"
                     type="text"
                     value={props.titleValue}
                     onChange={props.onchange}
@@ -46,21 +46,21 @@ export default function BDDCreationStepTwo(props: {
                 <div className="pl-3 mt-5 ml-2 border-l-10 border-(--orangeLightColor) rounded-lg ">
                     <Input
                         title="Calories (kcal) :"
-                        name="calories_kcal"
+                        name="energie_reg_ue_kcal"
                         step={0.1}
                         value={props.caloriesValue}
                         onChange={props.onchange}
                     />
                     <Input
                         title="Protéines (g) :"
-                        name="proteins"
+                        name="proteines"
                         step={0.1}
                         value={props.proteinsValue}
                         onChange={props.onchange}
                     />
                     <Input
                         title="Lipides (g) :"
-                        name="fats"
+                        name="lipides"
                         step={0.1}
                         value={props.fatsValue}
                         onChange={props.onchange}
@@ -97,7 +97,7 @@ export default function BDDCreationStepTwo(props: {
                     </div>
                     <Input
                         title="Glucides (g) :"
-                        name="carbohydrates"
+                        name="glucides"
                         step={0.1}
                         value={props.carbohydratesValue}
                         onChange={props.onchange}
@@ -105,7 +105,7 @@ export default function BDDCreationStepTwo(props: {
                     <div className="pl-3 my-1 ml-2 border-l-10 border-(--yellowLightColor) rounded-lg ">
                         <Input
                             title="dont sucres (g) :"
-                            name="sugars"
+                            name="sucres"
                             step={0.1}
                             value={props.sugarsValue}
                             onChange={props.onchange}
@@ -113,14 +113,14 @@ export default function BDDCreationStepTwo(props: {
                     </div>
                     <Input
                         title="Fibres (g) :"
-                        name="fibers"
+                        name="fibres"
                         step={0.1}
                         value={props.fibersValue}
                         onChange={props.onchange}
                     />
                     <Input
                         title="Alcool (g) :"
-                        name="alcohol"
+                        name="alcool"
                         step={0.1}
                         value={props.alcoholValue}
                         onChange={props.onchange}
@@ -141,14 +141,14 @@ export default function BDDCreationStepTwo(props: {
                     />
                     <Input
                         title="Phosphore (mg) :"
-                        name="phosphorus"
+                        name="phosphore"
                         step={0.1}
                         value={props.phosphorusValue}
                         onChange={props.onchange}
                     />
                     <Input
                         title="Fer (mg) :"
-                        name="iron"
+                        name="fer"
                         step={0.1}
                         value={props.ironValue}
                         onChange={props.onchange}
@@ -162,7 +162,7 @@ export default function BDDCreationStepTwo(props: {
                     />
                     <Input
                         title="Vitamine D (µg) :"
-                        name="vitamin_d"
+                        name="vitamine_d"
                         step={0.1}
                         value={props.vitamin_dValue}
                         onChange={props.onchange}
