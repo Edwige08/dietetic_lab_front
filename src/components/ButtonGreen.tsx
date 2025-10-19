@@ -5,14 +5,16 @@ interface ButtonGreenProps {
     text: string,
     lucide?: LucideIcon,
     disabled?: boolean,
+    onClick?: (() => void) | ((e: React.MouseEvent<HTMLButtonElement>) => Promise<void>) | undefined,
 }
 
 export default function ButtonGreen({
-    type, text, disabled, lucide: Icon }: ButtonGreenProps) {
+    type, text, disabled, lucide: Icon, onClick }: ButtonGreenProps) {
     return (
         <button
             type={type}
-            disabled= {disabled}
+            disabled={disabled}
+            onClick={onClick}
             className="btn text-lg rounded-xl h-13 bg-(--greenColor) shadow-lg text-white hover:bg-(--greenSecondColor) cursor-pointer "
         >
             <p>{Icon && <Icon />}</p>
