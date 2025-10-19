@@ -29,3 +29,11 @@ export interface UserInformations {
   is_dietetician: boolean;
   created_at: string;
 }
+
+export interface UserInformationsToUpdate {
+  firstname: string;
+  lastname: string;
+  gender: string;
+  mail: string;
+  is_dietetician: boolean;
+}
