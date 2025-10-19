@@ -2,7 +2,6 @@
 
 import ButtonGreen from "@/components/ButtonGreen";
 import ButtonOrange from "@/components/ButtonOrange";
-import ButtonRed from "@/components/ButtonRed";
 import InputCheckboxWithTitle from "@/components/InputCheckboxWithTitle";
 import InputText from "@/components/InputText";
 import Title from "@/components/Title";
@@ -98,44 +97,6 @@ export default function Home() {
         }))
     };
 
-    async function deleteAccount(event: React.MouseEvent<HTMLButtonElement>) {
-        event.preventDefault();
-        console.log("DELETE");
-
-        setIsLoading(true);
-        setMessage("");
-        try {
-            console.log("TRY");
-
-            const token = localStorage.getItem('access_token');
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/users/${user?.id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
-
-            if (!response.ok) {
-                console.log("ERROR");
-
-                throw new Error(`❌ Erreur ${response.status} : ${response.statusText}`)
-            }
-            const data = await response.json();
-            console.log(data);
-
-
-        } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
-            setMessage(errorMessage);
-
-        } finally {
-        console.log("FINALLY");
-        
-            setIsLoading(false);
-        }
-    }
-
     return (
         <div className="flex flex-col items-center">
             <Title text="Vos informations personnelles" />
@@ -208,13 +169,6 @@ export default function Home() {
                                 }
                             </div>
                         }
-                    </div>
-                }
-            </div>
-            <div>
-                {!isLoading && !isEditing &&
-                    <div>
-                        <ButtonRed type="button" text="Supprimer mon compte" onClick={(e) => deleteAccount(e)} />
                     </div>
                 }
             </div>
