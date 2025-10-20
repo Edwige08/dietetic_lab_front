@@ -2,13 +2,14 @@
 
 import ButtonGreen from "@/components/ButtonGreen";
 import ButtonOrange from "@/components/ButtonOrange";
+import ButtonRed from "@/components/ButtonRed";
 import InputCheckboxWithTitle from "@/components/InputCheckboxWithTitle";
 import InputText from "@/components/InputText";
 import Title from "@/components/Title";
 import { useUser } from "@/contexts/UserContext";
 import { UserInformations, UserInformationsToUpdate } from "@/types/users";
 import { getDate } from "@/utils/GetDate";
-import { Pencil } from "lucide-react";
+import { Pencil, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [message, setMessage] = useState<string>("");
     const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
 
     async function getUserInformations() {
         setIsLoading(true);
@@ -97,6 +99,36 @@ export default function Home() {
         }))
     };
 
+    async function deleteAccount() {
+        setIsLoading(true);
+        setMessage("");
+        try {
+            const token = localStorage.getItem('access_token');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/users/${user?.id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`❌ Erreur ${response.status} : ${response.statusText}`)
+            }
+
+            // Supprime le token et redirige vers la page d'accueil
+            localStorage.removeItem('access_token');
+            window.location.href = "/";
+
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
+            setMessage(errorMessage);
+            setShowDeleteModal(false);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     return (
         <div className="flex flex-col items-center">
             <Title text="Vos informations personnelles" />
@@ -172,6 +204,55 @@ export default function Home() {
                     </div>
                 }
             </div>
+            <div>
+                {!isLoading && !isEditing &&
+                    <div className="flex flex-col mt-5 mb-8">
+                        <ButtonRed type="button" lucide={X} text="Supprimer mon compte" onClick={() => setShowDeleteModal(true)} />
+                    </div>
+                }
+            </div>
+
+            {showDeleteModal && (
+                <div className="fixed inset-0 flex items-center justify-center z-50">
+                    <div
+                        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+                        onClick={() => setShowDeleteModal(false)}
+                    />
+                    <div className="relative bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+                        {isLoading ? 
+                        <div>
+                            <p className="mb-6 text-center">
+                                Suppression en cours...
+                            </p>
+                        </div>
+                        :
+                        <div>
+                            <h2 className="text-xl font-bold mb-4">Confirmer la suppression</h2>
+                            <p className="mb-6">
+                                Attention ! En supprimant votre compte, toutes vos données seront <span className="font-bold">définitivement perdues</span>.
+                                Cette action est <span className="font-bold">irréversible</span>.
+                            </p>
+                        </div>
+                        }
+                        <div className="flex justify-center gap-4">
+                            <button
+                                onClick={() => setShowDeleteModal(false)}
+                                className="px-4 py-2 border bg-(--greenColor) text-white font-bold rounded-lg hover:bg-gray-100"
+                                disabled={isLoading}
+                            >
+                                Annuler
+                            </button>
+                            <button
+                                onClick={deleteAccount}
+                                className="px-4 py-2  bg-(--redColor) text-white font-bold rounded-lg hover:bg-red-700"
+                                disabled={isLoading}
+                            >
+                                Supprimer définitivement 😢
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
