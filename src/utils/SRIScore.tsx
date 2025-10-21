@@ -23,7 +23,7 @@ export function SRIScoreMinorCriterion(imc: number, weightLoss: number, lowInges
     if (imc > 16 && imc < 18.5) {
         score += 1;
     }
-    if (weightLoss > 10) {
+    if (weightLoss > 10 && weightLoss <= 15) {
         score += 1;
     }
     if (lowIngestaFive) {
