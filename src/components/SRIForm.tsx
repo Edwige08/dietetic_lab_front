@@ -10,6 +10,8 @@ import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
 import { SRIParameters, SRIResults } from "@/types/SRI";
 import { useData } from "@/contexts/DataContext";
+import { SRIScoreMajorCriterion, SRIScoreMinorCriterion } from "@/utils/SRIScore";
+import { WeightLoss } from "@/utils/WeightLoss";
 
 export default function SRIForm() {
     const initialParameters: SRIParameters = {
@@ -43,6 +45,9 @@ export default function SRIForm() {
     const [calculDone, setCalculDone] = useState<boolean>(false);
     const [parameters, setParameters] = useState<SRIParameters>(initialParameters);
     const [results, setResults] = useState<SRIResults>(initialResults);
+    const [message, setMessage] = useState<string>("");
+    const [minorCriteria, setMinorCriteria] = useState<number>(0);
+    const [majorCriteria, setMajorCriteria] = useState<number>(0);
 
     useEffect(() => {
         setParameters({
@@ -91,12 +96,27 @@ export default function SRIForm() {
         event.preventDefault();
         if (parameters.weight > 0 && parameters.height > 0) {
             const imc = CalculateIMC(parameters.weight, parameters.height);
+            setResults(prev => ({
+                ...prev,
+                imc: imc
+            }))
+
+        }
+
+        if (parameters.weight > 0 && parameters.previousWeight > 0) {
+            const weightLoss = WeightLoss(parameters.weight, parameters.previousWeight);
+            setResults(prev => ({
+                ...prev,
+                weightLoss: weightLoss
+            }))
+        }
+
+        if ((parameters.weight > 0 && (parameters.height > 0 || parameters.previousWeight > 0)) || (parameters.lowIngestaTen) || (parameters.potassium > 0 && parameters.phosphorus > 0 && parameters.magnesium > 0) || (parameters.lowIngestaFive && parameters.atcd)) {
             setCalculDone(true);
             setResults(prev => ({
                 ...prev,
                 weight: parameters.weight,
                 height: parameters.height,
-                imc: imc,
                 previousWeight: parameters.previousWeight,
                 lowIngestaFive: parameters.lowIngestaFive,
                 lowIngestaTen: parameters.lowIngestaTen,
@@ -116,25 +136,22 @@ export default function SRIForm() {
                 magnesium: parameters.magnesium,
                 atcd: parameters.atcd,
             })
-        }
-
-        if (parameters.weight > 0 && parameters.previousWeight > 0) {
-            const weightLoss = ((parameters.previousWeight - parameters.weight) / parameters.previousWeight * 100).toFixed(1);
-            setResults(prev => ({
-                ...prev,
-                weightLoss: parseInt(weightLoss)
-            }))
-            updateData({
-                weight: parameters.weight,
-                height: parameters.height,
-                previousWeight: parameters.previousWeight,
-                lowIngestaFive: parameters.lowIngestaFive,
-                lowIngestaTen: parameters.lowIngestaTen,
-                potassium: parameters.potassium,
-                phosphorus: parameters.phosphorus,
-                magnesium: parameters.magnesium,
-                atcd: parameters.atcd,
-            })
+            setMajorCriteria(SRIScoreMajorCriterion(
+                CalculateIMC(parameters.weight, parameters.height),
+                WeightLoss(parameters.weight, parameters.previousWeight),
+                parameters.lowIngestaTen,
+                parameters.potassium,
+                parameters.phosphorus,
+                parameters.magnesium
+            ));
+            setMinorCriteria(SRIScoreMinorCriterion(
+                CalculateIMC(parameters.weight, parameters.height),
+                WeightLoss(parameters.weight, parameters.previousWeight),
+                parameters.lowIngestaFive,
+                parameters.atcd
+            ));
+        } else {
+            setMessage("Merci de bien remplir les champs nécessaires à l'évaluation du risque de SRI")
         }
     }
 
@@ -142,6 +159,7 @@ export default function SRIForm() {
         setParameters(initialParameters);
         setCalculDone(false);
         resetData();
+        setMessage("");
     }
 
     return (
@@ -218,6 +236,16 @@ export default function SRIForm() {
                         title="Antécédents d&apos;éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique"
                         onChange={handleChange}
                     />
+
+                    {message &&
+                        <div role="alert" className="alert border border-(--redColor) text-(--redColor) p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>{message}</span>
+                        </div>
+                    }
+
                     <ButtonGreen
                         text="Calculer"
                         type="submit"
@@ -249,36 +277,71 @@ export default function SRIForm() {
                             Avec un poids antérieur de <span className="font-bold">{results.previousWeight} kg</span>, la perte de poids est estimée à <span className="font-bold">{results.weightLoss} %</span>.
                         </p>
                     }
+
                     <div>
-                        <p className="underline">
-                            Critère(s) majeur(s) :
-                        </p>
-                        {((results.imc < 16) || (results.weightLoss > 15) || (results.lowIngestaTen) || (results.potassium > 0 && results.potassium < 3.5) || (results.phosphorus > 0 && results.phosphorus < 0.81) || (results.magnesium > 0 && results.magnesium > 0.65)) ?
-                            <ul className="pl-5 list-disc">
-                                {results.imc < 16 && <li>IMC inférieur à 16 kg/m²</li>}
-                                {results.weightLoss > 15 && <li>Perte de poids de plus de 15 % en 3 à 6 mois</li>}
-                                {results.lowIngestaTen && <li>Ingesta faibles ou nuls depuis plus de 10 jours</li>}
-                                {results.potassium > 0 && results.potassium < 3.5 && <li>Potassium trop bas (inférieur à 3,5 mmol/L)</li>}
-                                {results.phosphorus > 0 && results.phosphorus < 0.81 && <li>Phosphore trop bas (inférieur à 0,81 mmol/L)</li>}
-                                {results.magnesium > 0 && results.magnesium < 0.65 && <li>Magnésium trop bas (inférieur à 0,65 mmol/L)</li>}
-                            </ul>
-                            : "Aucun"}
+                        {majorCriteria < 1 ?
+                            <p><span className="underline">Critère majeur</span> : Aucun</p>
+                            :
+                            <div>
+                                {majorCriteria > 1 ?
+                                    <p><span className="underline">Critères majeurs</span> :</p>
+                                    :
+                                    <p><span className="underline">Critère majeur</span> :</p>
+                                }
+                                <ul className="pl-5 list-disc">
+                                    {results.imc > 0 && results.imc < 16 && <li>IMC inférieur à 16 kg/m²</li>}
+                                    {results.weightLoss > 15 && <li>Perte de poids de plus de 15 % en 3 à 6 mois</li>}
+                                    {results.lowIngestaTen && <li>Ingesta faibles ou nuls depuis plus de 10 jours</li>}
+                                    {results.potassium > 0 && results.potassium < 3.5 && <li>Potassium trop bas (inférieur à 3,5 mmol/L)</li>}
+                                    {results.phosphorus > 0 && results.phosphorus < 0.81 && <li>Phosphore trop bas (inférieur à 0,81 mmol/L)</li>}
+                                    {results.magnesium > 0 && results.magnesium < 0.65 && <li>Magnésium trop bas (inférieur à 0,65 mmol/L)</li>}
+                                </ul>
+                            </div>
+                        }
                     </div>
+
                     <div>
-                        <p className="underline">
-                            Critère(s) mineur(s) :
-                        </p>
-                        {((results.imc > 16 && results.imc < 18.5) || (results.weightLoss > 10 && results.weightLoss <= 15) || (results.lowIngestaFive && !results.lowIngestaTen) || (results.atcd)) ?
-                            <ul className="pl-5 list-disc">
-                                {results.imc > 16 && results.imc < 18.5 && <li>IMC inférieur à 18,5 kg/m²</li>}
-                                {results.weightLoss > 10 && results.weightLoss <= 15 && <li>Perte de poids de plus de 10 % en 3 à 6 mois</li>}
-                                {results.lowIngestaFive && <li>Ingesta faibles ou nuls depuis plus de 5 jours</li>}
-                                {results.atcd && <li>Antécédents d&apos;éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique</li>}
-                            </ul>
-                            : "Aucun"}
+                        {minorCriteria < 1 ?
+                            <p><span className="underline">Critère mineur</span> : Aucun</p>
+                            :
+                            <div>
+                                {minorCriteria > 1 ?
+                                    <p><span className="underline">Critères mineurs</span> :</p>
+                                    :
+                                    <p><span className="underline">Critère mineur</span> :</p>
+                                }
+                                <ul className="pl-5 list-disc">
+                                    {results.imc > 16 && results.imc < 18.5 && <li>IMC inférieur à 18,5 kg/m²</li>}
+                                    {results.weightLoss > 10 && results.weightLoss <= 15 && <li>Perte de poids de plus de 10 % en 3 à 6 mois</li>}
+                                    {results.lowIngestaFive && <li>Ingesta faibles ou nuls depuis plus de 5 jours</li>}
+                                    {results.atcd && <li>Antécédents d&apos;éthylisme, traitement par insuline, chimiothérapie, antiacides, diurétiques, chirurgie bariatrique</li>}
+                                </ul>
+                            </div>
+                        }
                     </div>
+
                     <div>
-                        La présence d&apos;1 critère majeur ou d&apos;au moins 2 critères mineurs suffit à diagnostiquer le risque de SRI.
+                        {majorCriteria >= 1 && minorCriteria >= 2 ?
+                            <p>En présence d&apos;au moins 1 critère majeur et 2 critères mineurs, on peut affirmer la présence d&apos;un <span className="font-bold underline">risque de syndrome de renutrition inappropriée</span>.</p>
+                            :
+                            <div>
+                                {(majorCriteria >= 1 && minorCriteria < 1) ?
+                                    <p>En présence d&apos;au moins 1 critère majeur, on peut affirmer la présence d&apos;un <span className="font-bold underline">risque de syndrome de renutrition inappropriée</span>.</p>
+                                    :
+                                    <div>
+                                        {(majorCriteria < 1 && minorCriteria >= 2) ?
+                                            <p>En présence d&apos;au moins 2 critères mineurs, on peut affirmer la présence d&apos;un <span className="font-bold underline">risque de syndrome de renutrition inappropriée</span>.</p>
+                                            :
+                                            <div>
+                                                {(majorCriteria < 1 && minorCriteria < 2) &&
+                                                    <p>En l&apos;absence d&apos;au moins 1 critère majeur ou de 2 critères mineurs, <span className="font-bold underline">le diagnostic du risque de SRI ne peut pas être posé</span>.</p>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
             }
