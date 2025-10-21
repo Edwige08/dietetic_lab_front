@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Josefin_Sans } from "next/font/google";
+import { PT_Sans } from "next/font/google";
 import "./globals.css";
 import Dock from "@/components/Dock";
 import Head from "next/head";
@@ -10,11 +10,11 @@ import { CSPostHogProvider } from '../components/PosthogProvider'
 import PostHogPageView from './PostHogPageView'
 import { Suspense } from 'react'
 
-const josefinSans = Josefin_Sans({
-  variable: "--font-josefin-sans",
+const ptSans = PT_Sans({
+  variable: "--font-pt-sans",
   subsets: ["latin"],
   weight: ['400', '700'],
-});
+}); 
 
 export const metadata: Metadata = {
   title: "Dietetic Lab",
@@ -37,7 +37,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Mon App PWA" />
       </Head>
-      <body className={`${josefinSans.variable} antialiased pb-20 min-h-screen bg-(--background)`}>
+      <body className={`${ptSans.variable} antialiased pb-20 min-h-screen bg-(--background)`}>
         <CSPostHogProvider>
           <UserProvider>
             <DataProvider>
