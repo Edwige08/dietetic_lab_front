@@ -18,7 +18,7 @@ export default function ButtonDisconnect({
                 type={type}
                 disabled={disabled}
                 onClick={logout}
-                className="btn text-lg rounded-xl h-13 bg-(--redColor) shadow-lg text-white hover:bg-(--redColor) cursor-pointer "
+                className="btn text-lg rounded-xl h-13 bg-(--redColor) shadow-lg text-white hover:bg-(--redSecondColor) cursor-pointer "
             >
                 <p>{Icon && <Icon />}</p>
                 <p>{text}</p>
