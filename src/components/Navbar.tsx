@@ -14,11 +14,11 @@ export default function Navbar() {
             <div className="navbar-center m-auto md:m-0">
                 <Link href="/" className="flex flex-row items-center gap-2 font-bold text-3xl">
                     <Image
-                        src="/logo_plat.png"
-                        width={500}
-                        height={132}
+                        src="/new_logo_dietetic_lab.png"
+                        width={480}
+                        height={129}
                         alt="Logo de Dietetic Lab"
-                        className="h-16 w-60"
+                        className="h-16 w-59"
                     />
                 </Link>
             </div>

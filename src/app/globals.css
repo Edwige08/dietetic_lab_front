@@ -2,21 +2,28 @@
 @plugin "daisyui";
 
 :root {
-  --greenLightColor: #c6e791;
-  --greenColor: #799d41;
-  --greenSecondColor: #607d32;
-  --redLightColor: #ea9799;
-  --redColor: #d5282C;
-  --redSecondColor: #b22124;
-  --orangeLightColor: #f9c8a7;
-  --orangeColor: #ea843e;
-  --yellowLightColor: #faeaac;
-  --yellowColor: #ffde59;
+  --greenLightColor1: #c6e791;
+  --greenLightColor: #bffe59;
+  --greenColor: #79C300;
+  --greenButtonColor: #518400;
+  --greenSecondColor: #487400;
+  --greenSecondColor1: #59732E;
+  --redLightColor1: #ea9799;
+  --redLightColor: #ff95a3;
+  --redColor: #CD001A;
+  --redSecondColor: #a40016;
+  --redSecondColor1: #b22124;
+  --orangeLightColor1: #f9c8a7;
+  --orangeLightColor: #ffb87e;
+  --orangeColor: #EF6A00;
+  --yellowLightColor1: #faeaac;
+  --yellowLightColor: #ffec81;
+  --yellowColor: #F2CD00;
   --yellowSecondColor: #d4ac0b;
   --blueLightColor: #c9e4fd;
-  --blueColor: #2191fb;
-  --pinkColor: #ff9fb2;
-  --purpleColor: #805d93;
+  --blueColor: #1961AE;
+  /* --pinkColor: #ff9fb2; */
+  /* --purpleColor: #61007D; */
   --grayLightColor: #e9e9ea;
   --grayMediumColor: #c8c8c8;
   --grayColor: #494e5f;
