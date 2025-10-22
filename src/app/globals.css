@@ -2,27 +2,21 @@
 @plugin "daisyui";
 
 :root {
-  --greenLightColor1: #c6e791;
   --greenLightColor: #bffe59;
   --greenColor: #79C300;
   --greenButtonColor: #518400;
   --greenSecondColor: #487400;
-  --greenSecondColor1: #59732E;
-  --redLightColor1: #ea9799;
   --redLightColor: #ff95a3;
   --redColor: #CD001A;
   --redSecondColor: #a40016;
-  --redSecondColor1: #b22124;
-  --orangeLightColor1: #f9c8a7;
   --orangeLightColor: #ffb87e;
   --orangeColor: #EF6A00;
-  --yellowLightColor1: #faeaac;
+  --orangeSecondColor: #dc6300;
   --yellowLightColor: #ffec81;
   --yellowColor: #F2CD00;
   --yellowSecondColor: #d4ac0b;
-  --blueLightColor: #c9e4fd;
+  --blueLightColor: #b0d5fb;
   --blueColor: #1961AE;
-  /* --pinkColor: #ff9fb2; */
   /* --purpleColor: #61007D; */
   --grayLightColor: #e9e9ea;
   --grayMediumColor: #c8c8c8;

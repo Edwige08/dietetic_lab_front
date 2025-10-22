@@ -16,7 +16,7 @@ export default function ButtonOrange({
                 type={type}
                 disabled={disabled}
                 onClick={onClick}
-                className="btn text-lg rounded-xl h-13 bg-(--orangeColor) shadow-lg text-black hover:bg-(--orangeColor) cursor-pointer "
+                className="btn text-lg rounded-xl h-13 bg-(--orangeColor) shadow-lg text-black hover:bg-(--orangeSecondColor) cursor-pointer "
             >
                 <p>{Icon && <Icon />}</p>
                 <p>{text}</p>
