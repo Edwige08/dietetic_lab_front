@@ -10,16 +10,54 @@ import { CalculateIMC } from "@/utils/CalculateIMC";
 import { IMCParameters, IMCResults } from "@/types/IMC";
 import { IMCCategory } from "@/utils/IMCCategory";
 import { useData } from "@/contexts/DataContext";
-import { useAnalytics } from '@/utils/usePosthog'
+import { useAnalytics } from '@/utils/usePosthog';
+import { useUser } from "@/contexts/UserContext";
 
 export default function IMCForm() {
     const { data, resetData, updateData } = useData();
-    const { trackEvent, identifyUser } = useAnalytics()
+    const { trackEvent } = useAnalytics();
+    const { isAuthenticated } = useUser();
 
     const [weightHeight, setWeightHeight] = useState<IMCParameters>({ weight: data.weight, height: data.height });
     const [IMCresults, setIMCResults] = useState<IMCResults>({ weight: 0, height: 0, imc: 0 });
     const [calculDone, setCalculDone] = useState<boolean>(false);
     const [message, setMessage] = useState<string>("");
+
+
+    const saveIMCHistory = async (weight: number, height: number, imc: number) => {
+        try {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                console.error('Pas de token trouvé');
+                return;
+            }
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/imc-histories/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    weight: Number(weight),
+                    height: Number(height),
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Erreur lors de la sauvegarde des données :', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    error: errorData
+                });
+            }
+        } catch (error) {
+            console.error('Erreur lors de la sauvegarde des données :', {
+                error: error instanceof Error ? error.message : error
+            });
+        }
+    };
 
     useEffect(() => {
         setWeightHeight({
@@ -53,7 +91,22 @@ export default function IMCForm() {
                 height: weightHeight.height,
                 imc: parseFloat(imc.toFixed(2)),
                 is_reusing_data: weightHeight.weight === data.weight && weightHeight.height === data.height
-            })
+            });
+
+            // Sauvegarde asynchrone si l'utilisateur est connecté
+            if (isAuthenticated) {
+                saveIMCHistory(weightHeight.weight, weightHeight.height, imc)
+                    .then(() => {
+                        trackEvent('imc_saved', {
+                            success: true
+                        });
+                    })
+                    .catch(() => {
+                        trackEvent('imc_saved', {
+                            success: false
+                        });
+                    });
+            }
 
         } else if (weightHeight.weight > 0 && weightHeight.height == 0) {
             setMessage("Vous avez oublié d'entrer une taille");
