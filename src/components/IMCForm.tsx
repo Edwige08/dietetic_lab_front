@@ -9,6 +9,7 @@ import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
 import { IMCParameters, IMCResults } from "@/types/IMC";
 import { IMCCategory } from "@/utils/IMCCategory";
+import { IMCCategoryColor } from "@/utils/ResultsColors";
 import { useData } from "@/contexts/DataContext";
 import { useAnalytics } from '@/utils/usePosthog';
 import { useUser } from "@/contexts/UserContext";
@@ -194,7 +195,7 @@ export default function IMCForm() {
 
             {calculDone &&
                 <div
-                    className="flex flex-col gap-4 px-4 pb-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
+                    className={`flex flex-col gap-4 px-4 pb-4 m-3 w-[90%] md:w-[75%] ${IMCCategoryColor(IMCresults.imc)} border border-black rounded-xl shadow-xl`}
                 >
                     <TitleTwo text="🎯 Résultats&nbsp;:" />
                     <p>
