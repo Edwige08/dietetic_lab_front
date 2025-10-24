@@ -10,14 +10,57 @@ import { CalculateIMC } from "@/utils/CalculateIMC";
 import { CalculateDEJBlackMan, CalculateDEJBlackWoman, CalculateDEJHandBMan, CalculateDEJHandBWoman } from "@/utils/CalculateDEJ";
 import { DEJParameters, DEJResults } from "@/types/DEJ";
 import { useData } from "@/contexts/DataContext";
+import { useUser } from "@/contexts/UserContext";
+import { useAnalytics } from '@/utils/usePosthog';
 
 export default function DEJAdult() {
     const { data, updateData, resetData } = useData();
+    const { isAuthenticated } = useUser();
+    const { trackEvent } = useAnalytics();
 
     const [dejParameters, setDejParameters] = useState<DEJParameters>({ weight: 0, height: 0, age: 0, gender: "f", nap: 0 })
     const [dejResults, setDejResults] = useState<DEJResults>({ weight: 0, height: 0, imc: 0, age: 0, gender: "f", nap: 0 })
     const [calculDone, setCalculDone] = useState<boolean>(false);
     const [message, setMessage] = useState<string>("");
+
+
+    const saveDEJHistory = async (weight: number, height: number, age: number, nap: number, gender: string) => {
+        try {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                console.error('Pas de token trouvé');
+                return;
+            }
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/dej-histories/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    weight: Number(weight),
+                    height: Number(height),
+                    age: Number(age),
+                    nap: Number(nap),
+                    gender: gender,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Erreur lors de la sauvegarde des données :', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    error: errorData
+                });
+            }
+        } catch (error) {
+            console.error('Erreur lors de la sauvegarde des données :', {
+                error: error instanceof Error ? error.message : error
+            });
+        }
+    };
 
     useEffect(() => {
         setDejParameters({
@@ -63,10 +106,43 @@ export default function DEJAdult() {
                 age: dejParameters.age,
                 gender: dejParameters.gender,
                 nap: dejParameters.nap,
-            })
+            });
+
+            trackEvent('dej_calculated', {
+                weight: dejParameters.weight,
+                height: dejParameters.height,
+                age: dejParameters.age,
+                gender: dejParameters.gender,
+                nap: dejParameters.nap,
+                is_reusing_data: dejParameters.weight === data.weight && dejParameters.height === data.height
+            });
+
+            // Sauvegarde asynchrone si l'utilisateur est connecté
+            if (isAuthenticated) {
+                saveDEJHistory(
+                    dejParameters.weight,
+                    dejParameters.height,
+                    dejParameters.age,
+                    dejParameters.nap,
+                    dejParameters.gender
+                )
+                    .then(() => {
+                        trackEvent('dej_saved', {
+                            success: true
+                        });
+                    })
+                    .catch(() => {
+                        trackEvent('dej_saved', {
+                            success: false
+                        });
+                    });
+            }
 
         } else {
-            setMessage("Merci de bien remplir tous les champs")
+            setMessage("Merci de bien remplir tous les champs");
+            trackEvent('dej_calculation_error', {
+                error_type: 'missing_fields',
+            });
         }
     }
 
