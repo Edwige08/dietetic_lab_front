@@ -12,6 +12,8 @@ import { UndernutParameters, UndernutResults } from "@/types/Undernutrition";
 import { IMCCategorySimple } from "@/utils/IMCCategory";
 import { textPreviousWeight } from "@/utils/PreviousWeight";
 import { useData } from "@/contexts/DataContext";
+import { useUser } from "@/contexts/UserContext";
+import { useAnalytics } from '@/utils/usePosthog';
 
 export default function UndernutritionAdult() {
     const initialParameters: UndernutParameters = {
@@ -41,11 +43,65 @@ export default function UndernutritionAdult() {
     }
 
     const { data, resetData, updateData } = useData();
+    const { isAuthenticated } = useUser();
+    const { trackEvent } = useAnalytics();
 
     const [parameters, setParameters] = useState<UndernutParameters>(initialParameters);
     const [evaluationResults, setEvaluationResults] = useState<UndernutResults>(initialResults);
     const [calculDone, setCalculDone] = useState<boolean>(false);
     const [message, setMessage] = useState<string>("");
+
+    const saveUndernutritionHistory = async (
+        weight: number,
+        height: number,
+        previous_weight: number,
+        previous_weight_date: string,
+        albuminemia: number,
+        sarcopenia: boolean,
+        etiological_food_intakes: boolean,
+        etiological_absorption: boolean,
+        etiological_agression: boolean
+    ) => {
+        try {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                console.error('Pas de token trouvé');
+                return;
+            }
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/undernutrition-adult-histories/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    weight: Number(weight),
+                    height: Number(height),
+                    previous_weight: Number(previous_weight),
+                    previous_weight_date,
+                    albuminemia: Number(albuminemia),
+                    sarcopenia,
+                    etiological_food_intakes,
+                    etiological_absorption,
+                    etiological_agression
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Erreur lors de la sauvegarde des données :', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    error: errorData
+                });
+            }
+        } catch (error) {
+            console.error('Erreur lors de la sauvegarde des données :', {
+                error: error instanceof Error ? error.message : error
+            });
+        }
+    };
 
     useEffect(() => {
         setParameters({
@@ -158,6 +214,40 @@ export default function UndernutritionAdult() {
                 etiologicalAbsorption: parameters.etiologicalAbsorption,
                 etiologicalAgression: parameters.etiologicalAgression,
             })
+
+            trackEvent('undernutrition_adult_calculated', {
+                has_weight: parameters.weight > 0,
+                has_height: parameters.height > 0,
+                has_previous_weight: parameters.previousWeight > 0,
+                has_albuminemia: parameters.albuminemia > 0,
+                has_sarcopenia: parameters.sarcopenia,
+                has_etiological_factors: parameters.etiologicalFoodIntake || parameters.etiologicalAbsorption || parameters.etiologicalAgression
+            });
+
+            // Sauvegarde asynchrone si l'utilisateur est connecté
+            if (isAuthenticated) {
+                saveUndernutritionHistory(
+                    parameters.weight,
+                    parameters.height,
+                    parameters.previousWeight,
+                    parameters.previousWeightDate,
+                    parameters.albuminemia,
+                    parameters.sarcopenia,
+                    parameters.etiologicalFoodIntake,
+                    parameters.etiologicalAbsorption,
+                    parameters.etiologicalAgression
+                )
+                    .then(() => {
+                        trackEvent('undernutrition_adult_saved', {
+                            success: true
+                        });
+                    })
+                    .catch(() => {
+                        trackEvent('undernutrition_adult_saved', {
+                            success: false
+                        });
+                    });
+            }
         } else {
             setMessage("Merci de bien remplir les champs nécessaires")
         }
@@ -367,11 +457,11 @@ export default function UndernutritionAdult() {
                                     </div>
                                     <p>Il s&apos;agit donc d&apos;une <span className="text-lg font-bold underline">dénutrition sévère</span>.</p>
                                 </div>
-                                : 
+                                :
                                 <p>Il s&apos;agit ici d&apos;une <span className="text-lg font-bold underline">dénutrition modérée</span>.</p>}
 
                         </div>
-                        : 
+                        :
                         <p>En l&apos;absence d&apos;au moins un critère phénotypique et un critère étiologique, on ne peut pas poser le diagnostic de dénutrition. En ambulatoire, le patient est à réévaluer à chaque consultation. En cas d&apos;hospitalisation, réévaluation une fois par semaine (en MCO) ou toutes les 2 semaines (en SSR).</p>}
                 </div>
             }
