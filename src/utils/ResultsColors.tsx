@@ -7,3 +7,9 @@ export const IMCCategoryColor = (imc: number): string => {
     else if (imc < 45) return "bg-(--redLightColor)"
     else return "bg-(--redLightColor)"
 }
+
+export const UndernutritionCategoryColor = (result: "no" | "moderate" | "severe"): string => {
+    if (result === "no") return "bg-(--greenLightColor)"
+    else if (result === "moderate") return "bg-(--orangeLightColor)"
+    else return "bg-(--redLightColor)"
+}

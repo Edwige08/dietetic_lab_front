@@ -1,6 +1,7 @@
 import { expect, test } from 'vitest';
-import { IMCCategoryColor } from './ResultsColors';
+import { IMCCategoryColor, UndernutritionCategoryColor } from './ResultsColors';
 
+// TEST IMCCategoryColor --------------------------------------------
 test('imc < 18,5 = "bg-(--yellowLightColor)"', () => {
     expect(IMCCategoryColor(1)).toBe('bg-(--yellowLightColor)')
 })
@@ -42,4 +43,15 @@ test('imc >= 45 = "bg-(--redLightColor)"', () => {
 })
 test('imc >= 45 = "bg-(--redLightColor)"', () => {
     expect(IMCCategoryColor(50)).toBe('bg-(--redLightColor)')
+})
+
+// TEST UndernutritionCategoryColor --------------------------------------------
+test('undernutrition = "no" = "bg-(--greenLightColor)"', () => {
+    expect(UndernutritionCategoryColor("no")).toBe("bg-(--greenLightColor)")
+})
+test('undernutrition = "moderate" = "bg-(--orangeLightColor)"', () => {
+    expect(UndernutritionCategoryColor("moderate")).toBe("bg-(--orangeLightColor)")
+})
+test('undernutrition = "severe" = "bg-(--redLightColor)"', () => {
+    expect(UndernutritionCategoryColor("severe")).toBe("bg-(--redLightColor)")
 })
