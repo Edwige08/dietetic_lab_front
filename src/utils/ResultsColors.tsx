@@ -13,3 +13,10 @@ export const UndernutritionCategoryColor = (result: "no" | "moderate" | "severe"
     else if (result === "moderate") return "bg-(--orangeLightColor)"
     else return "bg-(--redLightColor)"
 }
+
+export const SRICategoryColor = (majorCriterion: number, minorCriterion: number): string => {
+    if (majorCriterion > 0) return "bg-(--redLightColor)"
+    else if ((minorCriterion > 1)) return "bg-(--redLightColor)"
+    else if (minorCriterion  === 1) return "bg-(--orangeLightColor)"
+    else return "bg-(--greenLightColor)"
+}
