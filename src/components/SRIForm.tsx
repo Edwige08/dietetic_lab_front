@@ -12,6 +12,7 @@ import { SRIParameters, SRIResults } from "@/types/SRI";
 import { useData } from "@/contexts/DataContext";
 import { SRIScoreMajorCriterion, SRIScoreMinorCriterion } from "@/utils/SRIScore";
 import { WeightLoss } from "@/utils/WeightLoss";
+import { SRICategoryColor } from "@/utils/ResultsColors";
 
 export default function SRIForm() {
     const initialParameters: SRIParameters = {
@@ -262,7 +263,7 @@ export default function SRIForm() {
             </form>
             {calculDone &&
                 <div
-                    className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
+                    className={`flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] ${SRICategoryColor(majorCriteria, minorCriteria)} border border-gray-300 rounded-xl shadow-xl`}
                 >
                     <TitleTwo
                         text="🎯 Résultats&nbsp;:"
@@ -273,9 +274,17 @@ export default function SRIForm() {
                         </p>
                     }
                     {(results.weight > 0 && results.previousWeight > 0) &&
-                        <p>
-                            Avec un poids antérieur de <span className="font-bold">{results.previousWeight} kg</span>, la perte de poids est estimée à <span className="font-bold">{results.weightLoss} %</span>.
-                        </p>
+                        <div>
+                            {results.weightLoss > 0 ?
+                                <p>
+                                    Avec un poids antérieur de <span className="font-bold">{results.previousWeight} kg</span>, la perte de poids est estimée à <span className="font-bold">{results.weightLoss} %</span>.
+                                </p>
+                                :
+                                <p>
+                                    Le poids antérieur (<span className="font-bold">{results.previousWeight} kg</span>) étant plus faible ou égal au poids actuel, il n&apos;y a <span className="font-bold">pas de perte de poids à signaler</span>.
+                                </p>
+                            }
+                        </div>
                     }
 
                     <div>
@@ -325,7 +334,7 @@ export default function SRIForm() {
                             <p>En présence d&apos;au moins 1 critère majeur et 2 critères mineurs, on peut affirmer la présence d&apos;un <span className="font-bold underline">risque de syndrome de renutrition inappropriée</span>.</p>
                             :
                             <div>
-                                {(majorCriteria >= 1 && minorCriteria < 1) ?
+                                {(majorCriteria >= 1 && minorCriteria < 2) ?
                                     <p>En présence d&apos;au moins 1 critère majeur, on peut affirmer la présence d&apos;un <span className="font-bold underline">risque de syndrome de renutrition inappropriée</span>.</p>
                                     :
                                     <div>

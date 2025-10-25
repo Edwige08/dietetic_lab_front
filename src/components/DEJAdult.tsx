@@ -235,7 +235,7 @@ export default function DEJAdult() {
             </form>
             {calculDone &&
                 <div
-                    className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-(--orangeLightColor) border border-gray-300 rounded-xl shadow-xl"
+                    className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-black rounded-xl shadow-xl"
                 >
                     <TitleTwo
                         text="🎯 Résultats&nbsp;:"
