@@ -31,7 +31,8 @@ export default function IngestaForm() {
         setMessage("");
 
         try {
-            const ciqualResponse = await fetch('/table_ciqual_2020.json');
+            // const ciqualResponse = await fetch('/table_ciqual_2020.json');
+            const ciqualResponse = await fetch('https://ciqual-api.vercel.app/foods');
             const dataCiqual = await ciqualResponse.json();
 
             let dataDb: CiqualData[] = [];
@@ -47,9 +48,9 @@ export default function IngestaForm() {
                         },
                     })
 
-                    
+
                     if (dbResponse.ok) {
-                        const dbData  = await dbResponse.json();
+                        const dbData = await dbResponse.json();
                         dataDb = dbData.results || [];
                     } else {
                         console.warn('Réponse BDD non OK:', dbResponse.status);
@@ -62,7 +63,8 @@ export default function IngestaForm() {
             }
 
             const mergedData = [...dataDb, ...dataCiqual];
-            
+            console.log("🍎", mergedData);
+
             setCiqualAndDbData(mergedData);
 
         } catch (error) {
@@ -125,7 +127,7 @@ export default function IngestaForm() {
         event.preventDefault();
 
         if (!foodWithQuantity.food || foodWithQuantity.quantity <= 0) {
-            alert("Veuillez sélectionner un aliment et lui associer une quantité");
+            setMessage("Veuillez sélectionner un aliment et lui associer une quantité");
             return;
         }
 
@@ -220,6 +222,7 @@ export default function IngestaForm() {
 
         setFoodList(prev => [...prev, foodAdded]);
         setFoodWithQuantity({ food: "", quantity: 0 })
+        setMessage("");
     }
 
     // Remove a food from the food list :
@@ -366,6 +369,11 @@ export default function IngestaForm() {
         // "zinc": 0,
     });
 
+    const resetList = () => {
+        setFoodList([]);
+        setMessage("");
+    }
+
     return (
         <>
             <Title
@@ -378,6 +386,10 @@ export default function IngestaForm() {
                 <TitleTwo
                     text="Ajouter des aliments au calcul"
                 />
+
+                {message ?
+                    <div className="p-2 text-center border border-(--redColor) bg-(--redLightColor)">{message}</div> : ""
+                }
 
                 <div className="relative">
                     <InputText
@@ -446,6 +458,9 @@ export default function IngestaForm() {
                                 />
                             )
                         })}
+                        <button type="reset" onClick={resetList} className="underline pt-5 pb-3">
+                            Réinitialiser la liste des aliments
+                        </button>
                     </div>
                 }
             </div>
