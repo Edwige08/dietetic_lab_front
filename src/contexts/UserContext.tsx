@@ -30,18 +30,30 @@ export function UserProvider({ children }: UserProviderProps) {
   const refreshToken = async (): Promise<boolean> => {
     try {
       const currentToken = localStorage.getItem('access_token');
-      if (!currentToken) return false;
+      if (!currentToken) {
+        return false;
+      }
+      
+      const refreshToken = localStorage.getItem('refresh_token');
+      if (!refreshToken) {
+        return false;
+      }
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/auth/refresh/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${currentToken}`
-        }
+        },
+        body: JSON.stringify({
+          refresh: refreshToken
+        })
       });
 
       if (!response.ok) {
-        throw new Error('Échec du rafraîchissement du token');
+        const errorData = await response.text();
+        console.error('Réponse du serveur:', response.status, errorData);
+        console.error('Headers de la réponse:', Object.fromEntries(response.headers.entries()));
+        throw new Error(`Échec du rafraîchissement du token: ${response.status} ${errorData}`);
       }
 
       const data = await response.json();
@@ -72,19 +84,21 @@ export function UserProvider({ children }: UserProviderProps) {
   }, [user]);
 
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    const userData = localStorage.getItem('user_data');
-
-    if (token && userData) {
-      try {
-        const parsedUser: User = JSON.parse(userData);
-        setUser(parsedUser);
-      } catch (error) {
-        localStorage.removeItem('user_data');
-        localStorage.removeItem('access_token');
+    const initializeUser = async () => {
+      const token = localStorage.getItem('access_token');
+      if (token) {
+        // On vérifie simplement si le token est encore valide
+        const isValid = await refreshToken();
+        if (!isValid) {
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('refresh_token');
+          setUser(null);
+        }
       }
-    }
-    setLoading(false);
+      setLoading(false);
+    };
+
+    initializeUser();
   }, []);
 
   const login = async (email: string, password: string): Promise<LoginResult> => {
@@ -107,6 +121,7 @@ export function UserProvider({ children }: UserProviderProps) {
 
       const data: LoginResponse = await response.json();
       localStorage.setItem('access_token', data.access);
+      localStorage.setItem('refresh_token', data.refresh);
       setUser(data.user);
       return { success: true };
 
@@ -122,7 +137,7 @@ export function UserProvider({ children }: UserProviderProps) {
     router.push("/")
     setTimeout(() => {
       localStorage.removeItem('access_token');
-      localStorage.removeItem('user_data');
+      localStorage.removeItem('refresh_token');
       setUser(null);
     }, 1000);
   };
@@ -131,7 +146,7 @@ export function UserProvider({ children }: UserProviderProps) {
     router.push("/signin")
     setTimeout(() => {
       localStorage.removeItem('access_token');
-      localStorage.removeItem('user_data');
+      localStorage.removeItem('refresh_token');
       setUser(null);
     }, 1000);
   };
