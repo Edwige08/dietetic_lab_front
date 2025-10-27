@@ -6,24 +6,24 @@ import InputText from "./InputText";
 export default function FoodCreation(props: {
     onSubmit: FormEventHandler<HTMLFormElement>,
     databaseName: string,
-    titleValue: string,
-    caloriesValue: string | number,
-    proteinsValue: string | number,
-    fatsValue: string | number,
-    agsValue: string | number,
-    agmiValue: string | number,
-    agpiValue: string | number,
-    cholesterolValue: string | number,
-    carbohydratesValue: string | number,
-    sugarsValue: string | number,
-    fibersValue: string | number,
-    alcoholValue: string | number,
-    sodiumValue: string | number,
-    potassiumValue: string | number,
-    phosphorusValue: string | number,
-    ironValue: string | number,
-    calciumValue: string | number,
-    vitamin_dValue: string | number,
+    alim_nom_fr: string,
+    energie_reg_ue_kcal: string | number,
+    proteines: string | number,
+    lipides: string | number,
+    ags: string | number,
+    agmi: string | number,
+    agpi: string | number,
+    cholesterol: string | number,
+    glucides: string | number,
+    sucres: string | number,
+    fibres: string | number,
+    alcool: string | number,
+    sodium: string | number,
+    potassium: string | number,
+    phosphore: string | number,
+    fer: string | number,
+    calcium: string | number,
+    vitamine_d: string | number,
     onchange: ChangeEventHandler<HTMLInputElement>,
 }) {
     return (
@@ -33,32 +33,32 @@ export default function FoodCreation(props: {
             </p>
             <InputText
                 title="Nom de l'aliment :"
-                name="title"
+                name="alim_nom_fr"
                 type="text"
-                value={props.titleValue}
+                value={props.alim_nom_fr}
                 onChange={props.onchange}
             />
 
             <div className="pl-3 mt-5 ml-2 border-l-10 border-(--orangeLightColor) rounded-lg ">
                 <Input
                     title="Calories (kcal) :"
-                    name="calories_kcal"
+                    name="energie_reg_ue_kcal"
                     step={0.1}
-                    value={props.caloriesValue}
+                    value={props.energie_reg_ue_kcal}
                     onChange={props.onchange}
                 />
                 <Input
                     title="Protéines (g) :"
-                    name="proteins"
+                    name="proteines"
                     step={0.1}
-                    value={props.proteinsValue}
+                    value={props.proteines}
                     onChange={props.onchange}
                 />
                 <Input
                     title="Lipides (g) :"
-                    name="fats"
+                    name="lipides"
                     step={0.1}
-                    value={props.fatsValue}
+                    value={props.lipides}
                     onChange={props.onchange}
                 />
                 <div className="pl-3 my-1 ml-2 border-l-10 border-(--yellowLightColor) rounded-lg ">
@@ -66,101 +66,101 @@ export default function FoodCreation(props: {
                         title="dont AGS (g) :"
                         name="ags"
                         step={0.1}
-                        value={props.agsValue}
+                        value={props.ags}
                         onChange={props.onchange}
                     />
                     <Input
                         title="dont AGMI (g) :"
                         name="agmi"
                         step={0.1}
-                        value={props.agmiValue}
+                        value={props.agmi}
                         onChange={props.onchange}
                     />
                     <Input
                         title="dont AGPI (g) :"
                         name="agpi"
                         step={0.1}
-                        value={props.agpiValue}
+                        value={props.agpi}
                         onChange={props.onchange}
                     />
                     <Input
                         title="dont cholestérol (g) :"
                         name="cholesterol"
                         step={0.1}
-                        value={props.cholesterolValue}
+                        value={props.cholesterol}
                         onChange={props.onchange}
                     />
                 </div>
                 <Input
                     title="Glucides (g) :"
-                    name="carbohydrates"
+                    name="glucides"
                     step={0.1}
-                    value={props.carbohydratesValue}
+                    value={props.glucides}
                     onChange={props.onchange}
                 />
                 <div className="pl-3 my-1 ml-2 border-l-10 border-(--yellowLightColor) rounded-lg ">
                     <Input
                         title="dont sucres (g) :"
-                        name="sugars"
+                        name="sucres"
                         step={0.1}
-                        value={props.sugarsValue}
+                        value={props.sucres}
                         onChange={props.onchange}
                     />
                 </div>
                 <Input
                     title="Fibres (g) :"
-                    name="fibers"
+                    name="fibres"
                     step={0.1}
-                    value={props.fibersValue}
+                    value={props.fibres}
                     onChange={props.onchange}
                 />
                 <Input
                     title="Alcool (g) :"
-                    name="alcohol"
+                    name="alcool"
                     step={0.1}
-                    value={props.alcoholValue}
+                    value={props.alcool}
                     onChange={props.onchange}
                 />
                 <Input
                     title="Sodium (mg) :"
                     name="sodium"
                     step={0.1}
-                    value={props.sodiumValue}
+                    value={props.sodium}
                     onChange={props.onchange}
                 />
                 <Input
                     title="Potassium (mg) :"
                     name="potassium"
                     step={0.1}
-                    value={props.potassiumValue}
+                    value={props.potassium}
                     onChange={props.onchange}
                 />
                 <Input
                     title="Phosphore (mg) :"
-                    name="phosphorus"
+                    name="phosphore"
                     step={0.1}
-                    value={props.phosphorusValue}
+                    value={props.phosphore}
                     onChange={props.onchange}
                 />
                 <Input
                     title="Fer (mg) :"
-                    name="iron"
+                    name="fer"
                     step={0.1}
-                    value={props.ironValue}
+                    value={props.fer}
                     onChange={props.onchange}
                 />
                 <Input
                     title="Calcium (mg) :"
                     name="calcium"
                     step={0.1}
-                    value={props.calciumValue}
+                    value={props.calcium}
                     onChange={props.onchange}
                 />
                 <Input
                     title="Vitamine D (µg) :"
-                    name="vitamin_d"
+                    name="vitamine_d"
                     step={0.1}
-                    value={props.vitamin_dValue}
+                    value={props.vitamine_d}
                     onChange={props.onchange}
                 />
             </div>

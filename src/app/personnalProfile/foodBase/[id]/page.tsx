@@ -188,24 +188,24 @@ export default function Home({ params }: Props) {
                         {userDatabase && seeAddFood && <FoodCreation
                             onSubmit={handleSubmitStepTwo}
                             databaseName={userDatabase.title}
-                            titleValue={foodDetails.alim_nom_fr}
-                            caloriesValue={foodDetails.energie_reg_ue_kcal}
-                            proteinsValue={foodDetails.proteines}
-                            fatsValue={foodDetails.lipides}
-                            agsValue={foodDetails.ags}
-                            agmiValue={foodDetails.agmi}
-                            agpiValue={foodDetails.agpi}
-                            cholesterolValue={foodDetails.cholesterol}
-                            carbohydratesValue={foodDetails.glucides}
-                            sugarsValue={foodDetails.sucres}
-                            fibersValue={foodDetails.fibres}
-                            alcoholValue={foodDetails.alcool}
-                            sodiumValue={foodDetails.sodium}
-                            potassiumValue={foodDetails.potassium}
-                            phosphorusValue={foodDetails.phosphore}
-                            ironValue={foodDetails.fer}
-                            calciumValue={foodDetails.calcium}
-                            vitamin_dValue={foodDetails.vitamine_d}
+                            alim_nom_fr={foodDetails.alim_nom_fr}
+                            energie_reg_ue_kcal={foodDetails.energie_reg_ue_kcal}
+                            proteines={foodDetails.proteines}
+                            lipides={foodDetails.lipides}
+                            ags={foodDetails.ags}
+                            agmi={foodDetails.agmi}
+                            agpi={foodDetails.agpi}
+                            cholesterol={foodDetails.cholesterol}
+                            glucides={foodDetails.glucides}
+                            sucres={foodDetails.sucres}
+                            fibres={foodDetails.fibres}
+                            alcool={foodDetails.alcool}
+                            sodium={foodDetails.sodium}
+                            potassium={foodDetails.potassium}
+                            phosphore={foodDetails.phosphore}
+                            fer={foodDetails.fer}
+                            calcium={foodDetails.calcium}
+                            vitamine_d={foodDetails.vitamine_d}
                             onchange={handleChangeFoodDetails}
 
                         />}
