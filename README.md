@@ -31,7 +31,7 @@ Elle permet d'effectuer différents calculs et évaluations essentiels à la pra
 ### Utilisation avec ou sans compte
 
 - **Sans compte** : accès à tous les outils de calcul.
-- **Avec compte** : possibilité de **créer sa propre base alimentaire personnalisée** (fonctionnalité encore en cours de développement) ou d’envoyer un message à la développeuse.
+- **Avec compte** : possibilité de **créer sa propre base alimentaire personnalisée** afin de l'utiliser dans l'outil de calcul des ingesta, d’envoyer un message à la développeuse ou de garder un historique des calculs faits (fonctionnalité en cours de développement).
 
 ---
 
@@ -55,6 +55,10 @@ Outil d'aide à l'évaluation du risque de Syndrome de Renutrition Inappropriée
 
 ### 🔹 Calcul des ingesta
 Outil permettant le calcul d'ingesta. L'utilisateur sélectionne un ou plusieurs aliments de la **base Ciqual 2020**, leur associe une quantité, et obtient automatiquement la **valeur calorique et nutritionnelle** de chaque aliment ainsi que le total de la liste créée.
+
+
+### 🔹 En cours de développement  : Calcul des paramètres d'insulinothérapie fonctionnelle
+Outil permettant le calcul des paramètres théoriques d'insulinothérapie fonctionnelle (unités d'insuline par portion de glucides, compensation, resucrage).
 
 ---
 
@@ -80,7 +84,7 @@ Ils sont exécutés automatiquement via **GitHub Actions** lors de chaque push o
 
 ## 🚀 Roadmap
 
-- [ ] Intégration de la base alimentaire personnalisée dans le calcul des ingesta
+- [ ] Mise en place de l'accès à l'historique des calculs faits par l'utilisateur connecté
 - [ ] Création d'un outil de calcul des paramètres théoriques d’insulinothérapie fonctionnelle
 - [ ] Création d'un outil de calcul du NAP
 - [ ] Amélioration de l’interface mobile
