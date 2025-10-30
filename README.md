@@ -70,8 +70,100 @@ Outil permettant le calcul des paramètres théoriques d'insulinothérapie fonct
 | **Backend** | Python, Django |
 | **Base de données** | PostgreSQL (hébergée sur [Neon](https://neon.tech)) |
 | **Hébergement** | Frontend & backend déployés sur [Vercel](https://vercel.com) |
-| **Analyse d’usage** | [PostHog](https://posthog.com) |
+| **Analyse d'usage** | [PostHog](https://posthog.com) |
 | **CI/CD** | GitHub Actions (tests unitaires automatisés) |
+
+---
+
+## 🚀 Installation et configuration
+
+### Prérequis
+
+- Node.js (version 18 ou supérieure)
+- npm ou yarn
+- Un compte [Vercel](https://vercel.com) (pour le déploiement)
+- Un compte [PostHog](https://posthog.com) (pour l'analyse d'usage)
+
+### Installation locale
+
+1. Cloner le repository
+```bash
+git clone https://github.com/Edwige08/dietetic_lab_front.git
+cd dietetic_lab_front
+```
+
+2. Installer les dépendances
+```bash
+npm install
+# ou
+yarn install
+```
+
+3. Configurer les variables d'environnement
+```bash
+# Créer un fichier .env.local à la racine du projet avec :
+NEXT_PUBLIC_BACK_END_URL=http://localhost:8000
+NEXT_PUBLIC_POSTHOG_KEY=votre_clé_posthog
+NEXT_PUBLIC_POSTHOG_HOST=votre_host_posthog
+```
+
+4. Lancer le serveur de développement
+```bash
+npm run dev
+# ou
+yarn dev
+```
+
+5. Ouvrir [http://localhost:3000](http://localhost:3000) dans votre navigateur
+
+### Déploiement
+
+Le projet est configuré pour être déployé sur Vercel. Le déploiement se fait automatiquement à chaque push sur la branche main.
+
+1. Connectez votre repository GitHub à Vercel
+2. Configurez les variables d'environnement sur Vercel
+3. Le déploiement se fera automatiquement
+
+---
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+### Pour signaler un bug ou proposer une fonctionnalité
+
+1. Vérifiez d'abord que le bug ou la fonctionnalité n'a pas déjà été signalé dans les [issues](https://github.com/Edwige08/dietetic_lab_front/issues)
+2. Créez une nouvelle issue en décrivant clairement le problème ou la proposition
+3. Utilisez les labels appropriés (bug, enhancement, etc.)
+
+### Pour contribuer au code
+
+1. Forkez le repository
+2. Créez une nouvelle branche
+```bash
+git checkout -b feature/ma-super-fonctionnalite
+```
+3. Faites vos modifications en respectant :
+   - Le style de code existant
+   - La couverture de tests
+   - Les règles TypeScript
+4. Commitez vos changements
+```bash
+git commit -m "feat: ajout de ma super fonctionnalité"
+```
+5. Poussez vers votre fork
+```bash
+git push origin feature/ma-super-fonctionnalite
+```
+6. Créez une Pull Request
+
+### Guide de style
+
+- Utilisez TypeScript strict
+- Suivez les conventions ESLint du projet
+- Écrivez des tests pour tout nouveau code
+- Commentez votre code quand nécessaire
+- Utilisez les composants TailwindCSS et DaisyUI existants
 
 ---
 
