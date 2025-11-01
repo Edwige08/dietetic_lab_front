@@ -6,6 +6,9 @@ import TitleTwo from "./TitleTwo";
 import { FoodDetails, FoodBase } from "@/types/FoodDB";
 import { useUser } from "@/contexts/UserContext";
 import { useRouter } from "next/navigation";
+import ButtonGreen from "./ButtonGreen";
+import ButtonRed from "./ButtonRed";
+import { Pencil, Trash2 } from "lucide-react";
 
 export default function BDDView(props: { databaseName: string, databaseFood: FoodDetails[], dbId: number }) {
     const [userDatabases, setUserDatabases] = useState<FoodBase[]>([]);
@@ -127,10 +130,7 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
                 <div className="flex flex-col items-center">
                     <TitleTwo text={props.databaseName} />
                 </div>
-                <div className="flex flex-row justify-center gap-4 p-2">
-                    <button type="button" onClick={() => handleUpdateDB(props.dbId)} className="border rounded-lg w-30 py-1 bg-(--greenLightColor) hover:underline" >Modifier</button>
-                    <button type="button" onClick={() => handleDeleteDB(props.dbId, props.databaseName)} className="border rounded-lg w-30 bg-(--redLightColor) hover:underline">Supprimer</button>
-                </div>
+                
                 {currentFood.map((food, index) => (
 
                     <FoodColapse
@@ -156,6 +156,10 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
                         onClick={() => removeFood(food.id)}
                     />
                 ))}
+                <div className="flex flex-col justify-center gap-4 pt-10 p-2 md:flex-row">
+                    <ButtonGreen lucide={Pencil} text="Ajouter des aliments" onClick={() => handleUpdateDB(props.dbId)} />
+                    <ButtonRed lucide={Trash2} text="Supprimer la base" onClick={() => handleDeleteDB(props.dbId, props.databaseName)} />
+                </div>
             </div>
         </div>
     )
