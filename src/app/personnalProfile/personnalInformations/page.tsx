@@ -9,7 +9,8 @@ import Title from "@/components/Title";
 import { useUser } from "@/contexts/UserContext";
 import { UserInformations, UserInformationsToUpdate } from "@/types/users";
 import { getDate } from "@/utils/GetDate";
-import { Pencil, X } from "lucide-react";
+import { ChevronLeft, Pencil, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -131,7 +132,13 @@ export default function Home() {
 
     return (
         <div className="flex flex-col items-center">
-            <Title text="Vos informations personnelles" />
+            <div className="flex flex-row justify-start items-start gap-2 w-[90%] md:w-[75%] mb-3">
+                <Link href="/personnalProfile" className="pt-5 text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                <div className="px-2 w-full">
+                    <Title text="Vos informations personnelles" />
+                </div>
+            </div>
+
             <div className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl">
                 {isLoading ?
                     <div className="py-40 text-center text-xl">Chargement...</div>
@@ -219,20 +226,20 @@ export default function Home() {
                         onClick={() => setShowDeleteModal(false)}
                     />
                     <div className="relative bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
-                        {isLoading ? 
-                        <div>
-                            <p className="mb-6 text-center">
-                                Suppression en cours...
-                            </p>
-                        </div>
-                        :
-                        <div>
-                            <h2 className="text-xl font-bold mb-4">Confirmer la suppression</h2>
-                            <p className="mb-6">
-                                Attention ! En supprimant votre compte, toutes vos données seront <span className="font-bold">définitivement perdues</span>.
-                                Cette action est <span className="font-bold">irréversible</span>.
-                            </p>
-                        </div>
+                        {isLoading ?
+                            <div>
+                                <p className="mb-6 text-center">
+                                    Suppression en cours...
+                                </p>
+                            </div>
+                            :
+                            <div>
+                                <h2 className="text-xl font-bold mb-4">Confirmer la suppression</h2>
+                                <p className="mb-6">
+                                    Attention ! En supprimant votre compte, toutes vos données seront <span className="font-bold">définitivement perdues</span>.
+                                    Cette action est <span className="font-bold">irréversible</span>.
+                                </p>
+                            </div>
                         }
                         <div className="flex justify-center gap-4">
                             <button

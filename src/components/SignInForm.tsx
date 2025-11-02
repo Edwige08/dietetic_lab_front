@@ -1,6 +1,6 @@
 'use client'
 
-import { LogInIcon } from "lucide-react";
+import { ChevronLeft, LogInIcon } from "lucide-react";
 import ButtonGreen from "./ButtonGreen";
 import Link from "next/link";
 import Title from "./Title";
@@ -37,7 +37,7 @@ export default function SignInForm() {
         if (result.success) {
             router.push('/personnalProfile')
         } else {
-            setMessage(result.error ||'Erreur de connexion')
+            setMessage(result.error || 'Erreur de connexion')
         }
 
         setIsLoading(false)
@@ -45,9 +45,13 @@ export default function SignInForm() {
 
     return (
         <div>
-            <Title
-                text="Connexion"
-            />
+            <div className="flex flex-row justify-start items-center gap-2 w-full mb-3">
+                <Link href="/" className="text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                <div className="px-2 w-full">
+                    <Title text="Connexion" />
+                </div>
+            </div>
+
             <div className="card bg-white w-96 shadow-sm">
                 <form className="card-body" onSubmit={handleSubmit}>
                     {message ?

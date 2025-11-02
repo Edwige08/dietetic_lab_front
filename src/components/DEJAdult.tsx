@@ -4,7 +4,7 @@ import { MouseEvent, useEffect, useState } from "react";
 import Input from "./Input";
 import ButtonGreen from "./ButtonGreen";
 import Title from "./Title";
-import { Calculator, Mars, Venus } from "lucide-react";
+import { Calculator, ChevronLeft, Mars, Venus } from "lucide-react";
 import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
 import { CalculateDEJBlackMan, CalculateDEJBlackWoman, CalculateDEJHandBMan, CalculateDEJHandBWoman } from "@/utils/CalculateDEJ";
@@ -12,6 +12,7 @@ import { DEJParameters, DEJResults } from "@/types/DEJ";
 import { useData } from "@/contexts/DataContext";
 import { useUser } from "@/contexts/UserContext";
 import { useAnalytics } from '@/utils/usePosthog';
+import Link from "next/link";
 
 export default function DEJAdult() {
     const { data, updateData, resetData } = useData();
@@ -155,11 +156,13 @@ export default function DEJAdult() {
 
     return (
         <>
-            <div className="px-4 mx-3 w-[90%] md:w-[75%]">
-                <Title
-                    text="Calcul de la Dépense Energétique Journalière (DEJ)"
-                />
+            <div className="flex flex-row justify-start items-start gap-2 w-[90%] md:w-[75%] mb-3">
+                <Link href="/" className="pt-5 text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                <div className="px-2 w-full">
+                    <Title text="Calcul de la Dépense Energétique Journalière (DEJ)" />
+                </div>
             </div>
+
             <form
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
                 onSubmit={handleSubmit}

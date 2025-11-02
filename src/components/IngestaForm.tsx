@@ -6,13 +6,14 @@ import InputText from "./InputText";
 import Title from "./Title";
 import TitleTwo from "./TitleTwo";
 import ButtonGreen from "./ButtonGreen";
-import { ListPlus } from "lucide-react";
+import { ChevronLeft, ListPlus } from "lucide-react";
 import IngestaResults from "./IngestaResults";
 import IngestaColapse from "./IngestaColapse";
 import { CiqualData, FoodDataWithQuantity, FoodWithQuantity } from "@/types/Ciqual";
 import { CalculateCalories } from "@/utils/CalculateCaloriesFromNutrients";
 import { adjustedValue } from "@/utils/AdjustedValue";
 import { useUser } from "@/contexts/UserContext";
+import Link from "next/link";
 
 export default function IngestaForm() {
     const [foodWithQuantity, setFoodWithQuantity] = useState<FoodWithQuantity>({ food: "", quantity: 0 })
@@ -63,8 +64,6 @@ export default function IngestaForm() {
             }
 
             const mergedData = [...dataDb, ...dataCiqual];
-            console.log("🍎", mergedData);
-
             setCiqualAndDbData(mergedData);
 
         } catch (error) {
@@ -376,9 +375,13 @@ export default function IngestaForm() {
 
     return (
         <>
-            <Title
-                text="Calcul des ingesta"
-            />
+            <div className="flex flex-row justify-start items-center gap-2 w-[90%] md:w-[75%] mb-3">
+                <Link href="/" className="text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                <div className="px-2 w-full">
+                    <Title text="Calcul des ingesta" />
+                </div>
+            </div>
+
             <form
                 onSubmit={addFood}
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
