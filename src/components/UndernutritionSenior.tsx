@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Input from "./Input";
 import ButtonGreen from "./ButtonGreen";
 import InputCheckbox from "./InputCheckbox";
-import Title from "./Title";
 import { Calculator } from "lucide-react";
 import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
@@ -226,7 +225,7 @@ export default function UndernutritionSenior() {
                 etiologicalAbsorption: parameters.etiologicalAbsorption,
                 etiologicalAgression: parameters.etiologicalAgression,
             })
-            
+
             trackEvent('undernutrition_senior_calculated', {
                 has_weight: parameters.weight > 0,
                 has_height: parameters.height > 0,
@@ -261,8 +260,8 @@ export default function UndernutritionSenior() {
                     });
             }
 
-            
-            
+
+
         } else {
             setMessage("Merci de bien remplir les champs nécessaires")
         }
@@ -270,16 +269,14 @@ export default function UndernutritionSenior() {
 
     return (
         <>
-            <div className="px-4 mx-3 w-[90%] md:w-[75%]">
-                <Title
-                    text="Evaluation de la dénutrition (≥&nbsp;70&nbsp;ans)"
-                />
-            </div>
-
             <form
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
                 onSubmit={handleSubmit}
             >
+                <div className="flex flex-col justify-center items-center">
+                    <TitleTwo text="Personne âgée (≥&nbsp;70&nbsp;ans)" />
+                </div>
+
                 <h2 className="text-lg font-bold text-(--orangeColor)">
                     - <span className="underline">Critères phénotypiques</span> :
                 </h2>

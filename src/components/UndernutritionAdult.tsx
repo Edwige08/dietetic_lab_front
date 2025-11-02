@@ -5,7 +5,6 @@ import Input from "./Input";
 import ButtonGreen from "./ButtonGreen";
 import InputCheckbox from "./InputCheckbox";
 import { Calculator } from "lucide-react";
-import Title from "./Title";
 import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
 import { UndernutParameters, UndernutResults } from "@/types/Undernutrition";
@@ -259,15 +258,13 @@ export default function UndernutritionAdult() {
 
     return (
         <>
-            <div className="px-4 mx-3 w-[90%] md:w-[75%]">
-                <Title
-                    text="Evaluation de la dénutrition (≥&nbsp;18&nbsp;ans et &lt;&nbsp;70 ans)"
-                />
-            </div>
             <form
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
                 onSubmit={handleSubmit}
             >
+                <div className="flex flex-col justify-center items-center">
+                    <TitleTwo text="Adulte (≥&nbsp;18&nbsp;ans et &lt;&nbsp;70&nbsp;ans)" />
+                </div>
                 <h2 className="text-lg font-bold text-(--orangeColor)">
                     - <span className="underline">Critères phénotypiques</span> :
                 </h2>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import ButtonGreen from "./ButtonGreen";
 import Input from "./Input";
-import { Calculator } from 'lucide-react';
+import { Calculator, ChevronLeft } from 'lucide-react';
 import Title from "./Title";
 import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
@@ -13,6 +13,7 @@ import { IMCCategoryColor } from "@/utils/ResultsColors";
 import { useData } from "@/contexts/DataContext";
 import { useAnalytics } from '@/utils/usePosthog';
 import { useUser } from "@/contexts/UserContext";
+import Link from "next/link";
 
 export default function IMCForm() {
     const { data, resetData, updateData } = useData();
@@ -147,8 +148,11 @@ export default function IMCForm() {
 
     return (
         <>
-            <div>
-                <Title text="Calcul de l&apos;IMC" />
+            <div className="flex flex-row justify-start items-center gap-2 w-[90%] md:w-[75%] mb-3">
+                <Link href="/" className="text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                <div className="px-2 w-full">
+                    <Title text="Calcul de l&apos;IMC" />
+                </div>
             </div>
 
             <form

@@ -5,7 +5,7 @@ import Input from "./Input";
 import InputCheckbox from "./InputCheckbox";
 import ButtonGreen from "./ButtonGreen";
 import Title from "./Title";
-import { Calculator } from "lucide-react";
+import { Calculator, ChevronLeft } from "lucide-react";
 import TitleTwo from "./TitleTwo";
 import { CalculateIMC } from "@/utils/CalculateIMC";
 import { SRIParameters, SRIResults } from "@/types/SRI";
@@ -13,6 +13,7 @@ import { useData } from "@/contexts/DataContext";
 import { SRIScoreMajorCriterion, SRIScoreMinorCriterion } from "@/utils/SRIScore";
 import { WeightLoss } from "@/utils/WeightLoss";
 import { SRICategoryColor } from "@/utils/ResultsColors";
+import Link from "next/link";
 
 export default function SRIForm() {
     const initialParameters: SRIParameters = {
@@ -165,11 +166,13 @@ export default function SRIForm() {
 
     return (
         <>
-            <div className="px-4 mx-3 w-[90%] md:w-[75%]">
-                <Title
-                    text="Evaluation du risque de SRI"
-                />
+            <div className="flex flex-row justify-start items-start gap-2 w-[90%] md:w-[75%] mb-3">
+                <Link href="/" className="pt-5 text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                <div className="px-2 w-full">
+                    <Title text="Evaluation du risque de&nbsp;SRI" />
+                </div>
             </div>
+
             <form
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
                 onSubmit={handleSubmit}

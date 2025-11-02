@@ -2,7 +2,8 @@
 
 import Title from "@/components/Title";
 import TitleTwo from "@/components/TitleTwo";
-import { BookOpenText, MessageCircleQuestionMark } from "lucide-react";
+import { BookOpenText, ChevronLeft, MessageCircleQuestionMark } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Informations() {
@@ -39,9 +40,13 @@ export default function Informations() {
 
                 {isFAQ ?
                     <div className="flex flex-col items-center">
-                        <Title
-                            text="Foire aux Questions"
-                        />
+                        <div className="flex flex-row justify-start items-center gap-2 w-[90%] md:w-[75%] mb-3">
+                            <Link href="/" className="text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                            <div className="px-2 w-full">
+                                <Title text="Foire aux Questions" />
+                            </div>
+                        </div>
+
                         <div className="flex flex-col p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl text-justify">
                             <TitleTwo text="Qu'est-ce que Dietetic Lab&nbsp;?" />
                             <p>
@@ -71,9 +76,13 @@ export default function Informations() {
                     </div>
                     :
                     <div className="flex flex-col items-center">
-                        <Title
-                            text="À propos de Dietetic Lab"
-                        />
+                        <div className="flex flex-row justify-start items-center gap-2 w-[90%] md:w-[75%] mb-3">
+                            <Link href="/" className="text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                            <div className="px-2 w-full">
+                                <Title text="À propos de Dietetic Lab" />
+                            </div>
+                        </div>
+
                         <div className="flex flex-col p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl text-justify">
 
                             <TitleTwo

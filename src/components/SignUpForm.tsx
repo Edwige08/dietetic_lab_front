@@ -1,6 +1,6 @@
 'use client'
 
-import { LogInIcon } from "lucide-react";
+import { ChevronLeft, LogInIcon } from "lucide-react";
 import ButtonGreen from "./ButtonGreen";
 import Title from "./Title";
 import Link from "next/link";
@@ -26,17 +26,17 @@ export default function SignUpForm() {
         hasSpecialChar: false
     });
 
-    const isPasswordValid = passwordValidation.minLength && 
-                          passwordValidation.hasUppercase && 
-                          passwordValidation.hasNum && 
-                          passwordValidation.hasSpecialChar;
+    const isPasswordValid = passwordValidation.minLength &&
+        passwordValidation.hasUppercase &&
+        passwordValidation.hasNum &&
+        passwordValidation.hasSpecialChar;
 
     const canSubmit = formData.firstname.trim() !== "" &&
-                     formData.lastname.trim() !== "" &&
-                     formData.gender !== "" &&
-                     formData.mail.trim() !== "" &&
-                     isPasswordValid &&
-                     !isLoading;
+        formData.lastname.trim() !== "" &&
+        formData.gender !== "" &&
+        formData.mail.trim() !== "" &&
+        isPasswordValid &&
+        !isLoading;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -84,7 +84,7 @@ export default function SignUpForm() {
             }
 
             setMessageOK(data.message);
-            
+
             setTimeout(() => {
                 router.push('/signin')
             }, 2000);
@@ -102,9 +102,13 @@ export default function SignUpForm() {
 
     return (
         <div>
-            <Title
-                text="Créer un compte"
-            />
+            <div className="flex flex-row justify-start items-center gap-2 w-full mb-3">
+                <Link href="/" className="text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                <div className="px-2 w-full">
+                    <Title text="Créer un compte" />
+                </div>
+            </div>
+
             <div className="card bg-white w-96 shadow-sm">
                 <form className="card-body" onSubmit={handleSubmit}>
                     {message ?
@@ -164,7 +168,7 @@ export default function SignUpForm() {
                         onChange={handleChange}
                         disabled={isLoading}
                     />
-                    
+
                     {formData.password && (
                         <div className="pb-2 text-sm">
                             <p className="font-medium mb-2">Critères du mot de passe :</p>
@@ -186,7 +190,7 @@ export default function SignUpForm() {
                             </div>
                         </div>
                     )}
-                    
+
                     <InputCheckboxWithTitle
                         description="Etes-vous diététicien.ne ?"
                         name="is_dietetician"
