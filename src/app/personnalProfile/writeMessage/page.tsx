@@ -3,6 +3,8 @@
 import SeeMessages from "@/components/SeeMessages";
 import Title from "@/components/Title"
 import WriteMessage from "@/components/WriteMessage";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
@@ -14,7 +16,13 @@ export default function Home() {
 
     return (
         <div className="flex flex-col items-center">
-            <Title text="Mes messages" />
+            <div className="flex flex-row justify-start items-start gap-2 w-[90%] md:w-[75%]">
+                <Link href="/personnalProfile" className="pt-5 text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                <div className="px-2 w-full">
+                    <Title text="Mes messages" />
+                </div>
+            </div>
+
             <div
                 className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
             >
