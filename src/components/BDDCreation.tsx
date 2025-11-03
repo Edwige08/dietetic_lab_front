@@ -78,7 +78,7 @@ export default function BDDCreation() {
                 throw new Error(data.detail || data.message || `Erreur ${response.status}`)
             }
 
-            setMessage("✅ Base de données créée avec succès !");
+            // setMessage("✅ Base de données créée avec succès !");
             setFoodDetails(prev => ({
                 ...prev,
                 personal_db: data.id
@@ -135,7 +135,7 @@ export default function BDDCreation() {
                 throw new Error(data.message || 'Erreur pour créer un aliment')
             }
 
-            setMessage(`✅ ${foodDetails.alim_nom_fr} a bien été ajouté à votre base`);
+            setMessage(`✅ "${foodDetails.alim_nom_fr}" a bien été ajouté`);
             setDatabaseDetails(prev => ({
                 ...prev,
                 foods: [...prev.foods, foodDetails]
@@ -175,9 +175,14 @@ export default function BDDCreation() {
     }
 
     return (
-        <div className="border p-2">
+        <div>
+            {databaseName &&
+                <div className="flex flex-col items-center">
+                    <h1 className="pt-1 md:py-3 font-bold text-2xl text-(--redColor)">📋 {databaseName}</h1>
+                </div>
+            }
             {message &&
-                <div className="flex flex-col items-center m-auto px-5 py-2 w-fit rounded-sm bg-(--grayLightColor)">{message}</div>
+                <div className="flex flex-col items-center m-auto px-5 py-2 mt-3 w-fit rounded-sm bg-(--grayLightColor)">{message}</div>
             }
             {!stepTwo ?
                 <BDDCreationStepOne
@@ -213,7 +218,7 @@ export default function BDDCreation() {
 
                     {databaseDetails.foods.length > 0 &&
                         <div>
-                            <TitleTwo text={`Aliments ajoutés dans "${databaseName}" :`} />
+                            <TitleTwo text={`✅ Aliments ajoutés :`} />
                             {databaseDetails.foods.map((food, index) => {
                                 return (
                                     <FoodColapse
@@ -240,7 +245,7 @@ export default function BDDCreation() {
                                     />
                                 )
                             })}
-                            <Link href="/personnalProfile/foodBase" className="flex flex-row justify-center pt-5">
+                            <Link href="/personnalProfile" className="flex flex-row justify-center pt-5">
                                 <ButtonGreen text="Terminer" lucide={Check} />
                             </Link>
                         </div>
