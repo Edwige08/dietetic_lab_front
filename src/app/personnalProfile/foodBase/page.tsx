@@ -5,17 +5,15 @@ import BDDView from "@/components/BDDView";
 import Title from "@/components/Title";
 import { useUser } from "@/contexts/UserContext";
 import { FoodBase } from "@/types/FoodDB";
-import { useRouter } from "next/navigation";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-
+    const { isAuthenticated } = useUser();
     const [userDatabases, setUserDatabases] = useState<FoodBase[]>();
     const [message, setMessage] = useState<string>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    const router = useRouter();
-    const { isAuthenticated } = useUser();
 
     async function getUserDB() {
         setMessage("");
@@ -36,12 +34,12 @@ export default function Home() {
                     'Authorization': `Bearer ${token}`,
                 },
             });
-            
+
             if (!response.ok) {
                 setIsLoading(false);
                 throw new Error(`❌ Erreur ${response.status} : ${response.statusText}`)
             }
-            
+
             const data = await response.json();
             setUserDatabases(data.results);
             setIsLoading(false);
@@ -53,30 +51,30 @@ export default function Home() {
     }
 
     useEffect(() => {
-       getUserDB();
+        getUserDB();
     }, [isAuthenticated]);
-    
+
     return (
         <div className="flex flex-col items-center">
-            <div
-                className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl"
-            >
+            <div className="flex flex-row justify-start items-start gap-2 w-[90%] md:w-[75%]">
+                <Link href="/personnalProfile" className="pt-5 text-4xl text-(--greenSecondColor)"><ChevronLeft /></Link>
+                <div className="px-2 w-full">
+                    <Title text="Ma base alimentaire" />
+                </div>
+            </div>
+
+            <div className="flex flex-col gap-4 p-4 m-3 w-[90%] md:w-[75%] bg-white border border-gray-300 rounded-xl shadow-xl">
                 {isLoading ?
                     <div className="py-40 text-center text-xl">Chargement...</div>
                     :
                     <div className="flex flex-col items-center">
-                        <div className="px-4 mx-3 w-[90%] md:w-[75%]">
-                            <Title text="Ma base alimentaire" />
-                        </div>
-
                         {message && <div>{message}</div>}
-                        
+
                         {userDatabases && userDatabases.length === 0 ?
                             <BDDCreation />
                             :
                             <div>
                                 {userDatabases && userDatabases.map((db) => (
-
                                     <BDDView
                                         databaseName={db.title}
                                         databaseFood={db.foods}
@@ -90,6 +88,5 @@ export default function Home() {
                 }
             </div>
         </div>
-
     )
 }

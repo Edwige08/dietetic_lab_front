@@ -107,7 +107,7 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
             }
 
             setCurrentFood(prev => prev.filter(food => food.id !== foodId));
-            setMessage("🗑️ Aliment supprimé avec succès !");
+            // setMessage("🗑️ Aliment supprimé avec succès !");
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
@@ -167,9 +167,8 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
             const updatedData = await updatedResponse.json();
             setCurrentFood(updatedData.foods);
             setIsModalOpen(false);
-            setMessage(`✅ "${formData.alim_nom_fr}" ajouté avec succès !`);
             setFormData(initialFormData);
-            
+
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue';
             setMessage(`❌ ${errorMessage}`);
@@ -193,10 +192,10 @@ export default function BDDView(props: { databaseName: string, databaseFood: Foo
                     :
                     <div>
                         {message &&
-                            <div className="flex flex-col items-center m-auto px-5 py-2 w-fit rounded-sm bg-(--grayLightColor)">{message}</div>
+                            <div className="flex flex-col items-center m-auto mb-3 px-5 py-2 w-fit rounded-sm bg-(--grayLightColor)">{message}</div>
                         }
                         <div className="flex flex-col items-center">
-                            <TitleTwo text={props.databaseName} />
+                            <h1 className="pb-6 font-bold text-2xl ">📋 {props.databaseName}</h1>
                         </div>
 
                         {currentFood.map((food, index) => (

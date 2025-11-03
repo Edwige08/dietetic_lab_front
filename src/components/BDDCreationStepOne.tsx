@@ -14,6 +14,7 @@ export default function BDDCreationStepOne(props: { onSubmit: FormEventHandler<H
                 title="Nom :"
                 name="bddName"
                 type="text"
+                placeholder="ex : Ma base perso"
                 value={props.value}
                 onChange={props.onChange}
             />
