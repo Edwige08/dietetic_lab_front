@@ -26,7 +26,7 @@ export default function SeeMessages(props: { onClick: MouseEventHandler<HTMLButt
         try {
             const token = localStorage.getItem('access_token');
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/commentaries/`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1/comments/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
