@@ -36,6 +36,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Mon App PWA" />
+        <meta name="google-site-verification" content="7tWkf1DJXI8h2awAX0UEO8pW-ASTnu4eUT2MkjPji78" />
       </Head>
       <body className={`${ptSans.variable} antialiased pb-20 min-h-screen bg-(--background)`}>
         <CSPostHogProvider>
